@@ -1020,6 +1020,11 @@ body.dark-mode button:hover{
   .tecnologias img {
     width: 35px;
   }
+
+  .nav-burger-menu, 
+  #nav-burger-contacts {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
