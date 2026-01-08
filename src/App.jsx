@@ -1,13 +1,12 @@
-import { useState } from 'react'; // Adicionado useState
+import { useState } from 'react'; 
 import Navbar from './components/Navbar';
 import SprayEffect from './components/SprayEffect';
 import ProjectCard from './components/ProjectCard';
 import Experiencias from './components/ExperienceSection';
 import Maratona from './components/Maratona';
 import Comedoria from './components/Comedoria';
-import Modal from './components/Modal'; // Importar a nova Modal
+import Modal from './components/Modal';
 
-// Assets
 import ferramentas_e_habilidades from './assets/images/ferramentas_e_habilidades.png';
 import portrait from './assets/images/portrait.png';
 import barreira from './assets/images/Projetos/383340179-3af2d9d0-9894-4afb-aace-7c225ca56bab 1.png';
@@ -16,7 +15,6 @@ import dashboard from './assets/images/Projetos/DASHBOARD.png';
 import jogo from './assets/images/Projetos/image 35.png';
 import mae from './assets/images/Projetos/image 36.png';
 
-// Icons
 import cpp from './assets/Icons/C++.svg';
 import js from './assets/Icons/JS.svg';
 import reactIcon from './assets/Icons/react-2.svg';
@@ -95,7 +93,7 @@ function App() {
           <div id="sobre-mim">
             <h2>SOBRE MIM</h2>
             <p>Meu nome é Vinicius Cardoso de Lima, tenho 22 anos e estou atualmente
-          no 4º semestre da graduação em <b>Ciência da Computação</b> pela
+          no 4º semestre da graduação em <b>Análise e Desenvolvimento de Sistemas</b> pela
           FECAP. Sou um profissional em formação com um sólido background
           técnico em <b>Administração</b> desde 2023 pela ETEC, o que me permite
           unir a lógica de programação com uma visão de gestão e processos. Sou
