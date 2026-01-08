@@ -11,7 +11,7 @@ function Maratona() {
             Participei da Maratona SBC de Programação em 2025 como competidor na
             primeira fase, me encantei pelo projeto, e a convite da Diretora de
             patrocínios, Lucy Mary Tabutti, me tornei o
-            <b>designer oficial da edição</b>. Desenvolvi o design da logo,
+            <b> designer oficial da edição</b>. Desenvolvi o design da logo,
             mascotes, camisetas, cartazes, crachás, revista e álbum de
             figurinhas, todos eles sendo usados no dia da competição sediada
             pela FECAP.
