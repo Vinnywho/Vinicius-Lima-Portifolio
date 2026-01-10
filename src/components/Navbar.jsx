@@ -11,12 +11,13 @@ const Navbar = () => {
         <li><a href="#home" className="nav-item" onClick={() => setIsOpen(false)}>Home</a></li>
         <li><a href="#sobre" className="nav-item" onClick={() => setIsOpen(false)}>Sobre</a></li>
         <li><a href="#projetos" className="nav-item" onClick={() => setIsOpen(false)}>Projetos</a></li>
+        <li><a href="#experiencias" className="nav-item" onClick={() => setIsOpen(false)}>Experiências</a></li>
       </ul>
 
       <ul className={`nav-burger-menu ${isOpen ? 'active' : ''}`}>
         <div id="nav-burger-contacts">
           <a href="https://instagram.com/vinny.who" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="mailto:vivini13235@gmail.com">Email</a>
+          <a href="vivini13235@gmail.com">Email</a>
           <a href="https://linkedin.com/in/vinicius-cardoso-de-lima-a9a918227/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/Vinnywho" target="_blank" rel="noreferrer">GitHub</a>
         </div>
