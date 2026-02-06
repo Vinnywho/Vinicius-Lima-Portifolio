@@ -93,7 +93,7 @@ function App() {
           <div id="sobre-mim">
             <h2>SOBRE MIM</h2>
             <p>Meu nome é Vinicius Cardoso de Lima, tenho 22 anos e estou atualmente
-          no 4º semestre da graduação em <b>Análise e Desenvolvimento de Sistemas</b> pela
+          no 4º semestre da graduação em <b>Ciência da Computação</b> pela
           FECAP. Sou um profissional em formação com um sólido background
           técnico em <b>Administração</b> desde 2023 pela ETEC, o que me permite
           unir a lógica de programação com uma visão de gestão e processos. Sou
