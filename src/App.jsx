@@ -17,6 +17,7 @@ import petshop from "./assets/images/Projetos/434983031-1a4a1ce0-cd4f-4084-abc9-
 import dashboard from "./assets/images/Projetos/DASHBOARD.png";
 import jogo from "./assets/images/Projetos/image 35.png";
 import mae from "./assets/images/Projetos/image 36.png";
+import financas from "./assets/images/Projetos/financassemfronteira.png";
 
 import cpp from "./assets/Icons/C++.svg";
 import js from "./assets/Icons/JS.svg";
@@ -27,6 +28,7 @@ import figma from "./assets/Icons/figma-svgrepo-com.svg";
 import azure from "./assets/Icons/microsoftazure-svgrepo-com.svg";
 import csharp from "./assets/Icons/Csharp.svg";
 import mysql from "./assets/Icons/mysql-logo-pure.svg";
+import vercel from "./assets/Icons/Vercel.svg";
 import cv from "./assets/CV 2026-1 (Atualizado) - Vinicius C. Lima.pdf";
 
 function App() {
@@ -40,6 +42,15 @@ function App() {
   }, []);
 
   const projetosLista = [
+    {
+      title: "Finanças Sem Fronteiras",
+      desc: "Landing page empresarial do projeto Finanças sem Fronteiras.",
+      fullDesc:
+        "Landing page profissional desenvolvida para o projeto Finanças Sem Fronteiras, empresa de Janina Janino, que visa promover a educação financeira e inclusão social por meio de cursos e conteúdo acessíveis e interativos.",
+      bgImage: financas,
+      icons: [reactIcon, vercel, html, css,figma],
+      link: "https://financassemfronteira.vercel.app",
+    },
     {
       title: "Barreira Ecológica Automatica - B.E.A.",
       desc: "Barreira mecânica que recolhe lixo flutuante para despoluir rios.",
@@ -78,9 +89,9 @@ function App() {
     },
     {
       title: "Projeto - Dia das Mães",
-      desc: "Pequeno projeto desenvolvido para o dia das mães.",
+      desc: "Pequeno projeto desenvolvido como presente para o dia das mães.",
       fullDesc:
-        "Landing page comemorativa com foco em design emocional, utilizando animações suaves e interface responsiva para homenagear as mães.",
+        "Página comemorativa que quis fazer para minha mãe como homenagem para o dia das mães, colocando em prática meus conhecimentos de front-end para criar algo especial e personalizado.",
       bgImage: mae,
       icons: [html, css, js, figma],
       link: "https://papaya-cascaron-060459.netlify.app/mae",

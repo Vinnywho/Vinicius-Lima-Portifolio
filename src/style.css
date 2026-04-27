@@ -880,7 +880,9 @@ body.dark-mode #saibamais-comedoria a {
 body.dark-mode #curriculo:hover,
 body.dark-mode #saibamais-maratona:hover,
 body.dark-mode #saibamais-comedoria:hover {
+  box-shadow:none; 
   background-color: #fff;
+  color: #000;
 }
 
 body.dark-mode #curriculo:hover a,
