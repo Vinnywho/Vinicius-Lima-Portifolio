@@ -111,9 +111,10 @@ export default function FloatingMenu() {
     { num: '02', label: t.nav.about, action: () => goToSection('sobre') },
     { num: '03', label: t.nav.projects, action: () => goToSection('projetos') },
     { num: '04', label: t.nav.experiences, action: () => goToSection('experiencias') },
-    { num: '05', label: t.nav.faq, action: () => goToRoute('/faq') },
-    { num: '06', label: t.nav.contact, action: () => goToSection('contato') },
-    { num: '07', label: t.nav.cvLab, action: () => goToRoute('/cv-lab') },
+    { num: '05', label: t.nav.sprayLab, action: () => goToRoute('/spray-lab') },
+    { num: '06', label: t.nav.faq, action: () => goToRoute('/faq') },
+    { num: '07', label: t.nav.contact, action: () => goToSection('contato') },
+    { num: '08', label: t.nav.cvLab, action: () => goToRoute('/cv-lab') },
   ];
 
   return (
@@ -134,6 +135,27 @@ export default function FloatingMenu() {
 
       {/* Controles Fixos no Canto Superior Direito */}
       <div className="floating-corner-controls no-print">
+        {/* Botão de Destaque para Transicionar Dev ⇄ Designer */}
+        <button
+          type="button"
+          className="corner-pill-btn corner-mode-btn"
+          onClick={() => switchMode()}
+          aria-label={t.nav.modeLabel}
+          title={mode === 'dev' ? 'Mudar para Modo Designer' : 'Mudar para Modo Dev'}
+        >
+          {mode === 'dev' ? (
+            <>
+              <Palette size={16} style={{ color: '#0066ff' }} />
+              <span className="corner-mode-text">DESIGN</span>
+            </>
+          ) : (
+            <>
+              <Code2 size={16} style={{ color: '#aa1719' }} />
+              <span className="corner-mode-text">DEV</span>
+            </>
+          )}
+        </button>
+
         <button
           type="button"
           className="corner-pill-btn"

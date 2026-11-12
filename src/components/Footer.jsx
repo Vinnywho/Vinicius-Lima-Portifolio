@@ -85,6 +85,17 @@ export default function Footer() {
                 <button
                   type="button"
                   onClick={() => {
+                    navigate('/spray-lab');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  {t.nav.sprayLab}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
                     navigate('/cv-lab');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}

@@ -171,15 +171,21 @@ export function AppProvider({ children }) {
     [mode, navigate]
   );
 
+  const transitionRef = useRef(transitionState);
+  useEffect(() => {
+    transitionRef.current = transitionState;
+  }, [transitionState]);
+
   // Chamado no meio da animação (quando a cortina cobre a tela inteira)
   const applyTransitionMidpoint = useCallback(() => {
-    if (transitionState.type === 'mode' && transitionState.targetMode) {
-      setMode(transitionState.targetMode);
-    } else if (transitionState.type === 'nav' && transitionState.targetPath) {
-      navigate(transitionState.targetPath);
+    const current = transitionRef.current;
+    if (current.type === 'mode' && current.targetMode) {
+      setMode(current.targetMode);
+    } else if (current.type === 'nav' && current.targetPath) {
+      navigate(current.targetPath);
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
-  }, [transitionState, navigate]);
+  }, [navigate]);
 
   const finishTransition = useCallback(() => {
     isTransitioningRef.current = false;

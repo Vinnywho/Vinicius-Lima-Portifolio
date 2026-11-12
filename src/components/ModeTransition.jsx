@@ -8,16 +8,24 @@ export default function ModeTransition() {
   const curtainRef = useRef(null);
   const badgeRef = useRef(null);
 
+  const midpointRef = useRef(applyTransitionMidpoint);
+  const finishRef = useRef(finishTransition);
+  const stateRef = useRef(transitionState);
+
   useEffect(() => {
-    if (!transitionState.active) return;
+    midpointRef.current = applyTransitionMidpoint;
+    finishRef.current = finishTransition;
+    stateRef.current = transitionState;
+  });
+
+  useEffect(() => {
+    if (!transitionState.active || transitionState.key === 0) return;
 
     const root = rootRef.current;
     const curtain = curtainRef.current;
     const badge = badgeRef.current;
-    const isDesign =
-      transitionState.type === 'mode'
-        ? transitionState.targetMode === 'design'
-        : transitionState.targetMode === 'design';
+    const current = stateRef.current;
+    const isDesign = current.targetMode === 'design';
 
     if (!root || !curtain || !badge) return;
 
@@ -28,7 +36,7 @@ export default function ModeTransition() {
     const tl = gsap.timeline({
       onComplete: () => {
         gsap.set(root, { visibility: 'hidden' });
-        finishTransition();
+        finishRef.current?.();
       },
     });
 
@@ -43,7 +51,7 @@ export default function ModeTransition() {
           duration: 0.52,
           ease: 'power3.inOut',
           onComplete: () => {
-            applyTransitionMidpoint();
+            midpointRef.current?.();
           },
         })
         .fromTo(
@@ -71,7 +79,7 @@ export default function ModeTransition() {
           duration: 0.48,
           ease: 'power4.inOut',
           onComplete: () => {
-            applyTransitionMidpoint();
+            midpointRef.current?.();
           },
         })
         .fromTo(
@@ -93,14 +101,7 @@ export default function ModeTransition() {
     return () => {
       tl.kill();
     };
-  }, [
-    transitionState.key,
-    transitionState.active,
-    transitionState.targetMode,
-    transitionState.type,
-    applyTransitionMidpoint,
-    finishTransition,
-  ]);
+  }, [transitionState.key, transitionState.active]);
 
   if (!transitionState.active) return null;
 

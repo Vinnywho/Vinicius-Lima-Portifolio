@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Code, Sparkles, Layers, Cpu, ArrowRight } from 'lucide-react';
@@ -10,23 +10,36 @@ export default function HorizontalScrollShowcase() {
   const { mode, t } = useApp();
   const containerRef = useRef(null);
   const trackRef = useRef(null);
+  const mobileCarouselRef = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
 
   const panelsData = t.horizontalShowcase.panels;
 
   const panelIcons = [
-    <Layers key="0" size={36} />,
-    <Sparkles key="1" size={36} />,
-    <Cpu key="2" size={36} />,
-    <Code key="3" size={36} />,
+    <Layers key="0" size={30} />,
+    <Sparkles key="1" size={30} />,
+    <Cpu key="2" size={30} />,
+    <Code key="3" size={30} />,
   ];
 
+  // Detect mobile resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // GSAP pinned horizontal scroll on Desktop
   useEffect(() => {
     const prefersReducedMotion =
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.innerWidth < 768;
 
     if (prefersReducedMotion || isMobile) {
-      // Natural non-pinned layout on mobile/reduced-motion to prevent scroll locks
       return;
     }
 
@@ -45,13 +58,13 @@ export default function HorizontalScrollShowcase() {
           pin: true,
           scrub: 1,
           start: 'top top',
-          end: () => `+=${getScrollDistance() + 400}`,
+          end: () => `+=${getScrollDistance() + 350}`,
           invalidateOnRefresh: true,
           anticipatePin: 1,
         },
       });
 
-      // Staggered reveals per panel using containerAnimation
+      // Parallax reveals per panel
       const panels = gsap.utils.toArray('.horizontal-panel');
       panels.forEach((panel) => {
         const title = panel.querySelector('.panel-title');
@@ -61,11 +74,11 @@ export default function HorizontalScrollShowcase() {
         const visual = panel.querySelector('.panel-visual');
 
         gsap.from([badge, title, desc, highlight], {
-          y: 45,
+          y: 40,
           opacity: 0,
-          scale: 0.94,
+          scale: 0.95,
           stagger: 0.08,
-          duration: 0.85,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: panel,
@@ -77,7 +90,7 @@ export default function HorizontalScrollShowcase() {
 
         if (visual) {
           gsap.from(visual, {
-            rotation: 10,
+            rotation: 12,
             scale: 0.8,
             opacity: 0,
             duration: 0.9,
@@ -94,13 +107,97 @@ export default function HorizontalScrollShowcase() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
+  // Update active slide on mobile scroll
+  const handleMobileScroll = (e) => {
+    const el = e.currentTarget;
+    const cardWidth = el.clientWidth * 0.82;
+    const index = Math.round(el.scrollLeft / cardWidth);
+    setActiveSlide(Math.max(0, Math.min(panelsData.length - 1, index)));
+  };
+
+  const scrollToSlide = (idx) => {
+    const el = mobileCarouselRef.current;
+    if (!el) return;
+    const card = el.children[idx];
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
+
+  // Mobile Version: Touch Snap Carousel
+  if (isMobile) {
+    return (
+      <section className="mobile-showcase-section container">
+        <header className="mobile-showcase-header">
+          <span className="panel-badge">
+            <Sparkles size={14} />
+            <span>{t.horizontalShowcase.tagline}</span>
+          </span>
+
+          <h2 className="mobile-showcase-title">
+            {mode === 'dev' ? 'ENGENHARIA COM ATITUDE' : 'DESIGN COM PRECISÃO'}
+          </h2>
+
+          <p className="mobile-showcase-desc">
+            {mode === 'dev'
+              ? 'Como uno código limpo, arquitetura e estética para criar interfaces inesquecíveis.'
+              : 'Como a direção de arte e a cultura urbana encontram o desenvolvimento de alta fidelidade.'}
+          </p>
+
+          <div className="mobile-swipe-hint">
+            <span>← Deslize para ver os pilares →</span>
+          </div>
+        </header>
+
+        <div
+          ref={mobileCarouselRef}
+          className="mobile-showcase-carousel"
+          onScroll={handleMobileScroll}
+        >
+          {panelsData.map((panel, idx) => (
+            <div key={panel.id} className="mobile-showcase-card">
+              <div className="panel-top-row">
+                <span className="panel-badge">
+                  {panelIcons[idx % panelIcons.length]}
+                  <span>{panel.badge}</span>
+                </span>
+                <span className="panel-counter">0{idx + 1} / 04</span>
+              </div>
+
+              <h3 className="mobile-card-title">{panel.title}</h3>
+              <p className="mobile-card-desc">{panel.desc}</p>
+
+              <div className="panel-highlight">
+                <span className="highlight-pill">{panel.highlight}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="mobile-dots-indicator" aria-hidden="true">
+          {panelsData.map((panel, idx) => (
+            <button
+              key={panel.id}
+              type="button"
+              className={`mobile-dot ${activeSlide === idx ? 'is-active' : ''}`}
+              onClick={() => scrollToSlide(idx)}
+              aria-label={`Ir para pilar 0${idx + 1}`}
+            />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop Version: Pinned GSAP Horizontal Experience
   return (
     <section ref={containerRef} className="horizontal-showcase-section">
       <div className="horizontal-pin-wrap">
         <div className="horizontal-track" ref={trackRef}>
-          {/* Intro Intro-Panel */}
+          {/* Intro Panel */}
           <div className="horizontal-panel intro-panel">
             <div className="panel-inner">
               <span className="panel-badge">

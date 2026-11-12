@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FileText, Download, ArrowDown } from 'lucide-react';
+import { Download, ArrowDown, MessageCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { profile } from '../data/profile';
 import { projects } from '../data/projects';
@@ -79,7 +79,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section id="home" className="hero-section">
         <div className="container hero-grid">
-          <div>
+          <div className="hero-content">
             <div className="hero-badge hero-animate">
               {mode === 'dev' ? t.hero.devBadge : t.hero.designBadge}
             </div>
@@ -93,10 +93,10 @@ export default function Home() {
             </p>
 
             <div className="hero-actions hero-animate">
-              <Link to="/cv-lab" className="btn-primary">
-                <FileText size={18} />
-                <span>{t.hero.ctaResume}</span>
-              </Link>
+              <a href="#projetos" className="btn-primary">
+                <span>{t.hero.ctaProjects}</span>
+                <ArrowDown size={16} />
+              </a>
 
               <a
                 href={profile.cvPdfUrl}
@@ -108,9 +108,9 @@ export default function Home() {
                 <span>{t.hero.ctaDownloadCv}</span>
               </a>
 
-              <a href="#projetos" className="btn-secondary">
-                <span>{t.hero.ctaProjects}</span>
-                <ArrowDown size={16} />
+              <a href="#contato" className="btn-secondary">
+                <MessageCircle size={16} />
+                <span>{t.nav.contact}</span>
               </a>
             </div>
 

@@ -693,7 +693,132 @@
     color: var(--accent);
   }
 
-  /* Mode Switcher Pill */
+  /* ========================================================
+     COMUTADOR DE MODO (DEV ⇄ DESIGNER) DE ALTO IMPACTO
+     ======================================================== */
+  .mode-switcher-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .mode-switcher-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 6px;
+    background: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mode-switcher-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .mode-switch-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1.5px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .mode-switch-option:hover {
+    color: var(--text-primary);
+    background: rgba(14, 14, 14, 0.04);
+  }
+
+  :root[data-theme='dark'] .mode-switch-option:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .mode-switch-option.is-active {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 6px 20px -4px rgba(170, 23, 25, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+  }
+
+  :root[data-mode='design'] .mode-switch-option.is-active {
+    box-shadow: 0 6px 20px -4px rgba(0, 102, 255, 0.45);
+  }
+
+  .mode-option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+  }
+
+  .mode-switch-option:not(.is-active) .mode-option-icon {
+    background: var(--bg-surface-alt);
+    color: var(--accent);
+  }
+
+  .mode-option-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .mode-option-title {
+    font-weight: 800;
+    font-size: 0.92rem;
+  }
+
+  .mode-option-tag {
+    font-size: 0.72rem;
+    opacity: 0.8;
+    font-family: var(--font-mono);
+  }
+
+  .mode-switcher-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* Botão Evidente Fixo no Top-Right */
+  .corner-pill-btn.corner-mode-btn {
+    border-color: var(--accent);
+    background: var(--bg-surface);
+    font-weight: 800;
+    padding: 0.45rem 0.9rem;
+  }
+
+  .corner-pill-btn.corner-mode-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .corner-mode-text {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Suporte para menu fullscreen */
   .mode-switcher {
     display: inline-flex;
     align-items: center;
@@ -2511,6 +2636,345 @@
     padding-top: 0.85rem;
   }
 
+  /* ========================================================
+     SPRAY LAB — CANVAS URBANO DE DESENHO
+     ======================================================== */
+  .spraylab-dock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1rem 1.4rem;
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.25rem;
+  }
+
+  .spraylab-dock-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .spraylab-dock-label {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .spraylab-color-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .spraylab-color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .spraylab-color-swatch:hover {
+    transform: scale(1.2);
+  }
+
+  .spraylab-color-swatch.is-active {
+    transform: scale(1.28);
+    border: 2.5px solid #ffffff;
+    box-shadow: 0 0 0 2px var(--accent), 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .spraylab-caps-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--bg-surface-alt);
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+  }
+
+  .spraylab-cap-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .spraylab-cap-btn.is-active {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .spraylab-drip-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-surface-alt);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .spraylab-drip-toggle.is-active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px -3px rgba(170, 23, 25, 0.4);
+  }
+
+  :root[data-mode='design'] .spraylab-drip-toggle.is-active {
+    box-shadow: 0 4px 14px -3px rgba(0, 102, 255, 0.4);
+  }
+
+  .spraylab-canvas-container {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.35);
+    background: #101116;
+    touch-action: none;
+  }
+
+  .spraylab-canvas {
+    display: block;
+    width: 100%;
+    cursor: url('../assets/images/spray.png') 6 6, crosshair;
+  }
+
+  .spraylab-canvas-hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(14, 14, 18, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #fbfbf2;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0.88;
+  }
+
+  /* Modal de Envio por E-mail */
+  .spraylab-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .spraylab-modal-card {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    width: min(560px, 100%);
+    padding: 1.75rem;
+    animation: modalPop 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes modalPop {
+    from {
+      opacity: 0;
+      transform: scale(0.92) translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .spraylab-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .spraylab-modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .spraylab-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 50%;
+  }
+
+  .spraylab-preview-box {
+    width: 100%;
+    max-height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: #090a0f;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spraylab-preview-box img {
+    max-height: 180px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .spraylab-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ========================================================
+     SHOWCASE RESPONSIVO NO MOBILE (TOUCH SNAP CAROUSEL)
+     ======================================================== */
+  .mobile-showcase-section {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .mobile-showcase-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .mobile-showcase-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    line-height: 1.1;
+    color: var(--accent);
+    margin-bottom: 0.65rem;
+  }
+
+  .mobile-showcase-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-inline: auto;
+    margin-bottom: 0.75rem;
+  }
+
+  .mobile-swipe-hint {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .mobile-showcase-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 0.25rem 1.25rem;
+    scrollbar-width: none;
+  }
+
+  .mobile-showcase-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-showcase-card {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    width: min(84vw, 340px);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .mobile-card-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.15;
+    color: var(--accent);
+    margin-bottom: 0.65rem;
+  }
+
+  .mobile-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-dots-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+
+  .mobile-dot.is-active {
+    width: 22px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+
 /* ========================================================
    RESPONSIVIDADE PRECISA & PROTEÇÃO TOTAL CONTRA SCROLL X
    ======================================================== */
@@ -2535,37 +2999,132 @@
 }
 
 @media (max-width: 768px) {
-  .horizontal-showcase-section {
-    padding: 1.5rem 0;
-  }
-
-  .horizontal-pin-wrap {
-    height: auto;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0.5rem 0 1.5rem;
-    scrollbar-width: none;
-  }
-
-  .horizontal-pin-wrap::-webkit-scrollbar {
-    display: none;
-  }
-
-  .horizontal-track {
-    padding-inline: 1rem;
-    gap: 1.25rem;
-  }
-
-  .horizontal-panel {
-    width: 86vw;
+  /* Centralização das informações da Hero */
+  .hero-section {
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
     min-height: auto;
-    padding: 1.75rem 1.35rem;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
-  .panel-visual {
-    display: none;
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.85rem;
+    line-height: 1.08;
+    text-align: center;
+  }
+
+  .hero-bio {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    max-width: 440px;
+    margin-inline: auto;
+    margin-bottom: 1.35rem;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.86rem;
+    min-height: 42px;
+  }
+
+  .hero-switch-wrap {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mode-switcher-container {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .mode-switcher-card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .mode-switch-option {
+    padding: 0.6rem 0.75rem;
+    gap: 0.45rem;
+  }
+
+  .mode-option-title {
+    font-size: 0.84rem;
+  }
+
+  .mode-option-tag {
+    font-size: 0.68rem;
+  }
+
+  /* Harmonização das tipografias mobile */
+  .section-heading {
+    font-size: clamp(1.7rem, 5.5vw, 2.2rem);
+    letter-spacing: 0.03em;
+  }
+
+  :root[data-mode='design'] .section-heading,
+  :root[data-mode='design'] .hero-title,
+  :root[data-mode='design'] .about-title {
+    letter-spacing: 0.09em;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-title {
+    font-size: clamp(1.7rem, 5.5vw, 2.2rem);
+    text-align: center;
+  }
+
+  .about-text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  .about-grid {
+    text-align: center;
+  }
+
+  .featured-title {
+    font-size: 1.35rem;
+  }
+
+  .featured-desc {
+    font-size: 0.88rem;
+  }
+
+  .corner-pill-btn.corner-mode-btn {
+    padding: 0.35rem 0.65rem;
+  }
+
+  .corner-mode-text {
+    font-size: 0.72rem;
   }
 
   .container {
@@ -2578,10 +3137,6 @@
 
   .corner-pill-btn span.hide-mobile {
     display: none;
-  }
-
-  .hero-section {
-    padding-top: 5rem;
   }
 
   .about-stats {
