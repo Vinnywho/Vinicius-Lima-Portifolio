@@ -112,7 +112,7 @@ export default function FloatingMenu() {
     { num: '03', label: t.nav.projects, action: () => goToSection('projetos') },
     { num: '04', label: t.nav.experiences, action: () => goToSection('experiencias') },
     { num: '05', label: t.nav.sprayLab, action: () => goToRoute('/spray-lab') },
-    { num: '06', label: t.nav.faq, action: () => goToRoute('/faq') },
+    { num: '06', label: t.nav.faq, action: () => goToSection('faq') },
     { num: '07', label: t.nav.contact, action: () => goToSection('contato') },
     { num: '08', label: t.nav.cvLab, action: () => goToRoute('/cv-lab') },
   ];

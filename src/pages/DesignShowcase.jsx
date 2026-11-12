@@ -92,15 +92,7 @@ export default function DesignShowcase() {
           >
             BEHANCE SHOWCASE • {project.year}
           </span>
-          <h1
-            style={{
-              fontFamily: 'var(--font-display-design)',
-              fontSize: 'clamp(2.2rem, 5.5vw, 4rem)',
-              fontWeight: 800,
-              lineHeight: 1.05,
-              marginBottom: '1rem',
-            }}
-          >
+          <h1 className="detail-hero-title">
             {tr(project.title)}
           </h1>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '800px' }}>

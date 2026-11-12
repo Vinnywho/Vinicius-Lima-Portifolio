@@ -71,13 +71,7 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate('/faq');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
+                <button type="button" onClick={() => goToSection('faq')}>
                   {t.nav.faq}
                 </button>
               </li>

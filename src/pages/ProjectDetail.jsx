@@ -79,15 +79,7 @@ export default function ProjectDetail() {
           {project.year}
         </span>
 
-        <h1
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2.1rem, 5vw, 3.8rem)',
-            color: 'var(--accent)',
-            lineHeight: 1.08,
-            marginBottom: '1rem',
-          }}
-        >
+        <h1 className="detail-hero-title" style={{ color: 'var(--accent)' }}>
           {tr(project.title)}
         </h1>
 
@@ -164,7 +156,13 @@ export default function ProjectDetail() {
                 key={idx}
                 src={imgSrc}
                 alt={`${tr(project.title)} - ${idx + 1}`}
-                style={{ width: '100%', borderRadius: '14px', border: '2px solid var(--border-color)' }}
+                style={{
+                  width: '100%',
+                  maxHeight: '320px',
+                  objectFit: 'contain',
+                  borderRadius: '14px',
+                  filter: 'drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14))',
+                }}
               />
             ))}
           </div>

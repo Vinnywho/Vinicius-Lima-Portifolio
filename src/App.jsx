@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import LoadingScreen from './components/LoadingScreen';
 import SprayCanvas from './components/SprayCanvas';
@@ -16,11 +16,13 @@ import SprayLab from './pages/SprayLab';
 
 function AppShell() {
   const [introFinished, setIntroFinished] = useState(false);
+  const location = useLocation();
+  const isSprayLab = location.pathname === '/spray-lab';
 
   return (
     <>
       {!introFinished && <LoadingScreen onComplete={() => setIntroFinished(true)} />}
-      <SprayCanvas />
+      {!isSprayLab && <SprayCanvas />}
       <ModeTransition />
       <FloatingMenu />
 

@@ -12,6 +12,7 @@ import FeaturedProject from '../components/FeaturedProject';
 import ProjectCard from '../components/ProjectCard';
 import HorizontalScrollShowcase from '../components/HorizontalScrollShowcase';
 import Timeline from '../components/Timeline';
+import FAQSection from '../components/FAQSection';
 import portrait from '../assets/images/portrait.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -184,6 +185,9 @@ export default function Home() {
 
       {/* INTERACTIVE TIMELINE */}
       <Timeline />
+
+      {/* INTERACTIVE FAQ ON LANDING PAGE */}
+      <FAQSection />
     </div>
   );
 }

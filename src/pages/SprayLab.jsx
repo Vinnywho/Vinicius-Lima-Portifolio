@@ -5,6 +5,7 @@ import {
   Download,
   Mail,
   RotateCcw,
+  Undo2,
   Sparkles,
   Droplets,
   Copy,
@@ -27,10 +28,31 @@ const SPRAY_COLORS = [
 ];
 
 const CAP_SIZES = [
-  { id: 'skinny', label: 'Skinny Cap', radius: 14, mistRadius: 18, count: 20 },
-  { id: 'medium', label: 'Médio', radius: 26, mistRadius: 30, count: 38 },
-  { id: 'fat', label: 'Fat Cap', radius: 46, mistRadius: 52, count: 65 },
+  { id: 'skinny', label: 'Skinny Cap', radius: 13, mistRadius: 15, count: 24 },
+  { id: 'medium', label: 'Médio', radius: 24, mistRadius: 24, count: 44 },
+  { id: 'fat', label: 'Fat Cap', radius: 42, mistRadius: 38, count: 76 },
 ];
+
+const MAX_UNDO_STEPS = 12;
+
+function paintStudioBackground(ctx, width, height) {
+  ctx.fillStyle = '#101116';
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
+  ctx.lineWidth = 1;
+  const step = 32;
+  ctx.beginPath();
+  for (let x = 0; x < width; x += step) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+  }
+  for (let y = 0; y < height; y += step) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+  }
+  ctx.stroke();
+}
 
 export default function SprayLab() {
   const { t, navigateWithTransition } = useApp();
@@ -39,136 +61,226 @@ export default function SprayLab() {
   const [activeColor, setActiveColor] = useState(SPRAY_COLORS[0]);
   const [activeCap, setActiveCap] = useState(CAP_SIZES[1]);
   const [dripsEnabled, setDripsEnabled] = useState(true);
+  const [canUndo, setCanUndo] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copiedToast, setCopiedToast] = useState(false);
   const [senderName, setSenderName] = useState('');
   const [senderMsg, setSenderMsg] = useState('');
   const [previewDataUrl, setPreviewDataUrl] = useState(null);
 
-  // Drawing state
-  const mistsRef = useRef([]);
-  const particlesRef = useRef([]);
-  const dripsRef = useRef([]);
-  const isSprayingRef = useRef(false);
-  const lastPosRef = useRef({ x: 0, y: 0 });
-  const stationaryRef = useRef(0);
-  const rafRef = useRef(null);
+  // Refs sincronizados para zero stale closure dentro do loop RAF
+  const activeColorRef = useRef(activeColor);
+  const activeCapRef = useRef(activeCap);
+  const dripsEnabledRef = useRef(dripsEnabled);
 
-  const redrawCanvas = useCallback(() => {
+  useEffect(() => {
+    activeColorRef.current = activeColor;
+  }, [activeColor]);
+
+  useEffect(() => {
+    activeCapRef.current = activeCap;
+  }, [activeCap]);
+
+  useEffect(() => {
+    dripsEnabledRef.current = dripsEnabled;
+  }, [dripsEnabled]);
+
+  // Estado imperativo do canvas (renderização direta em bitmap, O(1) por frame!)
+  const activeDripsRef = useRef([]);
+  const isSprayingRef = useRef(false);
+  const currentPosRef = useRef({ x: 0, y: 0 });
+  const lastPosRef = useRef({ x: 0, y: 0 });
+  const holdFramesRef = useRef(0);
+  const lastHoldSprayRef = useRef(0);
+  const mistCounterRef = useRef(0);
+  const rafRef = useRef(null);
+  const historyRef = useRef([]);
+  const loopFnRef = useRef(null);
+
+  const pushSnapshot = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || canvas.width === 0 || canvas.height === 0) return;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+
+    try {
+      const snap = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      historyRef.current.push(snap);
+      if (historyRef.current.length > MAX_UNDO_STEPS) {
+        historyRef.current.shift();
+      }
+      setCanUndo(historyRef.current.length > 0);
+    } catch {
+      // ignore memory errors on constrained environments
+    }
+  }, []);
+
+  const stampSprayAt = useCallback((x, y, intensity = 1, allowMist = true) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Fundo de parede urbana com gradiente sutil
-    ctx.fillStyle = '#101116';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const { r, g, b } = activeColorRef.current.rgb;
+    const cap = activeCapRef.current;
 
-    // Grid sutil de estúdio
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
-    ctx.lineWidth = 1;
-    const step = 32;
-    for (let x = 0; x < canvas.width; x += step) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, canvas.height);
-      ctx.stroke();
-    }
-    for (let y = 0; y < canvas.height; y += step) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(canvas.width, y);
-      ctx.stroke();
-    }
-
-    // 1. Névoas suaves
-    const mists = mistsRef.current;
-    for (let i = 0; i < mists.length; i++) {
-      const m = mists[i];
-      const grad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.radius);
-      grad.addColorStop(0, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.alpha})`);
-      grad.addColorStop(0.5, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.alpha * 0.45})`);
-      grad.addColorStop(1, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, 0)`);
-
+    // 1. Núcleo de névoa sutil (sem sobreposição pesada / sem blur estranho)
+    mistCounterRef.current += 1;
+    if (allowMist && mistCounterRef.current % 2 === 0) {
+      const rad = cap.mistRadius * (0.85 + Math.random() * 0.35) * intensity;
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, rad);
+      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.065 * intensity})`);
+      grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2);
+      ctx.arc(x, y, rad, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // 2. Gotas escorrendo (Drips)
-    const drips = dripsRef.current;
-    for (let i = 0; i < drips.length; i++) {
-      const d = drips[i];
-      ctx.strokeStyle = `rgba(${d.color.r}, ${d.color.g}, ${d.color.b}, ${d.alpha})`;
-      ctx.lineWidth = d.width;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.moveTo(d.x, d.y);
-      ctx.lineTo(d.x, d.y + d.length);
-      ctx.stroke();
+    // 2. Micro-gotículas densas estampadas diretamente no bitmap
+    const count = Math.floor(cap.count * intensity);
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = Math.pow(Math.random(), 2.2) * (cap.radius * intensity);
+      const px = x + Math.cos(angle) * dist;
+      const py = y + Math.sin(angle) * dist;
+      const size =
+        Math.random() < 0.86 ? 0.65 + Math.random() * 1.35 : 1.7 + Math.random() * 2.1;
+      const alpha = 0.68 + Math.random() * 0.32;
 
-      ctx.fillStyle = `rgba(${d.color.r}, ${d.color.g}, ${d.color.b}, ${d.alpha})`;
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
       ctx.beginPath();
-      ctx.arc(d.x, d.y + d.length, d.width * 1.3, 0, Math.PI * 2);
+      ctx.arc(px, py, size, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // 3. Micro-gotículas
-    const particles = particlesRef.current;
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }, []);
+    // 3. Tinta fresca escorrendo quando segura o jato ou em áreas densas
+    if (dripsEnabledRef.current) {
+      const shouldDrip =
+        (holdFramesRef.current >= 5 && Math.random() < 0.45) ||
+        Math.random() < 0.03 * intensity;
 
-  const loopRef = useRef(null);
-
-  const updateDripsLoop = useCallback(() => {
-    let hasGrowing = false;
-    const drips = dripsRef.current;
-
-    for (let i = 0; i < drips.length; i++) {
-      const d = drips[i];
-      if (d.length < d.maxLength) {
-        d.length = Math.min(d.maxLength, d.length + d.speed);
-        hasGrowing = true;
+      if (shouldDrip) {
+        activeDripsRef.current.push({
+          x: x + (Math.random() - 0.5) * (cap.radius * 0.55),
+          y: y + Math.random() * 6,
+          prevLength: 0,
+          length: 0,
+          maxLength: 24 + Math.random() * 80,
+          speed: 1.4 + Math.random() * 2.4,
+          width: 1.5 + Math.random() * 1.9,
+          color: { r, g, b },
+        });
+        if (activeDripsRef.current.length > 40) {
+          activeDripsRef.current.shift();
+        }
       }
     }
+  }, []);
 
-    redrawCanvas();
+  const runLoop = useCallback(
+    (now) => {
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext('2d');
+      let needsMoreFrames = false;
 
-    if (hasGrowing) {
-      rafRef.current = requestAnimationFrame(() => loopRef.current?.());
-    } else {
-      rafRef.current = null;
-    }
-  }, [redrawCanvas]);
+      // Emissão contínua ao segurar o botão (mesmo com cursor parado!)
+      if (isSprayingRef.current) {
+        needsMoreFrames = true;
+        if (now - lastHoldSprayRef.current >= 28) {
+          lastHoldSprayRef.current = now;
+          holdFramesRef.current += 1;
+          stampSprayAt(
+            currentPosRef.current.x,
+            currentPosRef.current.y,
+            0.78,
+            holdFramesRef.current % 2 === 0
+          );
+        }
+      }
+
+      // Física incremental das gotas escorrendo (O(1) por frame, sem redesenhar a arte inteira!)
+      const drips = activeDripsRef.current;
+      if (ctx && drips.length > 0) {
+        for (let i = drips.length - 1; i >= 0; i--) {
+          const d = drips[i];
+          const nextLength = Math.min(d.maxLength, d.length + d.speed);
+          const { r, g, b } = d.color;
+
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.88)`;
+          ctx.lineWidth = d.width;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y + d.prevLength);
+          ctx.lineTo(d.x, d.y + nextLength);
+          ctx.stroke();
+
+          d.prevLength = d.length;
+          d.length = nextLength;
+
+          if (d.length >= d.maxLength) {
+            // Poça final na ponta da gota
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.94)`;
+            ctx.beginPath();
+            ctx.arc(d.x, d.y + d.length, d.width * 1.25, 0, Math.PI * 2);
+            ctx.fill();
+            drips.splice(i, 1);
+          } else {
+            needsMoreFrames = true;
+          }
+        }
+      }
+
+      if (needsMoreFrames) {
+        rafRef.current = requestAnimationFrame((ts) => loopFnRef.current?.(ts));
+      } else {
+        rafRef.current = null;
+      }
+    },
+    [stampSprayAt]
+  );
 
   useEffect(() => {
-    loopRef.current = updateDripsLoop;
-  }, [updateDripsLoop]);
+    loopFnRef.current = runLoop;
+  }, [runLoop]);
 
-  const triggerDripAnim = useCallback(() => {
+  const ensureLoop = useCallback(() => {
     if (!rafRef.current) {
-      rafRef.current = requestAnimationFrame(() => loopRef.current?.());
+      rafRef.current = requestAnimationFrame((ts) => loopFnRef.current?.(ts));
     }
   }, []);
 
-  // Redimensiona o canvas para caber na tela
+  // Inicializa e redimensiona preservando o desenho existente
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
 
     const updateSize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
-      canvas.width = parent.clientWidth;
-      canvas.height = Math.max(520, window.innerHeight - 220);
-      redrawCanvas();
+      const targetWidth = parent.clientWidth;
+      const targetHeight = Math.max(500, window.innerHeight - 230);
+
+      if (canvas.width === targetWidth && canvas.height === targetHeight) return;
+
+      let preserved = null;
+      if (canvas.width > 0 && canvas.height > 0) {
+        preserved = document.createElement('canvas');
+        preserved.width = canvas.width;
+        preserved.height = canvas.height;
+        const pCtx = preserved.getContext('2d');
+        pCtx?.drawImage(canvas, 0, 0);
+      }
+
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+      paintStudioBackground(ctx, targetWidth, targetHeight);
+
+      if (preserved) {
+        ctx.drawImage(preserved, 0, 0);
+      }
     };
 
     updateSize();
@@ -177,102 +289,58 @@ export default function SprayLab() {
       window.removeEventListener('resize', updateSize);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [redrawCanvas]);
-
-  const sprayAtPoint = (x, y, intensity = 1) => {
-    const color = activeColor.rgb;
-    const cap = activeCap;
-
-    // Névoa
-    mistsRef.current.push({
-      x,
-      y,
-      radius: cap.mistRadius * (0.8 + Math.random() * 0.4) * intensity,
-      color,
-      alpha: 0.22 * intensity,
-    });
-
-    // Partículas
-    const count = Math.floor(cap.count * intensity);
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = Math.pow(Math.random(), 2.1) * (cap.radius * intensity);
-      const px = x + Math.cos(angle) * dist;
-      const py = y + Math.sin(angle) * dist;
-
-      particlesRef.current.push({
-        x: px,
-        y: py,
-        size: Math.random() < 0.85 ? 0.7 + Math.random() * 1.4 : 1.8 + Math.random() * 2.4,
-        color,
-        alpha: 0.78 + Math.random() * 0.22,
-      });
-    }
-
-    // Drips ao segurar no mesmo ponto
-    if (dripsEnabled && stationaryRef.current > 8 && Math.random() < 0.35) {
-      dripsRef.current.push({
-        x: x + (Math.random() - 0.5) * (cap.radius * 0.5),
-        y: y + Math.random() * 8,
-        length: 0,
-        maxLength: 25 + Math.random() * 75,
-        speed: 1.5 + Math.random() * 2.4,
-        width: 1.6 + Math.random() * 1.8,
-        color,
-        alpha: 0.92,
-      });
-      triggerDripAnim();
-    }
-
-    // Proteção de limites
-    if (mistsRef.current.length > 500) mistsRef.current.splice(0, mistsRef.current.length - 500);
-    if (particlesRef.current.length > 3500)
-      particlesRef.current.splice(0, particlesRef.current.length - 3500);
-    if (dripsRef.current.length > 120) dripsRef.current.splice(0, dripsRef.current.length - 120);
-
-    redrawCanvas();
-  };
+  }, []);
 
   const getCanvasCoords = (e) => {
     const canvas = canvasRef.current;
     if (!canvas) return { x: 0, y: 0 };
     const rect = canvas.getBoundingClientRect();
     return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: ((e.clientX - rect.left) / rect.width) * canvas.width,
+      y: ((e.clientY - rect.top) / rect.height) * canvas.height,
     };
   };
 
   const handlePointerDown = (e) => {
+    if (e.button !== undefined && e.button !== 0) return;
     e.currentTarget.setPointerCapture(e.pointerId);
+    pushSnapshot();
+
     isSprayingRef.current = true;
-    stationaryRef.current = 0;
+    holdFramesRef.current = 0;
+    lastHoldSprayRef.current = performance.now();
+
     const pos = getCanvasCoords(e);
+    currentPosRef.current = pos;
     lastPosRef.current = pos;
-    sprayAtPoint(pos.x, pos.y, 1.2);
+
+    stampSprayAt(pos.x, pos.y, 1.15, true);
+    ensureLoop();
   };
 
   const handlePointerMove = (e) => {
     if (!isSprayingRef.current) return;
     const current = getCanvasCoords(e);
-    const dist = Math.hypot(current.x - lastPosRef.current.x, current.y - lastPosRef.current.y);
+    currentPosRef.current = current;
 
-    if (dist < 4) {
-      stationaryRef.current += 1;
-      sprayAtPoint(current.x, current.y, 0.45);
-    } else {
-      stationaryRef.current = 0;
-      // Interpolação para linha contínua
-      const steps = Math.max(1, Math.floor(dist / 8));
+    const dx = current.x - lastPosRef.current.x;
+    const dy = current.y - lastPosRef.current.y;
+    const dist = Math.hypot(dx, dy);
+
+    if (dist >= 4) {
+      if (dist > 14) holdFramesRef.current = 0;
+      const steps = Math.max(1, Math.floor(dist / 7));
       for (let s = 1; s <= steps; s++) {
         const tStep = s / steps;
-        sprayAtPoint(
-          lastPosRef.current.x + (current.x - lastPosRef.current.x) * tStep,
-          lastPosRef.current.y + (current.y - lastPosRef.current.y) * tStep,
-          0.85
+        stampSprayAt(
+          lastPosRef.current.x + dx * tStep,
+          lastPosRef.current.y + dy * tStep,
+          0.9,
+          s === steps
         );
       }
       lastPosRef.current = current;
+      ensureLoop();
     }
   };
 
@@ -283,14 +351,30 @@ export default function SprayLab() {
       // ignore
     }
     isSprayingRef.current = false;
-    stationaryRef.current = 0;
+    holdFramesRef.current = 0;
+  };
+
+  const handleUndo = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext('2d', { willReadFrequently: true });
+    if (!canvas || !ctx || historyRef.current.length === 0) return;
+
+    activeDripsRef.current = [];
+    const lastSnap = historyRef.current.pop();
+    if (lastSnap) {
+      ctx.putImageData(lastSnap, 0, 0);
+    }
+    setCanUndo(historyRef.current.length > 0);
   };
 
   const handleClear = () => {
-    mistsRef.current = [];
-    particlesRef.current = [];
-    dripsRef.current = [];
-    redrawCanvas();
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+
+    pushSnapshot();
+    activeDripsRef.current = [];
+    paintStudioBackground(ctx, canvas.width, canvas.height);
   };
 
   const handleExportPng = () => {
@@ -325,7 +409,6 @@ export default function SprayLab() {
         setTimeout(() => setCopiedToast(false), 2000);
       });
     } catch {
-      // Fallback
       setCopiedToast(true);
       setTimeout(() => setCopiedToast(false), 2000);
     }
@@ -369,6 +452,18 @@ export default function SprayLab() {
         </Link>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
+          <button
+            type="button"
+            onClick={handleUndo}
+            disabled={!canUndo}
+            className="btn-secondary"
+            style={!canUndo ? { opacity: 0.45, cursor: 'not-allowed' } : undefined}
+            title={t.sprayLab.undoBtn}
+          >
+            <Undo2 size={16} />
+            <span>{t.sprayLab.undoBtn}</span>
+          </button>
+
           <button type="button" onClick={handleClear} className="btn-secondary" title={t.sprayLab.clearBtn}>
             <RotateCcw size={16} />
             <span>{t.sprayLab.clearBtn}</span>
