@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Grafitti';
+  src: url('../assets/fonts/UrbanCalligraphy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* Brand core */
+  --brand-red: #aa1719;
+  --brand-red-bright: #d92629;
+  --brand-orange: #ff4d00;
+  --brand-cream: #fbfbf2;
+  --brand-black: #0e0e0e;
+  --brand-dark-surface: #121216;
+
+  /* Typography */
+  --font-display-dev: 'Grafitti', 'Syne', sans-serif;
+  --font-display-design: 'Syne', 'Montserrat', sans-serif;
+  --font-display: var(--font-display-dev);
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Default Tokens (Dev + Light) */
+  --bg-page: #fbfbf2;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f2f1e4;
+  --text-primary: #0e0e0e;
+  --text-secondary: #3a3a3a;
+  --text-inverse: #fbfbf2;
+  --accent: #aa1719;
+  --accent-contrast: #ffffff;
+  --border-color: #0e0e0e;
+  --border-width: 4px;
+  --shadow-card: 6px 6px 0px 0px #0e0e0e;
+  --shadow-hover: 2px 2px 0px 0px #0e0e0e;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Scrollbar */
+  --scrollbar-track: #ecebdf;
+  --scrollbar-thumb: #aa1719;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* Dark Theme overrides */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg-page: #0c0c0e;
+  --bg-surface: #151519;
+  --bg-surface-alt: #1c1c22;
+  --text-primary: #fbfbf2;
+  --text-secondary: #c4c4cc;
+  --text-inverse: #0e0e0e;
+  --border-color: #fbfbf2;
+  --shadow-card: 6px 6px 0px 0px #fbfbf2;
+  --shadow-hover: 2px 2px 0px 0px #fbfbf2;
+  --scrollbar-track: #141418;
+  --scrollbar-thumb: #aa1719;
+}
+
+/* DESIGN MODE — Estúdio Editorial / Behance Gallery */
+:root[data-mode='design'] {
+  --font-display: var(--font-display-design);
+  --accent: #ff4d00;
+  --bg-page: #f7f4ee;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #ede8de;
+  --border-width: 1.5px;
+  --border-color: rgba(14, 14, 14, 0.22);
+  --shadow-card: 0 18px 40px -12px rgba(14, 14, 14, 0.14);
+  --shadow-hover: 0 24px 50px -10px rgba(255, 77, 0, 0.2);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --scrollbar-thumb: #ff4d00;
+}
+
+:root[data-mode='design'][data-theme='dark'] {
+  --bg-page: #09090b;
+  --bg-surface: #131317;
+  --bg-surface-alt: #1b1b21;
+  --border-color: rgba(255, 255, 255, 0.16);
+  --shadow-card: 0 18px 40px -12px rgba(0, 0, 0, 0.65);
+  --shadow-hover: 0 24px 50px -10px rgba(255, 77, 0, 0.28);
+}
+
+@supports (accent-color: #aa1719) {
+  html {
+    accent-color: var(--accent);
+  }
+}

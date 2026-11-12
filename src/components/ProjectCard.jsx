@@ -1,29 +1,45 @@
-import React from "react";
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { useApp } from '../context/AppContext';
 
-function ProjectCard({ title, desc, bgImage, icons, onClick, index }) {
-  const delay = index * 200;
+export default function ProjectCard({ project }) {
+  const { mode, t, tr } = useApp();
+
+  const targetRoute =
+    mode === 'design' && project.designShowcase
+      ? `/design/${project.slug}`
+      : `/projeto/${project.slug}`;
+
+  const ctaText =
+    mode === 'design' && project.designShowcase
+      ? t.projects.viewCaseDesign
+      : t.projects.viewCaseDev;
 
   return (
-    <div 
-      className="projeto-container" 
-      data-aos="fade-up" 
-      data-aos-delay={delay}
+    <Link
+      to={targetRoute}
+      className={`project-card gsap-card ${mode === 'design' ? 'is-behance' : ''}`}
     >
-      <div 
-        className="projeto" 
-        style={{ backgroundImage: `url(${bgImage})` }} 
-        onClick={onClick}
-      >
-        <h3>{title}</h3>
-        <p>{desc}</p>
-        <div className="tecnologias">
-          {icons.map((icon, idx) => (
-            <img key={idx} src={icon} alt="tech" />
+      <div className="project-card-media">
+        <img src={project.coverImage} alt={tr(project.title)} loading="lazy" />
+        <div className="project-card-overlay-techs">
+          {project.techs.slice(0, 5).map((tech) => (
+            <img key={tech.name} src={tech.icon} alt={tech.name} title={tech.name} />
           ))}
         </div>
       </div>
-    </div>
+
+      <div className="project-card-body">
+        <div>
+          <h3>{tr(project.title)}</h3>
+          <p>{tr(project.shortDesc)}</p>
+        </div>
+
+        <span className="project-card-cta">
+          <span>{ctaText}</span>
+          <ArrowRight size={16} />
+        </span>
+      </div>
+    </Link>
   );
 }
-
-export default ProjectCard;

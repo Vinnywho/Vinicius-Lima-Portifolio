@@ -1,0 +1,50 @@
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  body,
+  html {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #141414 !important;
+    cursor: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .spray-canvas,
+  .floating-corner-controls,
+  .floating-brand-badge,
+  .fullscreen-menu,
+  .cvlab-controls,
+  .cvlab-header,
+  .contact-section,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  .cvlab-page {
+    padding: 0 !important;
+  }
+
+  .cvlab-layout {
+    display: block !important;
+  }
+
+  .cv-paper-wrap {
+    display: block !important;
+  }
+
+  .cv-paper {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}

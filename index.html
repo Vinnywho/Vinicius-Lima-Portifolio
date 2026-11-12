@@ -1,10 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/images/portrait.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinicius Lima</title>
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      try {
+        var savedScheme = localStorage.getItem('color-scheme');
+        if (savedScheme === 'light' || savedScheme === 'dark') {
+          document.querySelector('meta[name="color-scheme"]').content = savedScheme;
+          document.documentElement.dataset.theme = savedScheme;
+        }
+        var savedMode = localStorage.getItem('portfolio-mode');
+        if (savedMode === 'dev' || savedMode === 'design') {
+          document.documentElement.dataset.mode = savedMode;
+        } else {
+          document.documentElement.dataset.mode = 'dev';
+        }
+      } catch (e) {}
+    </script>
+
+    <title>Vinicius Lima — Desenvolvedor Front-End & Designer UI/UX</title>
+    <meta
+      name="description"
+      content="Portfólio de Vinicius Cardoso de Lima. Desenvolvedor Front-End, Designer Gráfico e UI/UX. Conheça projetos de engenharia web, design editorial e sistemas interativos."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vinicius Lima — Front-End Developer & UI/UX Designer" />
+    <meta
+      property="og:description"
+      content="Explore a dualidade entre Engenharia Front-End e Design Gráfico/UI/UX no portfólio interativo de Vinicius Lima."
+    />
+
+    <link rel="icon" type="image/png" href="/src/assets/images/portrait.png" />
+
+    <!-- Preconnect e Fontes otimizadas (apenas as usadas no projeto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

@@ -1,214 +1,49 @@
-import React, { useState } from "react";
-import aos from "aos";
-import "aos/dist/aos.css";
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+import LoadingScreen from './components/LoadingScreen';
+import SprayCanvas from './components/SprayCanvas';
+import ModeTransition from './components/ModeTransition';
+import FloatingMenu from './components/FloatingMenu';
+import ContactWhatsApp from './components/ContactWhatsApp';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import ProjectDetail from './pages/ProjectDetail';
+import DesignShowcase from './pages/DesignShowcase';
+import ResumeLab from './pages/ResumeLab';
 
-import Navbar from "./components/Navbar";
-import SprayEffect from "./components/SprayEffect";
-import ProjectCard from "./components/ProjectCard";
-import Experiencias from "./components/ExperienceSection";
-import Maratona from "./components/Maratona";
-import Comedoria from "./components/Comedoria";
-import Modal from "./components/Modal";
-
-import ferramentas_e_habilidades from "./assets/images/ferramentas_e_habilidades.png";
-import portrait from "./assets/images/portrait.png";
-import barreira from "./assets/images/Projetos/383340179-3af2d9d0-9894-4afb-aace-7c225ca56bab 1.png";
-import petshop from "./assets/images/Projetos/434983031-1a4a1ce0-cd4f-4084-abc9-3694f2cdb74c 1.png";
-import dashboard from "./assets/images/Projetos/DASHBOARD.png";
-import jogo from "./assets/images/Projetos/image 35.png";
-import mae from "./assets/images/Projetos/image 36.png";
-import financas from "./assets/images/Projetos/financassemfronteira.png";
-
-import cpp from "./assets/Icons/C++.svg";
-import js from "./assets/Icons/JS.svg";
-import reactIcon from "./assets/Icons/react-2.svg";
-import html from "./assets/Icons/HTML.svg";
-import css from "./assets/Icons/CSS.svg";
-import figma from "./assets/Icons/figma-svgrepo-com.svg";
-import azure from "./assets/Icons/microsoftazure-svgrepo-com.svg";
-import csharp from "./assets/Icons/Csharp.svg";
-import mysql from "./assets/Icons/mysql-logo-pure.svg";
-import vercel from "./assets/Icons/Vercel.svg";
-import cv from "./assets/CV 2026-1 (Atualizado) - Vinicius C. Lima.pdf";
-
-function App() {
-  const [projetoAberto, setProjetoAberto] = useState(null);
-
-  React.useEffect(() => {
-    aos.init({
-      duration: 1000,
-      once: true,
-    });
-  }, []);
-
-  const projetosLista = [
-    {
-      title: "Finanças Sem Fronteiras",
-      desc: "Landing page empresarial do projeto Finanças sem Fronteiras.",
-      fullDesc:
-        "Landing page profissional desenvolvida para o projeto Finanças Sem Fronteiras, empresa de Janina Janino, que visa promover a educação financeira e inclusão social por meio de cursos e conteúdo acessíveis e interativos.",
-      bgImage: financas,
-      icons: [reactIcon, vercel, html, css,figma],
-      link: "https://financassemfronteira.vercel.app",
-    },
-    {
-      title: "Barreira Ecológica Automatica - B.E.A.",
-      desc: "Barreira mecânica que recolhe lixo flutuante para despoluir rios.",
-      fullDesc:
-        "O projeto B.E.A. utiliza sensores infravermelhos e motores de passo para detectar e remover detritos de superfícies aquáticas de forma autônoma, prevenindo o entupimento de bueiros e enchentes urbanas.",
-      bgImage: barreira,
-      icons: [cpp],
-      link: "https://github.com/2024-2-NADS1/Projeto1",
-    },
-    {
-      title: "Pet shop - Projeto estudantil",
-      desc: "Plataforma para gestão de pets e agendamento de serviços.",
-      fullDesc:
-        "Sistema completo de CRUD desenvolvido para facilitar o fluxo de trabalho de pet shops, permitindo o cadastro de usuários, pets, e agendamento de serviços com histórico fotográfico.",
-      bgImage: petshop,
-      icons: [js, html, css, mysql, figma],
-      link: "https://github.com/Vinnywho/PetShop",
-    },
-    {
-      title: "Instituto Criativo Dashboard",
-      desc: "Dashboard que centraliza atividades e gera relatórios em tempo real.",
-      fullDesc:
-        "Solução corporativa integrada com Azure e MySQL que oferece visualização de dados estratégicos, controle de presença e métricas de desempenho em tempo real.",
-      bgImage: dashboard,
-      icons: [html, css, azure, mysql, figma, js, reactIcon, csharp],
-      link: "https://github.com/2025-1-NADS2/Projeto3",
-    },
-    {
-      title: "O Acampamento",
-      desc: "Jogo de aventura textual com múltiplos finais e sistema de vidas.",
-      fullDesc:
-        "Desenvolvido em JavaScript, este jogo foca em narrativa interativa onde cada decisão altera o rumo da história e o estado de sobrevivência do personagem.",
-      bgImage: jogo,
-      icons: [html, css, js, figma],
-      link: "https://github.com/Vinnywho/O-Acampamento",
-    },
-    {
-      title: "Projeto - Dia das Mães",
-      desc: "Pequeno projeto desenvolvido como presente para o dia das mães.",
-      fullDesc:
-        "Página comemorativa que quis fazer para minha mãe como homenagem para o dia das mães, colocando em prática meus conhecimentos de front-end para criar algo especial e personalizado.",
-      bgImage: mae,
-      icons: [html, css, js, figma],
-      link: "https://papaya-cascaron-060459.netlify.app/mae",
-    },
-  ];
+function AppShell() {
+  const [introFinished, setIntroFinished] = useState(false);
 
   return (
     <>
-      <SprayEffect />
-      <Navbar />
+      {!introFinished && <LoadingScreen onComplete={() => setIntroFinished(true)} />}
+      <SprayCanvas />
+      <ModeTransition />
+      <FloatingMenu />
 
       <main>
-        <section id="home">
-          <img
-            id="ferramentas_e_habilidades"
-            data-aos="fade-right"
-            data-aos-delay="200"
-            src={ferramentas_e_habilidades}
-            alt=""
-          />
-          <div id="infos">
-            <h1 data-aos="fade-left" data-aos-delay="250">
-              ViNiCiuS LiMa
-            </h1>
-            <p data-aos="fade-left" data-aos-delay="300">
-              Sou um <b>desenvolvedor</b> front-end, <b>designer gráfico</b> e
-              de UX/UI em formação.
-            </p>
-            <a href={cv} target="_blank" rel="noreferrer">
-              <button id="curriculo">Currículo</button>
-            </a>
-          </div>
-        </section>
-
-        <section id="sobre">
-          <div id="sobre-mim">
-            <h2 data-aos="fade-up" data-aos-delay="300">
-              SOBRE MIM
-            </h2>
-            <p data-aos="fade-up" data-aos-delay="350">
-              Meu nome é Vinicius Cardoso de Lima, tenho 22 anos e estou
-              atualmente no 4º semestre da graduação em{" "}
-              <b>Ciência da Computação</b> pela FECAP. Sou um profissional em
-              formação com um sólido background técnico em <b>Administração</b>{" "}
-              desde 2023 pela ETEC, o que me permite unir a lógica de
-              programação com uma visão de gestão e processos. Sou reconhecido
-              por ser pró-ativo, comunicativo e possuir uma grande capacidade de
-              adaptação a diferentes desafios e ambientes de trabalho.
-            </p>
-          </div>
-          <div data-aos="fade-left" data-aos-delay="400">
-            <img id="portrait" src={portrait} alt="Vinicius" />
-          </div>
-        </section>
-
-        <section id="projetos">
-          <h1>PrOjetOs - DEStaQUeS</h1>
-          <Maratona />
-          <Comedoria />
-
-          <section id="mais-projetos">
-            <h1>Mais PrOjetOs</h1>
-            <div id="grid-projetos">
-              {projetosLista.map((proj, index) => (
-                <ProjectCard
-                  key={index}
-                  index={index}
-                  title={proj.title}
-                  desc={proj.desc}
-                  bgImage={proj.bgImage}
-                  icons={proj.icons}
-                  onClick={() => setProjetoAberto(proj)}
-                />
-              ))}
-            </div>
-          </section>
-        </section>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projeto/:slug" element={<ProjectDetail />} />
+          <Route path="/design/:slug" element={<DesignShowcase />} />
+          <Route path="/cv-lab" element={<ResumeLab />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
-      <Experiencias />
-
-      {projetoAberto && (
-        <Modal projeto={projetoAberto} onClose={() => setProjetoAberto(null)} />
-      )}
-
-      <footer>
-        <a href="#home" className="scroll-top">
-          ↑
-        </a>
-        <div id="contatos">
-          <a
-            href="https://instagram.com/vinny.who"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
-          <a href="mailto:vivini13235@gmail.com">Email</a>
-          <a
-            href="https://linkedin.com/in/vinicius-cardoso-de-lima-a9a918227/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/Vinnywho"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
-        <p>&copy; 2025 Vinicius Lima</p>
-      </footer>
+      <ContactWhatsApp />
+      <Footer />
     </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppProvider>
+        <AppShell />
+      </AppProvider>
+    </BrowserRouter>
+  );
+}
