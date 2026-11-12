@@ -74,6 +74,17 @@ export default function Footer() {
                 <button
                   type="button"
                   onClick={() => {
+                    navigate('/faq');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  {t.nav.faq}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
                     navigate('/cv-lab');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}

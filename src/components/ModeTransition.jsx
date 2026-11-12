@@ -3,12 +3,10 @@ import gsap from 'gsap';
 import { useApp } from '../context/AppContext';
 
 export default function ModeTransition() {
-  const { transitionState, finishTransition } = useApp();
+  const { transitionState, applyTransitionMidpoint, finishTransition, lang } = useApp();
   const rootRef = useRef(null);
   const curtainRef = useRef(null);
   const badgeRef = useRef(null);
-  const matrixLinesRef = useRef(null);
-  const sprayGraphicRef = useRef(null);
 
   useEffect(() => {
     if (!transitionState.active) return;
@@ -16,9 +14,16 @@ export default function ModeTransition() {
     const root = rootRef.current;
     const curtain = curtainRef.current;
     const badge = badgeRef.current;
-    const isTargetDesign = transitionState.targetMode === 'design';
+    const isDesign =
+      transitionState.type === 'mode'
+        ? transitionState.targetMode === 'design'
+        : transitionState.targetMode === 'design';
 
     if (!root || !curtain || !badge) return;
+
+    // Reset limpo do estado do GSAP
+    gsap.killTweensOf([root, curtain, badge]);
+    gsap.set(root, { visibility: 'visible', opacity: 1 });
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -27,73 +32,108 @@ export default function ModeTransition() {
       },
     });
 
-    tl.set(root, { visibility: 'visible' });
-
-    if (isTargetDesign) {
-      // Transição para DESIGN: Spray de arte urbana azul + revelação gráfica
-      tl.fromTo(
-        curtain,
-        { clipPath: 'circle(0% at 50% 50%)', backgroundColor: '#0066ff' },
-        { clipPath: 'circle(150% at 50% 50%)', duration: 0.45, ease: 'power3.inOut' }
-      )
+    if (isDesign) {
+      // Animação de ESTÚDIO / ARTE URBANA AZUL
+      tl.set(curtain, {
+        backgroundColor: '#0066ff',
+        clipPath: 'circle(0% at 50% 50%)',
+      })
+        .to(curtain, {
+          clipPath: 'circle(150% at 50% 50%)',
+          duration: 0.52,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            applyTransitionMidpoint();
+          },
+        })
         .fromTo(
           badge,
-          { scale: 0.7, opacity: 0, rotate: -6 },
-          { scale: 1, opacity: 1, rotate: 0, duration: 0.28, ease: 'back.out(2)' },
-          '-=0.2'
+          { scale: 0.75, opacity: 0, rotate: -4 },
+          { scale: 1, opacity: 1, rotate: 0, duration: 0.35, ease: 'back.out(2)' },
+          '-=0.22'
         )
-        .to(badge, { opacity: 0, scale: 1.15, duration: 0.22, delay: 0.15 })
-        .to(
-          curtain,
-          { clipPath: 'circle(0% at 50% 50%)', duration: 0.42, ease: 'power3.inOut' },
-          '-=0.08'
-        );
+        // Mantém na tela um instante para leitura e apreciação visual
+        .to(badge, { opacity: 0, scale: 1.15, duration: 0.28, delay: 0.25 })
+        .to(curtain, {
+          clipPath: 'circle(0% at 50% 50%)',
+          duration: 0.48,
+          ease: 'power3.inOut',
+        });
     } else {
-      // Transição para DEV: Scanline pixel-matrix terminal com KiwiSoda
-      tl.fromTo(
-        curtain,
-        { scaleY: 0, transformOrigin: 'top', backgroundColor: '#0e0e0e' },
-        { scaleY: 1, duration: 0.42, ease: 'power4.inOut' }
-      )
+      // Animação DEV SCANLINES / MATRIX PIXEL
+      tl.set(curtain, {
+        backgroundColor: '#0c0d12',
+        scaleY: 0,
+        transformOrigin: 'top',
+      })
+        .to(curtain, {
+          scaleY: 1,
+          duration: 0.48,
+          ease: 'power4.inOut',
+          onComplete: () => {
+            applyTransitionMidpoint();
+          },
+        })
         .fromTo(
           badge,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.25, ease: 'steps(4)' },
-          '-=0.15'
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.3, ease: 'steps(4)' },
+          '-=0.18'
         )
-        .to(badge, { opacity: 0, y: -20, duration: 0.2, delay: 0.15 })
-        .to(
-          curtain,
-          { scaleY: 0, transformOrigin: 'bottom', duration: 0.42, ease: 'power4.inOut' },
-          '-=0.05'
-        );
+        // Mantém na tela para visualização da mensagem
+        .to(badge, { opacity: 0, y: -25, duration: 0.25, delay: 0.25 })
+        .to(curtain, {
+          scaleY: 0,
+          transformOrigin: 'bottom',
+          duration: 0.48,
+          ease: 'power4.inOut',
+        });
     }
 
     return () => {
       tl.kill();
     };
-  }, [transitionState.active, transitionState.targetMode, finishTransition]);
+  }, [
+    transitionState.key,
+    transitionState.active,
+    transitionState.targetMode,
+    transitionState.type,
+    applyTransitionMidpoint,
+    finishTransition,
+  ]);
 
+  if (!transitionState.active) return null;
+
+  const isNav = transitionState.type === 'nav';
   const isTargetDesign = transitionState.targetMode === 'design';
 
   return (
     <div ref={rootRef} className="mode-transition-root" aria-hidden="true">
       <div ref={curtainRef} className="mode-transition-curtain">
         {isTargetDesign ? (
-          <div ref={sprayGraphicRef} className="mode-spray-burst">
+          <div className="mode-spray-burst">
             <div className="spray-drip-stream" />
-            <div className="spray-drip-stream" style={{ left: '60%', animationDelay: '0.1s' }} />
+            <div className="spray-drip-stream" style={{ left: '65%', animationDelay: '0.15s' }} />
           </div>
         ) : (
-          <div ref={matrixLinesRef} className="mode-matrix-scan">
+          <div className="mode-matrix-scan">
             <div className="matrix-code-ticker">
-              {'<BUILDING DEV_ENVIRONMENT ... STACK READY /> 01001011 01101001 01110111 01101001'}
+              {'<COMPILING RUNTIME /> 01001011 01101001 01110111 01101001 • GSAP_ENGINE_READY'}
             </div>
           </div>
         )}
 
         <div ref={badgeRef} className="mode-transition-badge">
-          {isTargetDesign ? (
+          {isNav ? (
+            <div className={isTargetDesign ? 'badge-design-mode' : 'badge-dev-mode'}>
+              <span className={isTargetDesign ? 'badge-design-sub' : 'badge-dev-sub'}>
+                {lang === 'pt' ? 'CARREGANDO EXPERIÊNCIA...' : 'LOADING CASE STUDY...'}
+              </span>
+              <h2 className={isTargetDesign ? 'badge-design-title' : 'badge-dev-title'}>
+                {isTargetDesign ? 'SHOWCASE VISUAL' : '<PROJETO />'}
+              </h2>
+            </div>
+          ) : isTargetDesign ? (
             <div className="badge-design-mode">
               <span className="badge-design-sub">ESTÚDIO DE CRIAÇÃO & UI</span>
               <h2 className="badge-design-title">ARTE & DESIGN</h2>

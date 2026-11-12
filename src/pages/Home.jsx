@@ -10,6 +10,7 @@ import Phone3D from '../components/Phone3D';
 import ModeSwitcher from '../components/ModeSwitcher';
 import FeaturedProject from '../components/FeaturedProject';
 import ProjectCard from '../components/ProjectCard';
+import HorizontalScrollShowcase from '../components/HorizontalScrollShowcase';
 import Timeline from '../components/Timeline';
 import portrait from '../assets/images/portrait.png';
 
@@ -153,6 +154,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* GSAP HORIZONTAL PINNED SHOWCASE */}
+      <HorizontalScrollShowcase />
 
       {/* PROJECTS SECTION */}
       <section id="projetos" className="projects-section container">

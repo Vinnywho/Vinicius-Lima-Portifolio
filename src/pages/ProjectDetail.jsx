@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ArrowUpRight, GitBranch, Palette, CheckCircle2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const navigate = useNavigate();
-  const { t, tr } = useApp();
+  const { t, tr, navigateWithTransition } = useApp();
 
   const devProjects = projects.filter((p) => p.category === 'dev' || p.category === 'both');
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const project = currentIndex >= 0 ? projects[currentIndex] : null;
+  const currentIndex = devProjects.findIndex((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === slug);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -20,7 +19,11 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="detail-page container">
-        <button type="button" className="btn-secondary" onClick={() => navigate('/')}>
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={() => navigateWithTransition('/')}
+        >
           <ArrowLeft size={16} />
           <span>{t.projectDetail.backHome}</span>
         </button>
@@ -28,8 +31,14 @@ export default function ProjectDetail() {
     );
   }
 
+  const prevProject =
+    currentIndex > 0
+      ? devProjects[currentIndex - 1]
+      : devProjects[devProjects.length - 1];
   const nextProject =
-    devProjects[(devProjects.findIndex((p) => p.slug === slug) + 1) % devProjects.length];
+    currentIndex >= 0
+      ? devProjects[(currentIndex + 1) % devProjects.length]
+      : null;
 
   const devInfo = project.devDetails;
   const highlights = devInfo ? tr(devInfo.highlights) : [];
@@ -38,13 +47,27 @@ export default function ProjectDetail() {
   return (
     <article className="detail-page container">
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.75rem' }}>
-        <Link to="/" className="btn-secondary">
+        <Link
+          to="/"
+          onClick={(e) => {
+            e.preventDefault();
+            navigateWithTransition('/');
+          }}
+          className="btn-secondary"
+        >
           <ArrowLeft size={16} />
           <span>{t.projectDetail.backHome}</span>
         </Link>
 
         {project.designShowcase && (
-          <Link to={`/design/${project.slug}`} className="btn-secondary">
+          <Link
+            to={`/design/${project.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition(`/design/${project.slug}`);
+            }}
+            className="btn-secondary"
+          >
             <Palette size={16} />
             <span>{t.projectDetail.switchToDesign}</span>
           </Link>
@@ -148,14 +171,51 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      {nextProject && nextProject.slug !== project.slug && (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
-          <Link to={`/projeto/${nextProject.slug}`} className="btn-primary">
-            <span>{t.projectDetail.nextProject}: {tr(nextProject.title)}</span>
+      <nav
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '1rem',
+          marginTop: '2.5rem',
+          paddingTop: '1.5rem',
+          borderTop: '1px solid var(--border-color)',
+        }}
+        aria-label="Navegação entre projetos"
+      >
+        {prevProject && prevProject.slug !== project.slug ? (
+          <Link
+            to={`/projeto/${prevProject.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition(`/projeto/${prevProject.slug}`);
+            }}
+            className="btn-secondary"
+          >
+            <ArrowLeft size={16} />
+            <span>
+              {t.projectDetail.prevProject}: {tr(prevProject.title)}
+            </span>
+          </Link>
+        ) : <div />}
+
+        {nextProject && nextProject.slug !== project.slug && (
+          <Link
+            to={`/projeto/${nextProject.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition(`/projeto/${nextProject.slug}`);
+            }}
+            className="btn-primary"
+          >
+            <span>
+              {t.projectDetail.nextProject}: {tr(nextProject.title)}
+            </span>
             <ArrowRight size={18} />
           </Link>
-        </div>
-      )}
+        )}
+      </nav>
     </article>
   );
 }

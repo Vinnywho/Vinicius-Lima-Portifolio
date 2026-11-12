@@ -77,10 +77,12 @@
 
 /* ========================================================
    MODO DESIGNER — Estética de Estúdio com AZUL Vibrante
-   e Tipografia Grafitti Autoral
+   e Tipografia Grafitti Autoral com Letter-Spacing Aprimorado
    ======================================================== */
 :root[data-mode='design'] {
   --font-display: var(--font-display-design);
+  --letter-spacing-display: 0.15em;
+  --word-spacing-display: 0.08em;
   --accent: #0066ff;
   --accent-contrast: #ffffff;
   --bg-page: #f6f8fc;

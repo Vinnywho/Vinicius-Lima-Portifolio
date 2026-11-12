@@ -3,7 +3,7 @@ import { ArrowUpRight, Layers } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function FeaturedProject({ project, index }) {
-  const { mode, t, tr } = useApp();
+  const { mode, t, tr, navigateWithTransition } = useApp();
   const isReversed = index % 2 === 1;
 
   const targetRoute =
@@ -16,11 +16,21 @@ export default function FeaturedProject({ project, index }) {
       ? t.projects.viewCaseDesign
       : t.projects.viewCaseDev;
 
+  const handleOpenProject = (e) => {
+    e.preventDefault();
+    navigateWithTransition(targetRoute);
+  };
+
   return (
     <article
       className={`featured-item gsap-reveal ${isReversed ? 'is-reversed' : ''}`}
     >
-      <Link to={targetRoute} className="featured-media" aria-label={tr(project.title)}>
+      <Link
+        to={targetRoute}
+        onClick={handleOpenProject}
+        className="featured-media"
+        aria-label={tr(project.title)}
+      >
         <img src={project.coverImage} alt={tr(project.title)} loading="lazy" />
       </Link>
 
@@ -48,7 +58,7 @@ export default function FeaturedProject({ project, index }) {
         </div>
 
         <div className="featured-actions">
-          <Link to={targetRoute} className="btn-primary">
+          <Link to={targetRoute} onClick={handleOpenProject} className="btn-primary">
             <Layers size={18} />
             <span>{ctaLabel}</span>
           </Link>

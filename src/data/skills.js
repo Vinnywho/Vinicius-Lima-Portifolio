@@ -4,12 +4,16 @@ import htmlIcon from '../assets/Icons/HTML.svg';
 import cssIcon from '../assets/Icons/CSS.svg';
 import csharpIcon from '../assets/Icons/Csharp.svg';
 import cppIcon from '../assets/Icons/C++.svg';
+import cIcon from '../assets/Icons/C.svg';
+import pythonIcon from '../assets/Icons/Python.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
+import androidStudioIcon from '../assets/Icons/AndroidStudio.svg';
 import mysqlIcon from '../assets/Icons/mysql-logo-pure.svg';
 import azureIcon from '../assets/Icons/microsoftazure-svgrepo-com.svg';
 import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import vercelIcon from '../assets/Icons/Vercel.svg';
 import figmaIcon from '../assets/Icons/figma-svgrepo-com.svg';
+import photoshopIcon from '../assets/Icons/Photoshop.svg';
 import githubIcon from '../assets/Icons/github-142-svgrepo-com.svg';
 
 export const skills = [
@@ -72,11 +76,11 @@ export const skills = [
   {
     id: 'c-lang',
     name: 'C',
-    badge: 'C',
+    icon: cIcon,
     mode: 'dev',
     category: { pt: 'Linguagem & Fundamentos', en: 'Language & Fundamentals' },
     level: 75,
-    color: '#A8B9CC',
+    color: '#00599C',
     description: {
       pt: 'Estruturas de dados fundamentais, ponteiros, alocação de memória e algoritmos de base na FECAP.',
       en: 'Core data structures, pointers, memory allocation, and foundational algorithms at FECAP.',
@@ -86,7 +90,7 @@ export const skills = [
   {
     id: 'python',
     name: 'Python',
-    badge: 'Py',
+    icon: pythonIcon,
     mode: 'dev',
     category: { pt: 'Linguagem & Automação', en: 'Language & Automation' },
     level: 76,
@@ -114,7 +118,7 @@ export const skills = [
   {
     id: 'android-studio',
     name: 'Android Studio',
-    badge: 'And',
+    icon: androidStudioIcon,
     mode: 'dev',
     category: { pt: 'Desenvolvimento Mobile', en: 'Mobile Development' },
     level: 78,
@@ -230,7 +234,6 @@ export const designCapabilities = [
     id: 'figma',
     name: 'Figma',
     icon: figmaIcon,
-    badge: 'Fig',
     color: '#F24E1E',
     level: 94,
     description: {
@@ -242,7 +245,7 @@ export const designCapabilities = [
   {
     id: 'photoshop',
     name: 'Adobe Photoshop',
-    badge: 'Ps',
+    icon: photoshopIcon,
     color: '#31A8FF',
     level: 88,
     description: {
@@ -253,7 +256,7 @@ export const designCapabilities = [
   {
     id: 'ui-ux-design',
     name: 'UI/UX Design',
-    badge: 'UI/UX',
+    icon: figmaIcon,
     color: '#0066FF',
     level: 93,
     description: {
@@ -264,7 +267,7 @@ export const designCapabilities = [
   {
     id: 'brand-identity',
     name: 'Identidade Visual & Grafite',
-    badge: 'TAG',
+    icon: photoshopIcon,
     color: '#AA1719',
     level: 92,
     description: {
@@ -275,7 +278,7 @@ export const designCapabilities = [
   {
     id: 'editorial-print',
     name: 'Design Editorial & Gráfico',
-    badge: 'MAG',
+    icon: figmaIcon,
     color: '#0052CC',
     level: 90,
     description: {
@@ -286,7 +289,7 @@ export const designCapabilities = [
   {
     id: 'packaging-catalogs',
     name: 'Embalagens & Catálogos',
-    badge: 'VOL',
+    icon: photoshopIcon,
     color: '#2563EB',
     level: 86,
     description: {

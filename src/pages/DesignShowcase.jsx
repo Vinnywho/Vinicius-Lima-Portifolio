@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 
 export default function DesignShowcase() {
   const { slug } = useParams();
-  const navigate = useNavigate();
-  const { t, tr } = useApp();
+  const { t, tr, navigateWithTransition } = useApp();
   const [copiedHex, setCopiedHex] = useState(null);
 
   const designProjects = projects.filter((p) => p.designShowcase);
+  const currentIndex = designProjects.findIndex((p) => p.slug === slug);
   const project = projects.find((p) => p.slug === slug);
 
   useEffect(() => {
@@ -20,7 +20,11 @@ export default function DesignShowcase() {
   if (!project || !project.designShowcase) {
     return (
       <div className="detail-page container">
-        <button type="button" className="btn-secondary" onClick={() => navigate('/')}>
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={() => navigateWithTransition('/')}
+        >
           <ArrowLeft size={16} />
           <span>{t.projectDetail.backHome}</span>
         </button>
@@ -30,8 +34,14 @@ export default function DesignShowcase() {
 
   const ds = project.designShowcase;
   const deliverables = tr(ds.deliverables) || [];
+  const prevDesign =
+    currentIndex > 0
+      ? designProjects[currentIndex - 1]
+      : designProjects[designProjects.length - 1];
   const nextDesign =
-    designProjects[(designProjects.findIndex((p) => p.slug === slug) + 1) % designProjects.length];
+    currentIndex >= 0
+      ? designProjects[(currentIndex + 1) % designProjects.length]
+      : null;
 
   const handleCopyHex = async (hex) => {
     try {
@@ -46,13 +56,27 @@ export default function DesignShowcase() {
   return (
     <article className="detail-page container">
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '1rem', marginBottom: '2rem' }}>
-        <Link to="/" className="btn-secondary">
+        <Link
+          to="/"
+          onClick={(e) => {
+            e.preventDefault();
+            navigateWithTransition('/');
+          }}
+          className="btn-secondary"
+        >
           <ArrowLeft size={16} />
           <span>{t.projectDetail.backHome}</span>
         </Link>
 
         {project.devDetails && (
-          <Link to={`/projeto/${project.slug}`} className="btn-secondary">
+          <Link
+            to={`/projeto/${project.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition(`/projeto/${project.slug}`);
+            }}
+            className="btn-secondary"
+          >
             <Code2 size={16} />
             <span>{t.projectDetail.switchToDev}</span>
           </Link>
@@ -209,7 +233,7 @@ export default function DesignShowcase() {
           return null;
         })}
 
-        {/* Bottom Actions */}
+        {/* Bottom Actions with Bidirectional Navigation */}
         <div
           style={{
             display: 'flex',
@@ -217,18 +241,46 @@ export default function DesignShowcase() {
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: '1rem',
-            paddingTop: '1rem',
+            paddingTop: '1.75rem',
+            marginTop: '1.5rem',
+            borderTop: '1px solid var(--border-color)',
           }}
+          aria-label="Navegação entre projetos de design"
         >
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-primary">
-              <span>{t.projectDetail.liveDemo}</span>
-              <ArrowUpRight size={18} />
-            </a>
-          )}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+            {prevDesign && prevDesign.slug !== project.slug && (
+              <Link
+                to={`/design/${prevDesign.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateWithTransition(`/design/${prevDesign.slug}`);
+                }}
+                className="btn-secondary"
+              >
+                <ArrowLeft size={16} />
+                <span>
+                  {t.projectDetail.prevProject}: {tr(prevDesign.title)}
+                </span>
+              </Link>
+            )}
+
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                <span>{t.projectDetail.liveDemo}</span>
+                <ArrowUpRight size={18} />
+              </a>
+            )}
+          </div>
 
           {nextDesign && nextDesign.slug !== project.slug && (
-            <Link to={`/design/${nextDesign.slug}`} className="btn-secondary">
+            <Link
+              to={`/design/${nextDesign.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateWithTransition(`/design/${nextDesign.slug}`);
+              }}
+              className="btn-secondary"
+            >
               <span>{t.projectDetail.nextProject}: {tr(nextDesign.title)}</span>
               <ArrowRight size={16} />
             </Link>

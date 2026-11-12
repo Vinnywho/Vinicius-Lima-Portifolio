@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import DesignShowcase from './pages/DesignShowcase';
 import ResumeLab from './pages/ResumeLab';
+import FAQ from './pages/FAQ';
 
 function AppShell() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -28,6 +29,7 @@ function AppShell() {
           <Route path="/projeto/:slug" element={<ProjectDetail />} />
           <Route path="/design/:slug" element={<DesignShowcase />} />
           <Route path="/cv-lab" element={<ResumeLab />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

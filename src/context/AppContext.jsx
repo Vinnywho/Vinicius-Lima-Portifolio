@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { translations } from '../data/translations';
 
 const AppContext = createContext(null);
@@ -11,7 +12,7 @@ function getInitialTheme() {
       return 'dark';
     }
   } catch {
-    // ignore storage errors
+    // ignore
   }
   return 'light';
 }
@@ -37,18 +38,24 @@ function getInitialLang() {
 }
 
 export function AppProvider({ children }) {
+  const navigate = useNavigate();
   const [mode, setMode] = useState(getInitialMode);
   const [theme, setTheme] = useState(getInitialTheme);
   const [lang, setLang] = useState(getInitialLang);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Transition state com chave única a cada execução para nunca falhar em trocas repetidas
   const [transitionState, setTransitionState] = useState({
     active: false,
+    key: 0,
+    type: 'mode', // 'mode' | 'nav'
     targetMode: null,
+    targetPath: null,
   });
 
-  const transitionTimeoutRef = useRef(null);
+  const isTransitioningRef = useRef(false);
 
-  // Sync theme to DOM & meta color-scheme
+  // Sync theme
   useEffect(() => {
     const meta = document.querySelector('meta[name="color-scheme"]');
     if (meta) {
@@ -67,7 +74,7 @@ export function AppProvider({ children }) {
     }
   }, [theme]);
 
-  // Sync mode (dev | design) to DOM
+  // Sync mode
   useEffect(() => {
     document.documentElement.dataset.mode = mode;
     try {
@@ -77,7 +84,7 @@ export function AppProvider({ children }) {
     }
   }, [mode]);
 
-  // Sync language to <html lang="...">
+  // Sync language
   useEffect(() => {
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
     try {
@@ -87,7 +94,7 @@ export function AppProvider({ children }) {
     }
   }, [lang]);
 
-  // Sync theme across browser tabs via storage event
+  // Cross-tab storage sync
   useEffect(() => {
     const onStorage = (e) => {
       if (e.key === 'color-scheme' && (e.newValue === 'light' || e.newValue === 'dark')) {
@@ -112,11 +119,11 @@ export function AppProvider({ children }) {
     setLang((prev) => (prev === 'pt' ? 'en' : 'pt'));
   }, []);
 
-  // Fluid mode transition coordinated with ModeTransition component
+  // Transição de Modo com duração expressiva e execução a cada clique
   const switchMode = useCallback(
     (nextMode) => {
       const target = nextMode || (mode === 'dev' ? 'design' : 'dev');
-      if (target === mode || transitionState.active) return;
+      if (target === mode || isTransitioningRef.current) return;
 
       const prefersReducedMotion =
         window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -126,27 +133,64 @@ export function AppProvider({ children }) {
         return;
       }
 
-      setTransitionState({ active: true, targetMode: target });
-
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-
-      // Midpoint swap happens when GSAP curtain covers screen (~420ms)
-      transitionTimeoutRef.current = setTimeout(() => {
-        setMode(target);
-      }, 420);
+      isTransitioningRef.current = true;
+      setTransitionState((prev) => ({
+        active: true,
+        key: prev.key + 1,
+        type: 'mode',
+        targetMode: target,
+        targetPath: null,
+      }));
     },
-    [mode, transitionState.active]
+    [mode]
   );
 
+  // Navegação entre rotas com a cortina de transição de projeto
+  const navigateWithTransition = useCallback(
+    (path) => {
+      if (!path || isTransitioningRef.current) return;
+
+      const prefersReducedMotion =
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        navigate(path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      isTransitioningRef.current = true;
+      setTransitionState((prev) => ({
+        active: true,
+        key: prev.key + 1,
+        type: 'nav',
+        targetMode: mode,
+        targetPath: path,
+      }));
+    },
+    [mode, navigate]
+  );
+
+  // Chamado no meio da animação (quando a cortina cobre a tela inteira)
+  const applyTransitionMidpoint = useCallback(() => {
+    if (transitionState.type === 'mode' && transitionState.targetMode) {
+      setMode(transitionState.targetMode);
+    } else if (transitionState.type === 'nav' && transitionState.targetPath) {
+      navigate(transitionState.targetPath);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [transitionState, navigate]);
+
   const finishTransition = useCallback(() => {
-    setTransitionState({ active: false, targetMode: null });
+    isTransitioningRef.current = false;
+    setTransitionState((prev) => ({
+      ...prev,
+      active: false,
+    }));
   }, []);
 
   const t = translations[lang];
 
-  // Helper to resolve bilingual objects { pt: '...', en: '...' } or plain strings
   const tr = useCallback(
     (value) => {
       if (!value) return '';
@@ -165,7 +209,9 @@ export function AppProvider({ children }) {
         mode,
         setMode,
         switchMode,
+        navigateWithTransition,
         transitionState,
+        applyTransitionMidpoint,
         finishTransition,
         theme,
         setTheme,

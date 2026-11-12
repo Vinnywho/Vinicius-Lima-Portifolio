@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function ProjectCard({ project }) {
-  const { mode, t, tr } = useApp();
+  const { mode, t, tr, navigateWithTransition } = useApp();
 
   const targetRoute =
     mode === 'design' && project.designShowcase
@@ -15,9 +15,15 @@ export default function ProjectCard({ project }) {
       ? t.projects.viewCaseDesign
       : t.projects.viewCaseDev;
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigateWithTransition(targetRoute);
+  };
+
   return (
     <Link
       to={targetRoute}
+      onClick={handleClick}
       className={`project-card gsap-card ${mode === 'design' ? 'is-behance' : ''}`}
     >
       <div className="project-card-media">
