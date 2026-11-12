@@ -31,17 +31,6 @@ export default function SprayCanvas() {
     let stationaryFrames = 0;
     let lastScrollY = window.scrollY;
 
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      drawAll();
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-
     // Cor ÚNICA por modo: Dev = Vermelho autoral, Design = Azul vibrante
     const getSingleColor = () => {
       if (modeRef.current === 'design') {
@@ -122,6 +111,17 @@ export default function SprayCanvas() {
         rafId = requestAnimationFrame(updateDrips);
       }
     };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawAll();
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
 
     // Borrifar tinta na posição
     const sprayAt = (x, y, intensity = 1) => {
