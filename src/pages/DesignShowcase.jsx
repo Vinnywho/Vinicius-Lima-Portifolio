@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check, ZoomIn } from 'lucid
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 import ImageLightbox from '../components/ImageLightbox';
+import ScrollFrame from '../components/ScrollFrame';
 
 export default function DesignShowcase() {
   const { slug } = useParams();
@@ -194,36 +195,14 @@ export default function DesignShowcase() {
 
           if (block.type === 'scroll-frame') {
             return (
-              <figure key={idx} className="behance-scroll-block">
-                <div className="behance-browser-bar">
-                  <div className="behance-browser-dots" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <span className="behance-browser-title">
-                    {tr(block.title) || (lang === 'pt' ? 'Role a página para explorar' : 'Scroll inside to explore')}
-                  </span>
-                  <button
-                    type="button"
-                    className="behance-expand-btn"
-                    onClick={() =>
-                      setLightboxImg({ src: block.image, caption: tr(block.caption) })
-                    }
-                  >
-                    <ZoomIn size={14} />
-                    <span>{lang === 'pt' ? 'Tela cheia' : 'Expand'}</span>
-                  </button>
-                </div>
-                <div className="behance-scroll-viewport">
-                  <img src={block.image} alt={tr(block.caption)} loading="lazy" />
-                </div>
-                {block.caption && (
-                  <figcaption className="behance-board-caption">
-                    {tr(block.caption)}
-                  </figcaption>
-                )}
-              </figure>
+              <ScrollFrame
+                key={idx}
+                image={block.image}
+                title={tr(block.title)}
+                caption={tr(block.caption)}
+                onExpand={setLightboxImg}
+                lang={lang}
+              />
             );
           }
 

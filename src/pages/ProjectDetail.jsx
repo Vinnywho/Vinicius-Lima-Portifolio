@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, GitBranch, Palette, CheckCircle2, 
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 import ImageLightbox from '../components/ImageLightbox';
+import ScrollFrame from '../components/ScrollFrame';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -44,6 +45,7 @@ export default function ProjectDetail() {
 
   const devInfo = project.devDetails;
   const highlights = devInfo ? tr(devInfo.highlights) : [];
+  const scrollFrames = devInfo?.scrollFrames || [];
   const gallery = devInfo?.gallery?.length ? devInfo.gallery : [project.coverImage];
 
   return (
@@ -159,6 +161,24 @@ export default function ProjectDetail() {
           </section>
         )}
       </div>
+
+      {scrollFrames.length > 0 && (
+        <section className="detail-box" style={{ marginBottom: '2.5rem' }}>
+          <h2>{t.projectDetail.gallery}</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {scrollFrames.map((frame, idx) => (
+              <ScrollFrame
+                key={idx}
+                image={frame.image}
+                title={tr(frame.title)}
+                caption={tr(frame.caption)}
+                onExpand={setLightboxImg}
+                lang={lang}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {gallery.length > 1 && (
         <section className="detail-box" style={{ marginBottom: '2.5rem' }}>

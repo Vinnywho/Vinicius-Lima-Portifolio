@@ -12,17 +12,8 @@ import Os from '../assets/images/Projetos/Sebrae/os.png';
 import Relatorios from '../assets/images/Projetos/Sebrae/relatorios.png';
 import LoginBlue from '../assets/images/Projetos/Sebrae/login.png';
 import FinancasLP from '../assets/images/Projetos/Financas/financassemfronteiras.png';
-import finSec1 from '../assets/images/Projetos/Financas/section1.png';
-import finSec2 from '../assets/images/Projetos/Financas/section2.png';
-import finSec3 from '../assets/images/Projetos/Financas/section3.png';
-import finSec4 from '../assets/images/Projetos/Financas/section4.png';
-import finSec5 from '../assets/images/Projetos/Financas/section5.png';
-import finSec6 from '../assets/images/Projetos/Financas/section6.png';
-import finSec7 from '../assets/images/Projetos/Financas/section7.png';
-import finSec8 from '../assets/images/Projetos/Financas/section8.png';
-import finSec9 from '../assets/images/Projetos/Financas/section9.png';
-import finSec10 from '../assets/images/Projetos/Financas/section10.png';
-import finSec11 from '../assets/images/Projetos/Financas/section11.png';
+import rdd from '../assets/images/Projetos/Financas/rdd.png';
+import Brandbook from '../assets/images/Projetos/Financas/Brandbook.png';
 import finSec12 from '../assets/images/Projetos/Financas/section12.png';
 import finSec13 from '../assets/images/Projetos/Financas/section13.png';
 import finSec14 from '../assets/images/Projetos/Financas/section14.png';
@@ -95,7 +86,52 @@ export const projects = [
           'Responsive and intuitive interface designed to facilitate the team\'s workflow.',
         ],
       },
-      gallery: [LoginBlue, sebraeImg, Os, Relatorios],
+      scrollFrames: [
+        {
+          title: {
+            pt: 'sebrae-three.vercel.app — Login & Acesso ao Sistema',
+            en: 'sebrae-three.vercel.app — Login & System Access',
+          },
+          image: LoginBlue,
+          caption: {
+            pt: 'Tela de autenticação do sistema Sebrae Blue — role dentro da janela para inspecionar.',
+            en: 'Sebrae Blue authentication screen — scroll inside the frame to inspect.',
+          },
+        },
+        {
+          title: {
+            pt: 'Dashboard Principal — Visão Geral e Métricas',
+            en: 'Main Dashboard — Overview & Metrics',
+          },
+          image: sebraeImg,
+          caption: {
+            pt: 'Painel administrativo com indicadores de desempenho em tempo real.',
+            en: 'Administrative panel with real-time performance indicators.',
+          },
+        },
+        {
+          title: {
+            pt: 'Gestão de Ordens de Serviço (OS)',
+            en: 'Service Order (SO) Management',
+          },
+          image: Os,
+          caption: {
+            pt: 'Fluxo de criação, acompanhamento e controle de Ordens de Serviço.',
+            en: 'Creation, tracking, and control workflow for Service Orders.',
+          },
+        },
+        {
+          title: {
+            pt: 'Módulo de Relatórios & Análises',
+            en: 'Reports & Analytics Module',
+          },
+          image: Relatorios,
+          caption: {
+            pt: 'Visualização consolidada de relatórios gerenciais para a Blue Consult.',
+            en: 'Consolidated management reports view for Blue Consult.',
+          },
+        },
+      ],
     }
   },
   {
@@ -154,7 +190,7 @@ export const projects = [
           'Smooth animations and transitions for user engagement using AOS.',
         ],
       },
-      gallery: [financasImg, FinancasLP],
+      gallery: [financasImg],
     },
     designShowcase: {
       client: 'Finanças Sem Fronteiras (Janina Janino)',
@@ -187,8 +223,31 @@ export const projects = [
             en: '01. Rebranding & Visual Direction',
           },
           body: {
-            pt: 'Todo o sistema visual foi redesenhado a partir da nova logomarca, unindo o verde petróleo profundo (#183636) ao dourado acolhedor (#AD894F) e tons creme de alta legibilidade. O objetivo foi transmitir segurança, empatia e rigor técnico para tornar a Educação Financeira Comportamental acessível.',
-            en: 'The entire visual system was rebuilt around a refreshed logo, pairing deep forest green (#183636) with warm gold accents (#AD894F) and soft cream surfaces to convey trust, empathy, and behavioral clarity.',
+            pt: 'Todo o sistema visual foi redesenhado a partir da nova logomarca, unindo o verde petróleo profundo ao dourado acolhedor e tons creme de alta legibilidade. O objetivo foi transmitir segurança, empatia e rigor técnico para tornar a Educação Financeira Comportamental acessível.',
+            en: 'The entire visual system was rebuilt around a refreshed logo, pairing deep forest green with warm gold accents and soft cream surfaces to convey trust, empathy, and behavioral clarity.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Brandbook Digital — Role para inspecionar a identidade visual completa',
+            en: 'Brandbook Digital — Scroll to inspect the full brand identity',
+          },
+          image: Brandbook,
+          caption: {
+            pt: 'Visão contínua do Brandbook em produção',
+            en: 'Full continuous scroll view of the live Brandbook',
+          },
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '02. Site & Blog Profissional',
+            en: '02. Professional Website & Blog',
+          },
+          body: {
+            pt: 'Todo o site foi desenvolvido em React com componentes modulares, layout responsivo de ponta a ponta prototipado previamente no Figma, hierarquia visual clara e deploy contínuo otimizado na Vercel.',
+            en: 'The entire website was developed in React with modular components, a responsive layout prototyped in Figma, clear visual hierarchy, and continuous deployment optimized on Vercel.',
           },
         },
         {
@@ -212,105 +271,22 @@ export const projects = [
           },
         },
         {
-          type: 'gallery-grid',
-          heading: {
-            pt: '02. Anatomia da Landing Page',
-            en: '02. Landing Page Breakdown',
+          type: 'scroll-frame',
+          title: {
+            pt: 'financassemfronteira.com.br/conversa-de-reconhecimento — Role para conhecer o RDD',
+            en: 'financassemfronteira.com.br/conversa-de-reconhecimento — Scroll to meet the RDD',
           },
-          items: [
-            {
-              image: finSec1,
-              caption: {
-                pt: 'Hero institucional com retrato humanizado, glassmorphism nos pilares de propósito e CTAs diretos.',
-                en: 'Institutional Hero featuring humanized portrait, glassmorphic purpose badges, and primary CTAs.',
-              },
-            },
-            {
-              image: finSec2,
-              caption: {
-                pt: 'Seção de Propósito: gráfico de crescimento sustentável associado aos 3 pilares (Comportamento, Conhecimento, Autonomia).',
-                en: 'Purpose section pairing a sustainable growth chart with the 3 pillars (Behavior, Knowledge, Autonomy).',
-              },
-            },
-            {
-              image: finSec3,
-              caption: {
-                pt: 'Grade “Nossas Soluções” com iconografia minimalista em dourado sobre selos arredondados.',
-                en: '“Our Solutions” grid with bespoke golden line iconography inside dark rounded badges.',
-              },
-            },
-            {
-              image: finSec4,
-              caption: {
-                pt: 'Vitrine editorial do Blog com artigo em destaque e cards de leitura organizados por categoria e data.',
-                en: 'Editorial Blog hub combining a featured hero post with categorized article cards.',
-              },
-            },
-            {
-              image: finSec5,
-              caption: {
-                pt: 'Área de Contato institucional, rodapé estruturado com retorno rápido ao topo e botão flutuante de WhatsApp.',
-                en: 'Institutional Contact block, clean footer with back-to-top anchor, and floating WhatsApp CTA.',
-              },
-            },
-          ],
+          image: rdd,
+          caption: {
+            pt: 'Um primeiro encontro para conhecer a abordagem da Finanças sem Fronteira, entender o AFINCO e a metodologia RRDD e descobrir se esse acompanhamento faz sentido para o seu momento.',
+            en: 'A first meeting to learn about the approach of Finanças sem Fronteira, understand AFINCO and the RRDD methodology, and discover if this coaching makes sense for your current moment.',
+          },
         },
         {
           type: 'gallery-grid',
           heading: {
-            pt: '03. Experiência AFINCO & Metodologia RRDD',
-            en: '03. AFINCO Journey & RRDD Methodology',
-          },
-          items: [
-            {
-              image: finSec6,
-              caption: {
-                pt: 'Hero da Conversa de Reconhecimento (30 minutos): foco visual em acolhimento e clareza sem compromisso.',
-                en: '30-minute Discovery Session Hero focusing on welcoming clarity and zero pressure.',
-              },
-            },
-            {
-              image: finSec7,
-              caption: {
-                pt: 'Cards numerados explicando o fluxo em 3 etapas da conversa inicial.',
-                en: 'Numbered 3-step cards breaking down what happens during the initial session.',
-              },
-            },
-            {
-              image: finSec8,
-              caption: {
-                pt: 'Estrutura do Acompanhamento AFINCO: 3 meses, 6 encontros quinzenais apresentados em timeline modular.',
-                en: 'AFINCO Program overview: 3 months, 6 biweekly sessions laid out in modular cards.',
-              },
-            },
-            {
-              image: finSec9,
-              caption: {
-                pt: 'Destaque do instrumento central RRDD com card de alto contraste e mensagem “Sem julgamento”.',
-                en: 'Spotlight on the central RRDD framework paired with a “Judgment-Free” manifesto block.',
-              },
-            },
-            {
-              image: finSec10,
-              caption: {
-                pt: 'Linha do tempo da evolução em Mês 1, Mês 2 e Mês 3 com leitura limpa e escaneável.',
-                en: 'Clean Month 1–3 progression timeline highlighting behavioral milestones.',
-              },
-            },
-            {
-              image: finSec11,
-              caption: {
-                pt: 'Formulário consultivo de agendamento integrado diretamente ao WhatsApp.',
-                en: 'Consultative intake form routed directly to WhatsApp scheduling.',
-              },
-            },
-          ],
-        },
-        {
-          type: 'gallery-grid',
-          heading: {
-            pt: '04. Páginas de Soluções & Área Restrita',
-            en: '04. Solution Pages & Restricted Portal',
+            pt: 'Páginas de Soluções & Área Restrita',
+            en: 'Solution Pages & Restricted Portal',
           },
           items: [
             {
