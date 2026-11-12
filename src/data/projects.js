@@ -7,6 +7,28 @@ import jogoImg from '../assets/images/Projetos/image 35.png';
 import maeImg from '../assets/images/Projetos/image 36.png';
 import maeAltImg from '../assets/images/Projetos/image 36-1.png';
 import financasImg from '../assets/images/Projetos/financassemfronteira.webp';
+import sebraeImg from '../assets/images/Projetos/Sebrae/sebrae.png';
+import Os from '../assets/images/Projetos/Sebrae/os.png';
+import Relatorios from '../assets/images/Projetos/Sebrae/relatorios.png';
+import LoginBlue from '../assets/images/Projetos/Sebrae/login.png';
+import FinancasLP from '../assets/images/Projetos/Financas/financassemfronteiras.png';
+import finSec1 from '../assets/images/Projetos/Financas/section1.png';
+import finSec2 from '../assets/images/Projetos/Financas/section2.png';
+import finSec3 from '../assets/images/Projetos/Financas/section3.png';
+import finSec4 from '../assets/images/Projetos/Financas/section4.png';
+import finSec5 from '../assets/images/Projetos/Financas/section5.png';
+import finSec6 from '../assets/images/Projetos/Financas/section6.png';
+import finSec7 from '../assets/images/Projetos/Financas/section7.png';
+import finSec8 from '../assets/images/Projetos/Financas/section8.png';
+import finSec9 from '../assets/images/Projetos/Financas/section9.png';
+import finSec10 from '../assets/images/Projetos/Financas/section10.png';
+import finSec11 from '../assets/images/Projetos/Financas/section11.png';
+import finSec12 from '../assets/images/Projetos/Financas/section12.png';
+import finSec13 from '../assets/images/Projetos/Financas/section13.png';
+import finSec14 from '../assets/images/Projetos/Financas/section14.png';
+import finSec15 from '../assets/images/Projetos/Financas/section15.png';
+import finSec16 from '../assets/images/Projetos/Financas/section16.png';
+import finSec17 from '../assets/images/Projetos/Financas/section17.png';
 
 import cppIcon from '../assets/Icons/C++.svg';
 import jsIcon from '../assets/Icons/JS.svg';
@@ -22,6 +44,327 @@ import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
 
 export const projects = [
+  {
+    id: 'sebrae-blue',
+    slug: 'sebrae-blue',
+    category: 'dev',
+    featured: true,
+    year: '2026',
+    accentColor: '#0066FF',
+    coverImage: sebraeImg,
+    title: {
+      pt: 'Sebrae Blue',
+      en: 'Sebrae Blue',
+    },
+    shortDesc: {
+      pt: 'Dashboard administrativo para gestão de Ordens de Serviço, clientes e métricas de desempenho, desenvolvido em React e Supabase.',
+      en: 'Administrative dashboard for managing service orders, clients, and performance metrics, built with React and Supabase.',
+    },
+    fullDesc: {
+      pt: 'Projeto de dashboard administrativo desenvolvido para a Blue Consult em conjunto com o Sebrae, uma iniciativa de inovação e suporte à empresa. A plataforma permite gerenciar Ordens de Serviço, clientes e métricas de desempenho em tempo real, utilizando React para a interface e Supabase para o backend.',
+      en: 'Administrative dashboard project developed for Blue Consult in collaboration with Sebrae, an innovation and business support initiative. The platform enables real-time management of Service Orders, clients, and performance metrics, utilizing React for the interface and Supabase for the backend.',
+    },
+    liveUrl: 'https://sebrae-three.vercel.app',
+    repoUrl: 'https://github.com/Vinnywho/SEBRAE',
+    techs: [
+      { name: 'React', icon: reactIcon },
+      { name: 'HTML5', icon: htmlIcon },
+      { name: 'CSS3', icon: cssIcon },
+      { name: 'Vercel', icon: vercelIcon },
+      { name: 'Figma', icon: figmaIcon },
+      { name: 'Supabase', icon: supabaseIcon },
+    ],
+    devDetails: {
+      challenge: {
+        pt: 'Entender o fluxo da empresa no dia a dia e desenvolver um dashboard administrativo eficiente para a Blue Consult em colaboração com o Sebrae, permitindo o gerenciamento em tempo real de Ordens de Serviço, clientes e métricas de desempenho.',
+        en: 'Understand the company\'s daily workflow and develop an efficient administrative dashboard for Blue Consult in collaboration with Sebrae, enabling real-time management of Service Orders, clients, and performance metrics.',
+      },
+      solution: {
+        pt: 'Desenvolvimento de um dashboard em React com componentes modulares, layout responsivo e integração com Supabase para gerenciamento de dados em tempo real. A interface foi projetada para ser intuitiva e eficiente, facilitando o trabalho da equipe da Blue Consult.',
+        en: 'Development of a React dashboard with modular components, responsive layout, and Supabase integration for real-time data management. The interface was designed to be intuitive and efficient, facilitating the work of the Blue Consult team.'
+      },
+      highlights: {
+        pt: [
+          'Dashboard administrativo em produção para a Blue Consult em parceria com o Sebrae.',
+          'Integração em tempo real com Supabase para gerenciamento de Ordens de Serviço, clientes e métricas.',
+          'Interface responsiva e intuitiva, projetada para facilitar o trabalho da equipe.',
+        ],
+        en: [
+          'Administrative dashboard in production for Blue Consult in partnership with Sebrae.',
+          'Real-time integration with Supabase for managing Service Orders, clients, and metrics.',
+          'Responsive and intuitive interface designed to facilitate the team\'s workflow.',
+        ],
+      },
+      gallery: [LoginBlue, sebraeImg, Os, Relatorios],
+    }
+  },
+  {
+    id: 'financas-sem-fronteiras',
+    slug: 'financas-sem-fronteiras',
+    category: 'both',
+    featured: true,
+    year: '2025',
+    accentColor: '#274646',
+    coverImage: financasImg,
+    title: {
+      pt: 'Finanças Sem Fronteiras',
+      en: 'Finanças Sem Fronteiras',
+    },
+    shortDesc: {
+      pt: 'Landing page e blog profissional desenvolvida para Finanças Sem Fronteiras, uma iniciativa de educação financeira e inclusão social.',
+      en: 'Production landing page and blog built for Finanças Sem Fronteiras, a financial education and social inclusion initiative.',
+    },
+    fullDesc: {
+      pt: `Produção de uma Landing page e blog empresarial desenvolvida sob medida para o projeto Finanças Sem Fronteiras, iniciativa liderada por Janina Janino focada em promover educação financeira e inclusão social por meio de cursos, mentorias e conteúdos acessíveis.
+      Rebranding completo da marca desde a logo até toda a identidade visual, além de criar presença digital profissional de alta conversão e carregamento instantâneo para uma empresa real apresentar seus programas educacionais e captar novos alunos e parceiros. 
+      Desenvolvimento de Mockups criativos para reforçar a identidade da marca.
+      `,
+      en: 'Bespoke corporate landing page and blog engineered for Finanças Sem Fronteiras, an initiative led by Janina Janino dedicated to advancing financial literacy and social inclusion through accessible courses and mentoring.',
+    },
+    liveUrl: 'https://financassemfronteira.com.br/',
+    repoUrl: 'https://github.com/Vinnywho',
+    techs: [
+      { name: 'React', icon: reactIcon },
+      { name: 'HTML5', icon: htmlIcon },
+      { name: 'CSS3', icon: cssIcon },
+      { name: 'Vercel', icon: vercelIcon },
+      { name: 'Figma', icon: figmaIcon },
+      { name: 'Supabase', icon: supabaseIcon },
+    ],
+    devDetails: {
+      challenge: {
+        pt: 'Criar presença digital profissional de alta conversão e carregamento instantâneo para uma empresa real apresentar seus programas educacionais e captar novos alunos e parceiros.',
+        en: 'Deliver a high-converting, fast-loading digital presence for a real business to showcase educational programs and capture leads.',
+      },
+      solution: {
+        pt: 'Desenvolvimento em React com componentes modulares, layout responsivo de ponta a ponta prototipado previamente no Figma, hierarquia visual clara e deploy contínuo otimizado na Vercel.',
+        en: 'Built in React with modular components, end-to-end responsive layout prototyped in Figma, clear visual hierarchy, and continuous edge deployment on Vercel.',
+      },
+      highlights: {
+        pt: [
+          'Projeto real em produção atendendo cliente comercial.',
+          'Fidelidade entre protótipo no Figma e código React.',
+          'Otimização para dispositivos móveis e SEO.',
+          'Animações e transições suaves para engajamento do usuário usando AOS.',
+        ],
+        en: [
+          'Live production website serving a real business client.',
+          'Pixel-accurate translation from Figma prototype to React components.',
+          'Mobile-first responsiveness and SEO optimization.',
+          'Smooth animations and transitions for user engagement using AOS.',
+        ],
+      },
+      gallery: [financasImg, FinancasLP],
+    },
+    designShowcase: {
+      client: 'Finanças Sem Fronteiras (Janina Janino)',
+      role: {
+        pt: 'UI/UX Designer & Desenvolvedor Front-End',
+        en: 'UI/UX Designer & Front-End Developer',
+      },
+      deliverables: {
+        pt: ['Rebranding & Identidade Visual', 'UI/UX Design', 'Mockups Criativos', 'Blog & Área Restrita'],
+        en: ['Rebranding & Brand Identity', 'UI/UX Design', 'Creative Mockups', 'Blog & Admin Portal'],
+      },
+      palette: ['#183636', '#AD894F', '#D7C36B', '#1E1E1E', '#FFFFFF'],
+      typography: {
+        heading: 'Montserrat Bold',
+        body: 'Montserrat Regular',
+      },
+      behanceBlocks: [
+        {
+          type: 'hero-image',
+          image: financasImg,
+          caption: {
+            pt: 'Mockup principal de apresentação da nova identidade visual e experiência multi-dispositivo do projeto Finanças Sem Fronteiras.',
+            en: 'Primary presentation mockup showcasing the refreshed brand identity and responsive Finanças Sem Fronteiras experience.',
+          },
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '01. Rebranding & Direção Visual',
+            en: '01. Rebranding & Visual Direction',
+          },
+          body: {
+            pt: 'Todo o sistema visual foi redesenhado a partir da nova logomarca, unindo o verde petróleo profundo (#183636) ao dourado acolhedor (#AD894F) e tons creme de alta legibilidade. O objetivo foi transmitir segurança, empatia e rigor técnico para tornar a Educação Financeira Comportamental acessível.',
+            en: 'The entire visual system was rebuilt around a refreshed logo, pairing deep forest green (#183636) with warm gold accents (#AD894F) and soft cream surfaces to convey trust, empathy, and behavioral clarity.',
+          },
+        },
+        {
+          type: 'metrics',
+          items: [
+            { value: '+17', label: { pt: 'Telas & Seções Projetadas', en: 'Designed Screens & Sections' } },
+            { value: '100%', label: { pt: 'Site & Blog em Produção', en: 'Live Website & Blog' } },
+            { value: 'Full', label: { pt: 'Rebranding + UI/UX', en: 'Rebranding + UI/UX' } },
+          ],
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'financassemfronteira.com.br — Role para navegar pela Landing Page completa',
+            en: 'financassemfronteira.com.br — Scroll to inspect the full Landing Page',
+          },
+          image: FinancasLP,
+          caption: {
+            pt: 'Visão contínua da Landing Page em produção (Hero, Performance & Pilares, Soluções, Blog, Contato e Footer).',
+            en: 'Full continuous scroll view of the live Landing Page (Hero, Performance & Pillars, Solutions, Blog, Contact, and Footer).',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          heading: {
+            pt: '02. Anatomia da Landing Page',
+            en: '02. Landing Page Breakdown',
+          },
+          items: [
+            {
+              image: finSec1,
+              caption: {
+                pt: 'Hero institucional com retrato humanizado, glassmorphism nos pilares de propósito e CTAs diretos.',
+                en: 'Institutional Hero featuring humanized portrait, glassmorphic purpose badges, and primary CTAs.',
+              },
+            },
+            {
+              image: finSec2,
+              caption: {
+                pt: 'Seção de Propósito: gráfico de crescimento sustentável associado aos 3 pilares (Comportamento, Conhecimento, Autonomia).',
+                en: 'Purpose section pairing a sustainable growth chart with the 3 pillars (Behavior, Knowledge, Autonomy).',
+              },
+            },
+            {
+              image: finSec3,
+              caption: {
+                pt: 'Grade “Nossas Soluções” com iconografia minimalista em dourado sobre selos arredondados.',
+                en: '“Our Solutions” grid with bespoke golden line iconography inside dark rounded badges.',
+              },
+            },
+            {
+              image: finSec4,
+              caption: {
+                pt: 'Vitrine editorial do Blog com artigo em destaque e cards de leitura organizados por categoria e data.',
+                en: 'Editorial Blog hub combining a featured hero post with categorized article cards.',
+              },
+            },
+            {
+              image: finSec5,
+              caption: {
+                pt: 'Área de Contato institucional, rodapé estruturado com retorno rápido ao topo e botão flutuante de WhatsApp.',
+                en: 'Institutional Contact block, clean footer with back-to-top anchor, and floating WhatsApp CTA.',
+              },
+            },
+          ],
+        },
+        {
+          type: 'gallery-grid',
+          heading: {
+            pt: '03. Experiência AFINCO & Metodologia RRDD',
+            en: '03. AFINCO Journey & RRDD Methodology',
+          },
+          items: [
+            {
+              image: finSec6,
+              caption: {
+                pt: 'Hero da Conversa de Reconhecimento (30 minutos): foco visual em acolhimento e clareza sem compromisso.',
+                en: '30-minute Discovery Session Hero focusing on welcoming clarity and zero pressure.',
+              },
+            },
+            {
+              image: finSec7,
+              caption: {
+                pt: 'Cards numerados explicando o fluxo em 3 etapas da conversa inicial.',
+                en: 'Numbered 3-step cards breaking down what happens during the initial session.',
+              },
+            },
+            {
+              image: finSec8,
+              caption: {
+                pt: 'Estrutura do Acompanhamento AFINCO: 3 meses, 6 encontros quinzenais apresentados em timeline modular.',
+                en: 'AFINCO Program overview: 3 months, 6 biweekly sessions laid out in modular cards.',
+              },
+            },
+            {
+              image: finSec9,
+              caption: {
+                pt: 'Destaque do instrumento central RRDD com card de alto contraste e mensagem “Sem julgamento”.',
+                en: 'Spotlight on the central RRDD framework paired with a “Judgment-Free” manifesto block.',
+              },
+            },
+            {
+              image: finSec10,
+              caption: {
+                pt: 'Linha do tempo da evolução em Mês 1, Mês 2 e Mês 3 com leitura limpa e escaneável.',
+                en: 'Clean Month 1–3 progression timeline highlighting behavioral milestones.',
+              },
+            },
+            {
+              image: finSec11,
+              caption: {
+                pt: 'Formulário consultivo de agendamento integrado diretamente ao WhatsApp.',
+                en: 'Consultative intake form routed directly to WhatsApp scheduling.',
+              },
+            },
+          ],
+        },
+        {
+          type: 'gallery-grid',
+          heading: {
+            pt: '04. Páginas de Soluções & Área Restrita',
+            en: '04. Solution Pages & Restricted Portal',
+          },
+          items: [
+            {
+              image: finSec12,
+              caption: {
+                pt: 'Página dedicada de “Consultoria e Foco” com recorte fotográfico circular e listagem de benefícios.',
+                en: 'Dedicated “Consulting & Focus” page with framed photography and key outcomes.',
+              },
+            },
+            {
+              image: finSec13,
+              caption: {
+                pt: 'Página “Formações e Cursos” apresentando metodologia presencial e acesso ao curso online.',
+                en: '“Training & Courses” layout showcasing workshops and online course links.',
+              },
+            },
+            {
+              image: finSec14,
+              caption: {
+                pt: 'Página “Roda de conversa, Workshops e oficinas” valorizando fotografias reais das dinâmicas em grupo.',
+                en: '“Workshops & Circles” page spotlighting real community session photos.',
+              },
+            },
+            {
+              image: finSec15,
+              caption: {
+                pt: 'Página “Outras atividades” voltada a palestras e programas corporativos sob medida.',
+                en: '“Other Activities” layout tailored to corporate talks and custom mentoring.',
+              },
+            },
+            {
+              image: finSec17,
+              caption: {
+                pt: 'Tela de autenticação da Área Restrita para administração de publicações do Blog.',
+                en: 'Restricted Admin Portal login UI for managing blog posts and content.',
+              },
+            },
+          ],
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Leitura do Artigo Completo no Blog — Role para inspecionar a tipografia editorial',
+            en: 'Full Blog Article View — Scroll to inspect editorial typography',
+          },
+          image: finSec16,
+          caption: {
+            pt: 'Página interna de artigo do Blog (“Meu primeiro salário: e agora?”) projetada para leitura confortável e conversão para a Conversa de Reconhecimento.',
+            en: 'Internal Blog article layout designed for comfortable long-form reading and discovery call conversion.',
+          },
+        },
+      ],
+    },
+  },
   {
     id: 'maratona-sbc-2025',
     slug: 'maratona-sbc-2025',
@@ -174,85 +517,6 @@ export const projects = [
           body: {
             pt: 'A paleta verde-oliva e creme evoca comida artesanal e acolhimento, mantendo alto contraste para decisões rápidas em fila. O fluxo de compra foi reduzido para no máximo 3 toques entre escolher o lanche e confirmar o horário de retirada.',
             en: 'The forest-green and cream palette evokes warmth and homemade food while preserving crisp contrast for rapid choices. Checkout was streamlined to at most 3 taps from menu selection to pickup confirmation.',
-          },
-        },
-      ],
-    },
-  },
-  {
-    id: 'financas-sem-fronteiras',
-    slug: 'financas-sem-fronteiras',
-    category: 'both',
-    featured: true,
-    year: '2025',
-    accentColor: '#AA1719',
-    coverImage: financasImg,
-    title: {
-      pt: 'Finanças Sem Fronteiras',
-      en: 'Finanças Sem Fronteiras',
-    },
-    shortDesc: {
-      pt: 'Landing page profissional desenvolvida para empresa real de educação financeira e inclusão social.',
-      en: 'Production landing page built for a real financial education and social inclusion initiative.',
-    },
-    fullDesc: {
-      pt: 'Landing page empresarial desenvolvida sob medida para o projeto Finanças Sem Fronteiras, iniciativa liderada por Janina Janino focada em promover educação financeira e inclusão social por meio de cursos, mentorias e conteúdos acessíveis.',
-      en: 'Bespoke corporate landing page engineered for Finanças Sem Fronteiras, an initiative led by Janina Janino dedicated to advancing financial literacy and social inclusion through accessible courses and mentoring.',
-    },
-    liveUrl: 'https://financassemfronteira.vercel.app',
-    repoUrl: 'https://github.com/Vinnywho',
-    techs: [
-      { name: 'React', icon: reactIcon },
-      { name: 'HTML5', icon: htmlIcon },
-      { name: 'CSS3', icon: cssIcon },
-      { name: 'Vercel', icon: vercelIcon },
-      { name: 'Figma', icon: figmaIcon },
-    ],
-    devDetails: {
-      challenge: {
-        pt: 'Criar presença digital profissional de alta conversão e carregamento instantâneo para uma empresa real apresentar seus programas educacionais e captar novos alunos e parceiros.',
-        en: 'Deliver a high-converting, fast-loading digital presence for a real business to showcase educational programs and capture leads.',
-      },
-      solution: {
-        pt: 'Desenvolvimento em React com componentes modulares, layout responsivo de ponta a ponta prototipado previamente no Figma, hierarquia visual clara e deploy contínuo otimizado na Vercel.',
-        en: 'Built in React with modular components, end-to-end responsive layout prototyped in Figma, clear visual hierarchy, and continuous edge deployment on Vercel.',
-      },
-      highlights: {
-        pt: [
-          'Projeto real em produção atendendo cliente comercial.',
-          'Fidelidade pixel-perfect entre protótipo no Figma e código React.',
-          'Otimização para dispositivos móveis e SEO.',
-        ],
-        en: [
-          'Live production website serving a real business client.',
-          'Pixel-accurate translation from Figma prototype to React components.',
-          'Mobile-first responsiveness and SEO optimization.',
-        ],
-      },
-      gallery: [financasImg],
-    },
-    designShowcase: {
-      client: 'Finanças Sem Fronteiras (Janina Janino)',
-      role: {
-        pt: 'UI/UX Designer & Desenvolvedor Front-End',
-        en: 'UI/UX Designer & Front-End Developer',
-      },
-      deliverables: {
-        pt: ['UI Design', 'Arquitetura de Landing Page', 'Responsividade', 'Implementação Front-End'],
-        en: ['UI Design', 'Landing Page Architecture', 'Responsive Layout', 'Front-End Build'],
-      },
-      palette: ['#0F172A', '#1E3A8A', '#F59E0B', '#F8FAFC'],
-      typography: {
-        heading: 'Montserrat Bold',
-        body: 'Montserrat Regular',
-      },
-      behanceBlocks: [
-        {
-          type: 'hero-image',
-          image: financasImg,
-          caption: {
-            pt: 'Layout limpo e confiável projetado para transmitir credibilidade institucional e clareza na jornada do aluno.',
-            en: 'Clean, trustworthy layout crafted to communicate institutional credibility and guide prospective learners.',
           },
         },
       ],

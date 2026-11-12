@@ -44,13 +44,13 @@ export const translations = {
     about: {
       title: 'SOBRE MIM',
       devText:
-        'Meu nome é Vinicius Cardoso de Lima, tenho 22 anos e estou no 4º semestre de Ciência da Computação na FECAP (bolsa integral Prouni). Uno minha formação técnica em Administração pela ETEC à engenharia de software moderna para criar interfaces web performáticas com React, JavaScript, C#, C++ e bancos em nuvem.',
+        'Meu nome é Vinicius Cardoso de Lima, tenho 23 anos e estou no 5º semestre de Ciência da Computação na FECAP (bolsa integral Prouni). Uno minha formação técnica em Administração pela ETEC à engenharia de software moderna para criar soluções com React, React Native, JavaScript, CSS, HTML, bancos em nuvem. Também tenho experiência com C# e Python para aplicações desktop e sistemas embarcados, análise de dados e automação de processos.',
       designText:
-        'Além do código, respiro design e cultura urbana. Como Designer Oficial da Maratona SBC 2025 e freelancer em projetos gráficos e UI/UX, crio desde mascotes, embalagens e revistas até sistemas de interface completos no Figma — sempre unindo estética autoral, clareza funcional e usabilidade.',
+        'Além do código, respiro design e cultura como minha segunda paixão. Fui Designer Oficial da Maratona SBC 2025, com muito orgulho, a convite da diretora de patrocínios e também minha professora Lucy Mari Tabutti. Freelancer em projetos gráficos e UI/UX, crio desde mascotes, embalagens e revistas até sistemas de interface completos no Figma. Sempre unindo estética autoral, clareza funcional e usabilidade.',
       stats: [
-        { value: '4º Sem', label: 'Ciência da Computação (FECAP)' },
+        { value: '5º Sem', label: 'Ciência da Computação (FECAP)' },
         { value: '2023', label: 'Técnico em Administração (ETEC)' },
-        { value: '2 Worlds', label: 'Código + Design no mesmo fluxo' },
+        { value: '2 Mundos', label: 'Código + Design no mesmo fluxo' },
       ],
     },
     projects: {

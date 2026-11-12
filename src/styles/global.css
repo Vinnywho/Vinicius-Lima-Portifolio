@@ -446,7 +446,7 @@
   .matrix-code-ticker {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: #22c55e;
+    color: #aa1719;
     letter-spacing: 0.12em;
     opacity: 0.6;
   }
@@ -457,7 +457,7 @@
     background: radial-gradient(circle at center, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
   }
 
-  .spray-drip-stream {
+  /* .spray-drip-stream {
     position: absolute;
     top: 0;
     left: 40%;
@@ -465,7 +465,7 @@
     height: 100vh;
     background: linear-gradient(180deg, transparent, #ffffff, transparent);
     opacity: 0.4;
-  }
+  } */
 
   .mode-transition-badge {
     position: relative;
@@ -482,7 +482,7 @@
     font-family: var(--font-mono);
     font-size: 0.85rem;
     letter-spacing: 0.18em;
-    color: #22c55e;
+    color: #aa1719;
     display: block;
     margin-bottom: 0.5rem;
   }
@@ -1939,6 +1939,7 @@
   .detail-page {
     padding: 5.5rem 0 3.5rem;
     overflow-x: clip;
+    white-space: pre-line;
   }
 
   .detail-hero-card {
@@ -2057,6 +2058,274 @@
     color: var(--text-secondary);
     text-align: center;
     max-width: 680px;
+  }
+
+  .behance-zoom-trigger {
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .behance-zoom-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: rgba(12, 13, 18, 0.82);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  .behance-zoom-trigger:hover .behance-zoom-badge,
+  .behance-grid-media:hover .behance-zoom-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Frame de navegador rolável para Full-Page Mockups */
+  .behance-scroll-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .behance-browser-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-bottom: none;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .behance-browser-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .behance-browser-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-color);
+  }
+
+  .behance-browser-dots span:nth-child(1) {
+    background: #ef4444;
+  }
+  .behance-browser-dots span:nth-child(2) {
+    background: #f59e0b;
+  }
+  .behance-browser-dots span:nth-child(3) {
+    background: #22c55e;
+  }
+
+  .behance-browser-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .behance-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface-alt);
+    color: var(--text-primary);
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .behance-expand-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .behance-scroll-viewport {
+    width: 100%;
+    max-height: clamp(340px, 60vh, 520px);
+    overflow-y: auto;
+    border: 1.5px solid var(--border-color);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    background: #0d1117;
+    box-shadow: var(--shadow-card);
+  }
+
+  .behance-scroll-viewport img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Grade Behance de Telas */
+  .behance-gallery-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .behance-gallery-heading {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .behance-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: 1.35rem;
+  }
+
+  .behance-grid-card {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .behance-grid-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .behance-grid-media {
+    position: relative;
+    width: 100%;
+    background: #0d1117;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .behance-grid-media img {
+    width: 100%;
+    height: auto;
+    max-height: 290px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .behance-grid-card:hover .behance-grid-media img {
+    transform: scale(1.02);
+  }
+
+  .behance-grid-caption {
+    padding: 0.85rem 1rem;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* Lightbox para zoom em alta resolução */
+  .behance-lightbox-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(8, 10, 15, 0.86);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  .behance-lightbox-dialog {
+    position: relative;
+    width: min(1100px, 100%);
+    max-height: 92vh;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+  }
+
+  .behance-lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    z-index: 2;
+  }
+
+  .behance-lightbox-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .behance-lightbox-scroll {
+    overflow-y: auto;
+    max-height: calc(92vh - 5.5rem);
+    border-radius: var(--radius-sm);
+    background: #0d1117;
+  }
+
+  .behance-lightbox-scroll img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  .behance-lightbox-caption {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    text-align: center;
+    padding-inline: 0.5rem;
   }
 
   /* ========================================================

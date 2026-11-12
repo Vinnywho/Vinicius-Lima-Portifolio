@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check, ZoomIn, X } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 
 export default function DesignShowcase() {
   const { slug } = useParams();
-  const { t, tr, navigateWithTransition } = useApp();
+  const { t, tr, lang, navigateWithTransition } = useApp();
   const [copiedHex, setCopiedHex] = useState(null);
+  const [lightboxImg, setLightboxImg] = useState(null);
 
   const designProjects = projects.filter((p) => p.designShowcase);
   const currentIndex = designProjects.findIndex((p) => p.slug === slug);
@@ -16,6 +17,15 @@ export default function DesignShowcase() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
+
+  useEffect(() => {
+    if (!lightboxImg) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setLightboxImg(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [lightboxImg]);
 
   if (!project || !project.designShowcase) {
     return (
@@ -167,13 +177,95 @@ export default function DesignShowcase() {
           if (block.type === 'hero-image') {
             return (
               <figure key={idx} className="behance-board">
-                <img src={block.image} alt={tr(block.caption)} />
+                <button
+                  type="button"
+                  className="behance-zoom-trigger"
+                  onClick={() =>
+                    setLightboxImg({ src: block.image, caption: tr(block.caption) })
+                  }
+                  aria-label={tr(block.caption) || tr(project.title)}
+                >
+                  <img src={block.image} alt={tr(block.caption)} loading="lazy" />
+                  <span className="behance-zoom-badge">
+                    <ZoomIn size={15} />
+                    <span>{lang === 'pt' ? 'Ampliar' : 'Zoom'}</span>
+                  </span>
+                </button>
                 {block.caption && (
                   <figcaption className="behance-board-caption">
                     {tr(block.caption)}
                   </figcaption>
                 )}
               </figure>
+            );
+          }
+
+          if (block.type === 'scroll-frame') {
+            return (
+              <figure key={idx} className="behance-scroll-block">
+                <div className="behance-browser-bar">
+                  <div className="behance-browser-dots" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <span className="behance-browser-title">
+                    {tr(block.title) || (lang === 'pt' ? 'Role a página para explorar' : 'Scroll inside to explore')}
+                  </span>
+                  <button
+                    type="button"
+                    className="behance-expand-btn"
+                    onClick={() =>
+                      setLightboxImg({ src: block.image, caption: tr(block.caption) })
+                    }
+                  >
+                    <ZoomIn size={14} />
+                    <span>{lang === 'pt' ? 'Tela cheia' : 'Expand'}</span>
+                  </button>
+                </div>
+                <div className="behance-scroll-viewport">
+                  <img src={block.image} alt={tr(block.caption)} loading="lazy" />
+                </div>
+                {block.caption && (
+                  <figcaption className="behance-board-caption">
+                    {tr(block.caption)}
+                  </figcaption>
+                )}
+              </figure>
+            );
+          }
+
+          if (block.type === 'gallery-grid') {
+            return (
+              <section key={idx} className="behance-gallery-block">
+                {block.heading && (
+                  <h2 className="behance-gallery-heading">{tr(block.heading)}</h2>
+                )}
+                <div className="behance-gallery-grid">
+                  {block.items.map((item, itemIdx) => (
+                    <figure key={itemIdx} className="behance-grid-card">
+                      <button
+                        type="button"
+                        className="behance-grid-media"
+                        onClick={() =>
+                          setLightboxImg({ src: item.image, caption: tr(item.caption) })
+                        }
+                        aria-label={tr(item.caption) || `Screen ${itemIdx + 1}`}
+                      >
+                        <img src={item.image} alt={tr(item.caption)} loading="lazy" />
+                        <span className="behance-zoom-badge">
+                          <ZoomIn size={14} />
+                        </span>
+                      </button>
+                      {item.caption && (
+                        <figcaption className="behance-grid-caption">
+                          {tr(item.caption)}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              </section>
             );
           }
 
@@ -279,6 +371,33 @@ export default function DesignShowcase() {
           )}
         </div>
       </div>
+
+      {/* Lightbox Modal para inspecionar telas em alta resolução */}
+      {lightboxImg && (
+        <div
+          className="behance-lightbox-backdrop"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightboxImg(null)}
+        >
+          <div className="behance-lightbox-dialog" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="behance-lightbox-close"
+              onClick={() => setLightboxImg(null)}
+              aria-label={lang === 'pt' ? 'Fechar visualização' : 'Close preview'}
+            >
+              <X size={22} />
+            </button>
+            <div className="behance-lightbox-scroll">
+              <img src={lightboxImg.src} alt={lightboxImg.caption || ''} />
+            </div>
+            {lightboxImg.caption && (
+              <p className="behance-lightbox-caption">{lightboxImg.caption}</p>
+            )}
+          </div>
+        </div>
+      )}
     </article>
   );
 }
