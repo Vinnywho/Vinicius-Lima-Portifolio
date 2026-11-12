@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check, ZoomIn, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Code2, Check, ZoomIn } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function DesignShowcase() {
   const { slug } = useParams();
@@ -17,15 +18,6 @@ export default function DesignShowcase() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
-
-  useEffect(() => {
-    if (!lightboxImg) return;
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') setLightboxImg(null);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [lightboxImg]);
 
   if (!project || !project.designShowcase) {
     return (
@@ -372,32 +364,12 @@ export default function DesignShowcase() {
         </div>
       </div>
 
-      {/* Lightbox Modal para inspecionar telas em alta resolução */}
-      {lightboxImg && (
-        <div
-          className="behance-lightbox-backdrop"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setLightboxImg(null)}
-        >
-          <div className="behance-lightbox-dialog" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="behance-lightbox-close"
-              onClick={() => setLightboxImg(null)}
-              aria-label={lang === 'pt' ? 'Fechar visualização' : 'Close preview'}
-            >
-              <X size={22} />
-            </button>
-            <div className="behance-lightbox-scroll">
-              <img src={lightboxImg.src} alt={lightboxImg.caption || ''} />
-            </div>
-            {lightboxImg.caption && (
-              <p className="behance-lightbox-caption">{lightboxImg.caption}</p>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Lightbox Modal para inspecionar telas em alta resolução e tela cheia */}
+      <ImageLightbox
+        image={lightboxImg}
+        onClose={() => setLightboxImg(null)}
+        lang={lang}
+      />
     </article>
   );
 }

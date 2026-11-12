@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ArrowUpRight, GitBranch, Palette, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, GitBranch, Palette, CheckCircle2, ZoomIn } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
+import ImageLightbox from '../components/ImageLightbox';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const { t, tr, navigateWithTransition } = useApp();
+  const { t, tr, lang, navigateWithTransition } = useApp();
+  const [lightboxImg, setLightboxImg] = useState(null);
 
   const devProjects = projects.filter((p) => p.category === 'dev' || p.category === 'both');
   const currentIndex = devProjects.findIndex((p) => p.slug === slug);
@@ -102,7 +104,18 @@ export default function ProjectDetail() {
           )}
         </div>
 
-        <img className="detail-cover" src={project.coverImage} alt={tr(project.title)} />
+        <button
+          type="button"
+          className="behance-zoom-trigger"
+          onClick={() => setLightboxImg({ src: project.coverImage, caption: tr(project.title) })}
+          aria-label={lang === 'pt' ? 'Abrir imagem em tela cheia' : 'Open image in fullscreen'}
+        >
+          <img className="detail-cover" src={project.coverImage} alt={tr(project.title)} />
+          <span className="behance-zoom-badge">
+            <ZoomIn size={15} />
+            <span>{lang === 'pt' ? 'Tela cheia' : 'Fullscreen'}</span>
+          </span>
+        </button>
       </header>
 
       {devInfo && (
@@ -152,18 +165,27 @@ export default function ProjectDetail() {
           <h2>{t.projectDetail.gallery}</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
             {gallery.map((imgSrc, idx) => (
-              <img
+              <button
                 key={idx}
-                src={imgSrc}
-                alt={`${tr(project.title)} - ${idx + 1}`}
-                style={{
-                  width: '100%',
-                  maxHeight: '320px',
-                  objectFit: 'contain',
-                  borderRadius: '14px',
-                  filter: 'drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14))',
-                }}
-              />
+                type="button"
+                className="detail-gallery-card"
+                onClick={() =>
+                  setLightboxImg({
+                    src: imgSrc,
+                    caption: `${tr(project.title)} - ${idx + 1}`,
+                  })
+                }
+                aria-label={`${tr(project.title)} - ${idx + 1}`}
+              >
+                <img
+                  src={imgSrc}
+                  alt={`${tr(project.title)} - ${idx + 1}`}
+                />
+                <span className="behance-zoom-badge">
+                  <ZoomIn size={15} />
+                  <span>{lang === 'pt' ? 'Tela cheia' : 'Fullscreen'}</span>
+                </span>
+              </button>
             ))}
           </div>
         </section>
@@ -214,6 +236,12 @@ export default function ProjectDetail() {
           </Link>
         )}
       </nav>
+
+      <ImageLightbox
+        image={lightboxImg}
+        onClose={() => setLightboxImg(null)}
+        lang={lang}
+      />
     </article>
   );
 }
