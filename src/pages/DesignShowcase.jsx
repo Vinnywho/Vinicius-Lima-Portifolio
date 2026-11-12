@@ -198,6 +198,7 @@ export default function DesignShowcase() {
               <ScrollFrame
                 key={idx}
                 image={block.image}
+                pdf={block.pdf}
                 title={tr(block.title)}
                 caption={tr(block.caption)}
                 onExpand={setLightboxImg}

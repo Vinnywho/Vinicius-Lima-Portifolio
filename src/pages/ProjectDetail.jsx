@@ -170,6 +170,7 @@ export default function ProjectDetail() {
               <ScrollFrame
                 key={idx}
                 image={frame.image}
+                pdf={frame.pdf}
                 title={tr(frame.title)}
                 caption={tr(frame.caption)}
                 onExpand={setLightboxImg}

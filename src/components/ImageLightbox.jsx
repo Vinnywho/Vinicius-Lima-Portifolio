@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
-import { X, Maximize2, Minimize2 } from 'lucide-react';
+import { X, Maximize2, Minimize2, ExternalLink } from 'lucide-react';
 
 export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
   const backdropRef = useRef(null);
@@ -102,6 +102,19 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="behance-lightbox-toolbar">
+          {image.pdf && (
+            <a
+              href={image.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="behance-lightbox-icon-btn"
+              aria-label={lang === 'pt' ? 'Abrir PDF em nova aba' : 'Open PDF in new tab'}
+              title={lang === 'pt' ? 'Abrir PDF em nova aba' : 'Open PDF in new tab'}
+            >
+              <ExternalLink size={18} />
+            </a>
+          )}
+
           <button
             type="button"
             className="behance-lightbox-icon-btn"
@@ -139,8 +152,16 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
           </button>
         </div>
 
-        <div className="behance-lightbox-scroll">
-          <img src={image.src} alt={image.caption || ''} />
+        <div className={`behance-lightbox-scroll ${image.pdf ? 'is-pdf' : ''}`}>
+          {image.pdf ? (
+            <iframe
+              className="behance-lightbox-pdf"
+              src={`${image.pdf}#view=FitH`}
+              title={image.caption || 'PDF'}
+            />
+          ) : (
+            <img src={image.src} alt={image.caption || ''} />
+          )}
         </div>
 
         {image.caption && <p className="behance-lightbox-caption">{image.caption}</p>}
