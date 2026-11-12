@@ -20,10 +20,14 @@ export default function SprayCanvas() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Arrays de partículas e gotas que escorrem (drips)
+    const mists = [];
     const particles = [];
+    const drips = [];
     let rafId = null;
     let isSpraying = false;
     let lastPos = { x: 0, y: 0 };
+    let stationaryFrames = 0;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -37,35 +41,76 @@ export default function SprayCanvas() {
 
     const getPalette = () => {
       if (modeRef.current === 'design') {
-        return ['255, 77, 0', '230, 57, 70', '255, 130, 67'];
+        // Azul cobalto / elétrico urbano
+        return [
+          { r: 0, g: 102, b: 255 },
+          { r: 37, g: 99, b: 235 },
+          { r: 56, g: 189, b: 248 },
+          { r: 29, g: 78, b: 216 },
+        ];
       }
-      return ['170, 23, 25', '217, 38, 41', '130, 15, 18'];
+      // Vermelho grafite autoral
+      return [
+        { r: 170, g: 23, b: 25 },
+        { r: 217, g: 38, b: 41 },
+        { r: 140, g: 15, b: 18 },
+        { r: 248, g: 113, b: 113 },
+      ];
     };
 
-    const spawnSpray = (x, y, density = 22) => {
+    const sprayAt = (x, y, intensity = 1) => {
       const palette = getPalette();
-      for (let i = 0; i < density; i++) {
-        // Distribuição concentrada no centro e dispersa nas bordas (efeito aerossol real)
+      const baseColor = palette[Math.floor(Math.random() * palette.length)];
+
+      // 1. Névoa central difusa de aerossol (Soft Mist Core)
+      mists.push({
+        x,
+        y,
+        radius: 18 + Math.random() * 16 * intensity,
+        color: baseColor,
+        alpha: 0.14 * intensity,
+        decay: 0.004,
+      });
+
+      // 2. Micro-gotículas pulverizadas com distribuição estocástica (Splatter)
+      const particleCount = Math.floor((35 + Math.random() * 25) * intensity);
+      for (let i = 0; i < particleCount; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.pow(Math.random(), 1.6) * 32;
-        const px = x + Math.cos(angle) * radius;
-        const py = y + Math.sin(angle) * radius;
-        const size = radius < 10 ? 2.5 + Math.random() * 5.5 : 1 + Math.random() * 2.5;
+        // Raio com dispersão gaussiana/exponencial (maioria perto do centro, poucas nas bordas)
+        const dist = Math.pow(Math.random(), 2.2) * (38 * intensity);
+        const px = x + Math.cos(angle) * dist;
+        const py = y + Math.sin(angle) * dist;
 
         particles.push({
           x: px,
           y: py,
-          size,
-          rgb: palette[Math.floor(Math.random() * palette.length)],
-          alpha: 0.55 + Math.random() * 0.4,
-          decay: 0.008 + Math.random() * 0.008, // Some gradualmente (~1.5s - 2.5s)
+          size: Math.random() < 0.85 ? 0.6 + Math.random() * 1.4 : 1.8 + Math.random() * 2.2,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          alpha: 0.65 + Math.random() * 0.35,
+          decay: 0.005 + Math.random() * 0.005,
         });
       }
 
-      // Cap de segurança para manter sempre 60fps
-      if (particles.length > 1800) {
-        particles.splice(0, particles.length - 1800);
+      // 3. Gotas escorrendo (Drips de tinta fresca)
+      // Se o usuário ficar borrifando no mesmo lugar ou arrastar muito devagar
+      if (stationaryFrames > 12 && Math.random() < 0.28) {
+        drips.push({
+          x: x + (Math.random() - 0.5) * 12,
+          y: y + Math.random() * 8,
+          length: 0,
+          maxLength: 25 + Math.random() * 65,
+          speed: 1.2 + Math.random() * 2.2,
+          width: 1.5 + Math.random() * 1.5,
+          color: baseColor,
+          alpha: 0.85,
+          decay: 0.004,
+        });
       }
+
+      // Limitar arrays para 60fps constante
+      if (mists.length > 250) mists.splice(0, mists.length - 250);
+      if (particles.length > 1600) particles.splice(0, particles.length - 1600);
+      if (drips.length > 80) drips.splice(0, drips.length - 80);
 
       if (!rafId) {
         rafId = requestAnimationFrame(render);
@@ -75,6 +120,56 @@ export default function SprayCanvas() {
     const render = () => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
+      // Renderizar névoas suaves de fundo
+      for (let i = mists.length - 1; i >= 0; i--) {
+        const m = mists[i];
+        m.alpha -= m.decay;
+        if (m.alpha <= 0.005) {
+          mists.splice(i, 1);
+          continue;
+        }
+
+        const grad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.radius);
+        grad.addColorStop(0, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.alpha})`);
+        grad.addColorStop(0.5, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.alpha * 0.5})`);
+        grad.addColorStop(1, `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, 0)`);
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Renderizar gotas escorrendo (Drips)
+      for (let i = drips.length - 1; i >= 0; i--) {
+        const d = drips[i];
+        if (d.length < d.maxLength) {
+          d.length += d.speed;
+        } else {
+          d.alpha -= d.decay;
+        }
+
+        if (d.alpha <= 0.01) {
+          drips.splice(i, 1);
+          continue;
+        }
+
+        ctx.strokeStyle = `rgba(${d.color.r}, ${d.color.g}, ${d.color.b}, ${d.alpha})`;
+        ctx.lineWidth = d.width;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.length);
+        ctx.stroke();
+
+        // Poça de acúmulo na ponta da gota
+        ctx.fillStyle = `rgba(${d.color.r}, ${d.color.g}, ${d.color.b}, ${d.alpha})`;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y + d.length, d.width * 1.25, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Renderizar micro-partículas estocásticas
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         p.alpha -= p.decay;
@@ -82,13 +177,14 @@ export default function SprayCanvas() {
           particles.splice(i, 1);
           continue;
         }
-        ctx.fillStyle = `rgba(${p.rgb}, ${p.alpha})`;
+
+        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      if (particles.length > 0) {
+      if (mists.length > 0 || particles.length > 0 || drips.length > 0) {
         rafId = requestAnimationFrame(render);
       } else {
         rafId = null;
@@ -98,7 +194,7 @@ export default function SprayCanvas() {
     const shouldSkipTarget = (target) => {
       if (!target || !target.closest) return false;
       return Boolean(
-        target.closest('.phone3d-body, input, textarea, select, [data-no-spray="true"]')
+        target.closest('.phone-realistic-body, input, textarea, select, [data-no-spray="true"]')
       );
     };
 
@@ -107,8 +203,9 @@ export default function SprayCanvas() {
       if (shouldSkipTarget(e.target)) return;
 
       isSpraying = true;
+      stationaryFrames = 0;
       lastPos = { x: e.clientX, y: e.clientY };
-      spawnSpray(e.clientX, e.clientY, 26);
+      sprayAt(e.clientX, e.clientY, 1.3);
     };
 
     const onPointerMove = (e) => {
@@ -117,18 +214,24 @@ export default function SprayCanvas() {
       const dy = e.clientY - lastPos.y;
       const dist = Math.hypot(dx, dy);
 
-      // Interpola traços rápidos para não deixar espaços vazios ao arrastar rápido
-      const steps = Math.min(Math.max(1, Math.floor(dist / 10)), 6);
+      if (dist < 4) {
+        stationaryFrames++;
+      } else {
+        stationaryFrames = 0;
+      }
+
+      const steps = Math.min(Math.max(1, Math.floor(dist / 8)), 8);
       for (let s = 1; s <= steps; s++) {
         const ix = lastPos.x + (dx * s) / steps;
         const iy = lastPos.y + (dy * s) / steps;
-        spawnSpray(ix, iy, 12);
+        sprayAt(ix, iy, 0.9);
       }
       lastPos = { x: e.clientX, y: e.clientY };
     };
 
     const stopSpray = () => {
       isSpraying = false;
+      stationaryFrames = 0;
     };
 
     window.addEventListener('pointerdown', onPointerDown);

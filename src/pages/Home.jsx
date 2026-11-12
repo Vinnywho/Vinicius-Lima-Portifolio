@@ -84,7 +84,7 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title hero-animate">
-              {mode === 'dev' ? profile.graffitiName : profile.displayName}
+              {mode === 'dev' ? profile.devTitle : profile.graffitiName}
             </h1>
 
             <p className="hero-bio hero-animate">
