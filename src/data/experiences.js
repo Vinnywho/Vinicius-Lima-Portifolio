@@ -32,8 +32,8 @@ export const experiences = [
     period: { pt: '2026', en: '2026' },
     category: 'tech',
     title: {
-      pt: 'Desenvolvedor Front-End — Sebrae Blue (Blue Consult)',
-      en: 'Front-End Developer — Sebrae Blue (Blue Consult)',
+      pt: 'Desenvolvedor Full Stack - Sebrae Blue (Blue Consult)',
+      en: 'Full Stack Developer - Sebrae Blue (Blue Consult)',
     },
     organization: 'Blue Consult / Sebrae',
     shortDesc: {
@@ -42,13 +42,13 @@ export const experiences = [
     },
     highlights: {
       pt: [
-        'Desenvolvimento de plataforma web em produção para a Blue Consult em parceria com o Sebrae.',
-        'Módulos completos de Login, Dashboard Gerencial, Ordens de Serviço e Relatórios.',
+        'Desenvolvimento de plataforma administrativa para a Blue Consult em parceria com o Sebrae.',
+        'Módulos completos de Login, Dashboard Gerencial, Ordens de Serviço, Pagamentos, Perfil e Relatórios.',
         'Integração em tempo real com Supabase e deploy otimizado na Vercel.',
       ],
       en: [
-        'Built a production web platform for Blue Consult in partnership with Sebrae.',
-        'Implemented full Login, Management Dashboard, Service Orders, and Reports modules.',
+        'Built an administrative platform for Blue Consult in partnership with Sebrae.',
+        'Complete modules for Login, Management Dashboard, Service Orders, Payments, Profile, and Reports.',
         'Real-time Supabase integration with continuous deployment on Vercel.',
       ],
     },
@@ -61,8 +61,8 @@ export const experiences = [
     period: { pt: '2026', en: '2026' },
     category: 'design',
     title: {
-      pt: 'Designer Gráfico — Rebranding Duca',
-      en: 'Graphic Designer — Duca Rebranding',
+      pt: 'Designer Gráfico - Rebranding Duca',
+      en: 'Graphic Designer - Duca Rebranding',
     },
     organization: 'Duca Buffet Empresarial',
     shortDesc: {
@@ -88,21 +88,21 @@ export const experiences = [
     period: { pt: '2026 – Atual', en: '2026 – Present' },
     category: 'design',
     title: {
-      pt: 'Designer de Social Media & UI/UX — NúcleoTech (Empresa Júnior)',
-      en: 'Social Media & UI/UX Designer — NúcleoTech (Junior Enterprise)',
+      pt: 'Cordenador de Comunicação, Designer de Social Media e UI/UX - NúcleoTech (Empresa Júnior)',
+      en: 'Communication Coordinator, Social Media e UI/UX Designer - NúcleoTech (Junior Enterprise)',
     },
-    organization: 'NúcleoTech — EJ FECAP',
+    organization: 'NúcleoTech - Coletivo de Tecnologia da FECAP',
     shortDesc: {
       pt: 'Produção de carrosséis estratégicos, peças de social media e projetos digitais para a Empresa Júnior de Tecnologia da FECAP.',
       en: 'Design of strategic carousels, social media assets, and digital products for FECAP’s Technology Junior Enterprise.',
     },
     highlights: {
       pt: [
-        'Criação de 9+ carrosséis educativos e institucionais (Git, IA, Dicas Tech, Mascote, Processo Seletivo).',
+        'Criação de carrosséis educativos e institucionais (Git, IA, Dicas Tech, Mascote, Processo Seletivo).',
         'Design de interface (UI/UX) para a landing page FECAP Cases em parceria com o NúcleoTech.',
       ],
       en: [
-        'Produced 9+ educational and institutional carousels (Git, AI, Tech Tips, Mascot, Recruitment).',
+        'Produced educational and institutional carousels (Git, AI, Tech Tips, Mascot, Recruitment).',
         'Crafted UI/UX for the FECAP Cases landing page in partnership with NúcleoTech.',
       ],
     },
@@ -115,8 +115,8 @@ export const experiences = [
     period: { pt: '2026', en: '2026' },
     category: 'design',
     title: {
-      pt: 'UI/UX Designer — FECAP Cases',
-      en: 'UI/UX Designer — FECAP Cases',
+      pt: 'UI/UX Designer - FECAP Cases',
+      en: 'UI/UX Designer - FECAP Cases',
     },
     organization: 'FECAP Cases / NúcleoTech',
     shortDesc: {
@@ -164,28 +164,30 @@ export const experiences = [
   {
     id: 'freelancer-hl-2025',
     year: '2025',
-    period: { pt: 'Setembro 2025 - Atualmente', en: 'September 2025 - Present' },
+    period: { pt: 'Julho 2025 – 16 de Novembro 2025', en: 'July 2025 – Nov 16, 2025' },
     category: 'career',
     title: {
-      pt: 'Freelancer - H&L (Automação & CRM)',
-      en: 'Freelancer - H&L (Automation & CRM)',
+      pt: 'Consultor de Tecnologia Autônomo — H&L',
+      en: 'Independent Technology Consultant — H&L',
     },
     organization: 'H&L',
     shortDesc: {
-      pt: 'Configuração de plataforma de CRM (RD Station), estruturação de funis e automação de planilhas operacionais.',
-      en: 'CRM platform (RD Station) setup, pipeline structuring, and operational spreadsheet automation.',
+      pt: 'Gestão e configuração da plataforma RD Station, prestação de serviços pontuais de tecnologia, assistência técnica e orientação no uso de ferramentas digitais.',
+      en: 'Management and configuration of the RD Station platform, on-demand technology services, technical support, and user guidance on digital tools.',
     },
     highlights: {
       pt: [
-        'Implantação e personalização de fluxos de atendimento no CRM.',
-        'Organização e automação de planilhas gerenciais para ganho de produtividade.',
+        'Administração e personalização de fluxos, funis e automações na plataforma RD Station.',
+        'Assistência técnica pontual, resolução de problemas e suporte direto em demandas de tecnologia.',
+        'Instruções práticas e treinamento de uso de ferramentas tecnológicas e planilhas para a equipe.',
       ],
       en: [
-        'Implemented and customized customer workflows inside the CRM.',
-        'Structured and automated management spreadsheets to boost team productivity.',
+        'Administered and customized pipelines, workflows, and automations inside RD Station.',
+        'Provided on-demand technical support, troubleshooting, and hands-on IT assistance.',
+        'Delivered practical guidance and training on software tools and operational spreadsheets.',
       ],
     },
-    tags: ['CRM', 'RD Station', 'Automação', 'Excel Avançado', 'Processos'],
+    tags: ['RD Station', 'Consultoria Tech', 'Assistência Técnica', 'Suporte & Treinamento', 'CRM'],
   },
   {
     id: 'freelancer-volcano-2025',
@@ -220,8 +222,8 @@ export const experiences = [
     period: { pt: '2025', en: '2025' },
     category: 'design',
     title: {
-      pt: 'Designer de Embalagens — Áurea',
-      en: 'Packaging Designer — Áurea',
+      pt: 'Designer de Embalagens - Áurea',
+      en: 'Packaging Designer - Áurea',
     },
     organization: 'Áurea',
     shortDesc: {
