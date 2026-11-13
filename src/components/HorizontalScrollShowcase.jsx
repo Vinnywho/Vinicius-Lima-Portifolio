@@ -137,17 +137,19 @@ export default function HorizontalScrollShowcase() {
           </span>
 
           <h2 className="mobile-showcase-title">
-            {mode === 'dev' ? 'ENGENHARIA COM ATITUDE' : 'DESIGN COM PRECISÃO'}
+            {mode === 'dev'
+              ? t.horizontalShowcase.introTitleDev
+              : t.horizontalShowcase.introTitleDesign}
           </h2>
 
           <p className="mobile-showcase-desc">
             {mode === 'dev'
-              ? 'Como uno código limpo, arquitetura e estética para criar interfaces inesquecíveis.'
-              : 'Como a direção de arte e a cultura urbana encontram o desenvolvimento de alta fidelidade.'}
+              ? t.horizontalShowcase.introDescDev
+              : t.horizontalShowcase.introDescDesign}
           </p>
 
           <div className="mobile-swipe-hint">
-            <span>← Deslize para ver os pilares →</span>
+            <span>{t.horizontalShowcase.mobileSwipeHint}</span>
           </div>
         </header>
 
@@ -206,17 +208,19 @@ export default function HorizontalScrollShowcase() {
               </span>
 
               <h2 className="panel-title display-massive">
-                {mode === 'dev' ? 'ENGENHARIA COM ATITUDE' : 'DESIGN COM PRECISÃO'}
+                {mode === 'dev'
+                  ? t.horizontalShowcase.introTitleDev
+                  : t.horizontalShowcase.introTitleDesign}
               </h2>
 
               <p className="panel-desc">
                 {mode === 'dev'
-                  ? 'Como transformo código em experiências imersivas, performáticas e inesquecíveis.'
-                  : 'Como a direção de arte e a cultura de rua encontram a tecnologia de alto impacto.'}
+                  ? t.horizontalShowcase.introDescDev
+                  : t.horizontalShowcase.introDescDesign}
               </p>
 
               <div className="panel-highlight" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>Role para navegar horizontalmente</span>
+                <span>{t.horizontalShowcase.scrollHint}</span>
                 <ArrowRight size={18} className="scroll-arrow-anim" />
               </div>
             </div>
@@ -258,14 +262,12 @@ export default function HorizontalScrollShowcase() {
             <div className="panel-inner">
               <span className="panel-badge">
                 <Code size={14} />
-                <span>PRÓXIMO PASSO</span>
+                <span>{t.horizontalShowcase.outroBadge}</span>
               </span>
 
-              <h3 className="panel-title">PRONTO PARA CONSTRUIR ALGO ÚNICO?</h3>
+              <h3 className="panel-title">{t.horizontalShowcase.outroTitle}</h3>
 
-              <p className="panel-desc">
-                De sistemas web complexos a identidades visuais de alta intensidade. Vamos conversar sobre o seu próximo projeto.
-              </p>
+              <p className="panel-desc">{t.horizontalShowcase.outroDesc}</p>
 
               <div className="panel-highlight" style={{ marginTop: '1.5rem' }}>
                 <a

@@ -72,20 +72,6 @@
     background-size: 40px 40px;
   }
 
-  .noise-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  main {
-    position: relative;
-    z-index: 1;
-  }
-
   :focus-visible {
     outline: 2.5px solid var(--accent);
     outline-offset: 3px;
@@ -3216,7 +3202,7 @@
   }
 
   .horizontal-panel.intro-panel {
-    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-alt) 100%);
+    background: var(--bg-surface);
   }
 
   .horizontal-panel.outro-panel {

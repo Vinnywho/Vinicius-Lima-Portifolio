@@ -121,7 +121,7 @@ export const translations = {
     faq: {
       title: 'Perguntas Frequentes',
       subtitle: 'Tudo o que você precisa saber sobre disponibilidade, stack, processos e entregas.',
-      searchPlaceholder: 'Buscar dúvidas ou tecnologias (ex: Freelance, GSAP, Figma, React)...',
+      searchPlaceholder: 'Buscar dúvidas ou tecnologias (ex: React Native, Figma, C#, Freelance)...',
       categories: {
         all: 'Todas',
         general: 'Geral & Contratação',
@@ -133,35 +133,47 @@ export const translations = {
       contactCta: 'Não encontrou o que procurava? Fale comigo diretamente no WhatsApp.',
     },
     horizontalShowcase: {
-      tagline: 'MANIFESTO DE ARQUITETURA & VISÃO',
+      tagline: 'CÓDIGO, DESIGN & PRODUTO',
+      introTitleDev: 'WEB, MOBILE & SISTEMAS',
+      introTitleDesign: 'UI/UX, MARCAS & IDENTIDADE',
+      introDescDev:
+        'Desenvolvo aplicações web e mobile com React, React Native, JavaScript, Python, C# e bancos em nuvem — unindo interface clara, automação e solução real.',
+      introDescDesign:
+        'Crio interfaces no Figma, identidades visuais, embalagens, revistas e peças digitais — conectando direção de arte, usabilidade e cultura urbana.',
+      scrollHint: 'Role para navegar horizontalmente',
+      mobileSwipeHint: '← Deslize para ver os pilares →',
+      outroBadge: 'PRÓXIMO PASSO',
+      outroTitle: 'VAMOS TIRAR SEU PROJETO DO PAPEL?',
+      outroDesc:
+        'De sites, apps e automações a identidades visuais e protótipos no Figma. Vamos conversar sobre o que você precisa construir.',
       panels: [
         {
           id: '01',
-          badge: 'Design Engineering',
-          title: 'Do Figma ao Código Sem Ruído',
-          desc: 'Design e front-end não são etapas isoladas. Crio interfaces com fidelidade absoluta de espaçamento, tipografia e interatividade.',
-          highlight: 'Zero retrabalho entre mockup e produção.',
+          badge: 'Figma ao Código',
+          title: 'Do Protótipo à Produção',
+          desc: 'Projeto no Figma pensando em componentes, responsividade e experiência do usuário, e levo direto para React, React Native, HTML e CSS sem ruído.',
+          highlight: 'Design e desenvolvimento no mesmo fluxo.',
         },
         {
           id: '02',
-          badge: 'High-FPS Motion',
-          title: 'Animações GSAP & Física Fluida',
-          desc: 'ScrollTrigger, canvas reativo com spray, microinterações e transições cinemáticas com 60 FPS garantidos e respeito a reduced-motion.',
-          highlight: 'Interatividade que engaja sem pesar.',
+          badge: 'Web & Mobile',
+          title: 'Interfaces & Apps Reais',
+          desc: 'Aplicações web em React e apps mobile em React Native integrados a Supabase, Firebase e APIs REST, com atenção a usabilidade e fluidez.',
+          highlight: 'Da landing page ao aplicativo completo.',
         },
         {
           id: '03',
-          badge: 'Computer Science',
-          title: 'Arquitetura Limpa & Escalabilidade',
-          desc: 'Código legível, modular e tipado. Foco contínuo em Core Web Vitals, separação clara de responsabilidades e padrões consolidados.',
-          highlight: 'Estrutura pronta para crescer.',
+          badge: 'Sistemas & Automação',
+          title: 'Back-End, Dados & IoT',
+          desc: 'Experiência prática com C#, Python, Microsoft Azure, automação de processos, prototipação embarcada em C/C++ (Arduino/ESP32) e suporte em RD Station.',
+          highlight: 'Base sólida em Ciência da Computação.',
         },
         {
           id: '04',
-          badge: 'Autoria & Cultura',
-          title: 'Street Culture Encontra High-Tech',
-          desc: 'O graffiti traz essência autoral, ousada e disruptiva; o código traz precisão matemática e confiabilidade. O resultado é único.',
-          highlight: 'Identidade viva em cada detalhe.',
+          badge: 'Direção de Arte',
+          title: 'Design Gráfico & Cultura Urbana',
+          desc: 'Identidade visual, embalagens, editoriais, social media e mascotes com personalidade própria — unindo técnica visual à estética do graffiti.',
+          highlight: 'Designer Oficial da Maratona SBC 2025.',
         },
       ],
     },
@@ -174,7 +186,7 @@ export const translations = {
     },
     cvLab: {
       title: 'Laboratório de Currículo',
-      subtitle: 'Monte um currículo sob medida selecionando exatamente o que faz sentido para a vaga — ou exporte a versão completa em PDF.',
+      subtitle: 'Monte um currículo sob medida selecionando exatamente o que faz sentido para a vaga - ou exporte a versão completa em PDF.',
       backBtn: 'Voltar ao Site',
       presetDev: 'Preset Dev',
       presetDesign: 'Preset Design',
@@ -208,7 +220,7 @@ export const translations = {
       },
     },
     sprayLab: {
-      title: 'Spray Lab — Canvas Urbano',
+      title: 'Spray Lab - Canvas Urbano',
       subtitle: 'Pinte livremente com a física autêntica do grafite, névoa de aerossol e tinta que escorre. Escolha suas cores, exporte seu desenho ou envie diretamente para o meu e-mail!',
       colorsLabel: 'Cores de Lata',
       capLabel: 'Bico de Spray (Cap)',
@@ -283,7 +295,7 @@ export const translations = {
       devText:
         'My name is Vinicius Cardoso de Lima, 22, currently in my 4th semester of Computer Science at FECAP (full Prouni scholarship). I combine my technical background in Business Administration (ETEC) with modern software engineering to build high-performance interfaces using React, JavaScript, C#, C++, and cloud databases.',
       designText:
-        'Beyond code, I live and breathe visual culture. As Official Designer for the 2025 SBC Programming Marathon and freelance graphic/UI designer, I craft everything from mascots, packaging, and print magazines to full digital design systems in Figma—always uniting distinct aesthetics with clear usability.',
+        'Beyond code, I live and breathe visual culture. As Official Designer for the 2025 SBC Programming Marathon and freelance graphic/UI designer, I craft everything from mascots, packaging, and print magazines to full digital design systems in Figma-always uniting distinct aesthetics with clear usability.',
       stats: [
         { value: '4th Sem', label: 'Computer Science (FECAP)' },
         { value: '2023', label: 'Business Admin Tech Degree (ETEC)' },
@@ -358,7 +370,7 @@ export const translations = {
     faq: {
       title: 'Frequently Asked Questions',
       subtitle: 'Everything you need to know about availability, tech stack, workflows, and deliverables.',
-      searchPlaceholder: 'Search questions or tech (e.g., Freelance, GSAP, Figma, React)...',
+      searchPlaceholder: 'Search questions or tech (e.g., React Native, Figma, C#, Freelance)...',
       categories: {
         all: 'All',
         general: 'General & Hiring',
@@ -370,35 +382,47 @@ export const translations = {
       contactCta: 'Didn’t find what you were looking for? Message me directly on WhatsApp.',
     },
     horizontalShowcase: {
-      tagline: 'ARCHITECTURE & VISION MANIFESTO',
+      tagline: 'CODE, DESIGN & PRODUCT',
+      introTitleDev: 'WEB, MOBILE & SYSTEMS',
+      introTitleDesign: 'UI/UX, BRANDS & IDENTITY',
+      introDescDev:
+        'I build web and mobile applications with React, React Native, JavaScript, Python, C#, and cloud databases — combining clean UI, automation, and real-world utility.',
+      introDescDesign:
+        'I design Figma interfaces, visual identities, packaging, magazines, and digital assets — connecting art direction, usability, and street culture.',
+      scrollHint: 'Scroll to explore horizontally',
+      mobileSwipeHint: '← Swipe to explore the pillars →',
+      outroBadge: 'NEXT STEP',
+      outroTitle: 'READY TO BUILD YOUR NEXT PROJECT?',
+      outroDesc:
+        'From websites, mobile apps, and automations to brand identities and Figma prototypes. Let’s talk about what you need to create.',
       panels: [
         {
           id: '01',
-          badge: 'Design Engineering',
-          title: 'From Figma to Production Code',
-          desc: 'Design and front-end are not separate silos. I build scalable design systems with pixel-level fidelity in spacing, typography, and interactive behavior.',
-          highlight: 'Zero friction between mockups and code.',
+          badge: 'Figma to Code',
+          title: 'From Prototype to Production',
+          desc: 'I design in Figma with component architecture, responsiveness, and user flows in mind, then implement directly in React, React Native, HTML, and CSS.',
+          highlight: 'Design and engineering in one flow.',
         },
         {
           id: '02',
-          badge: 'High-FPS Motion',
-          title: 'GSAP Motion & Reactive Physics',
-          desc: 'ScrollTrigger, spray canvas physics, micro-interactions, and cinematic transitions running at steady 60 FPS with full reduced-motion support.',
-          highlight: 'Engaging motion that never lags.',
+          badge: 'Web & Mobile',
+          title: 'Real-World Apps & Interfaces',
+          desc: 'Web applications in React and mobile apps in React Native integrated with Supabase, Firebase, and REST APIs, focused on usability and clarity.',
+          highlight: 'From landing pages to full mobile apps.',
         },
         {
           id: '03',
-          badge: 'Computer Science',
-          title: 'Clean Architecture & Scalability',
-          desc: 'Maintainable, modular, and performant codebases. Obsessive focus on Core Web Vitals, decoupled systems, and proven design patterns.',
-          highlight: 'Engineered for real-world growth.',
+          badge: 'Systems & Automation',
+          title: 'Back-End, Cloud & IoT',
+          desc: 'Hands-on experience with C#, Python, Microsoft Azure, process automation, embedded C/C++ prototyping (Arduino/ESP32), and RD Station tech consulting.',
+          highlight: 'Solid Computer Science foundation.',
         },
         {
           id: '04',
-          badge: 'Authorship & Culture',
-          title: 'Street Culture Meets High-Tech',
-          desc: 'Graffiti injects bold, authentic street culture; software engineering provides mathematical precision and stability. An unforgettable experience.',
-          highlight: 'Vibrant identity in every touchpoint.',
+          badge: 'Art Direction',
+          title: 'Graphic Design & Street Culture',
+          desc: 'Brand identities, packaging, editorials, social media, and original mascots — blending visual craft with authentic urban graffiti aesthetics.',
+          highlight: 'Official Designer for SBC Marathon 2025.',
         },
       ],
     },
@@ -411,7 +435,7 @@ export const translations = {
     },
     cvLab: {
       title: 'Resume Lab',
-      subtitle: 'Tailor a custom resume by selecting the exact skills, projects, and experiences for each role — or export the full version as PDF.',
+      subtitle: 'Tailor a custom resume by selecting the exact skills, projects, and experiences for each role - or export the full version as PDF.',
       backBtn: 'Back to Site',
       presetDev: 'Dev Preset',
       presetDesign: 'Design Preset',
@@ -445,7 +469,7 @@ export const translations = {
       },
     },
     sprayLab: {
-      title: 'Spray Lab — Urban Canvas',
+      title: 'Spray Lab - Urban Canvas',
       subtitle: 'Spray-paint freely with realistic aerosol mist, splatter particles, and gravity drips. Choose colors, export your artwork, or send it directly to my inbox!',
       colorsLabel: 'Spray Can Colors',
       capLabel: 'Nozzle (Cap Size)',
