@@ -27,6 +27,114 @@ export const experiences = [
     relatedProjectSlug: 'financas-sem-fronteiras',
   },
   {
+    id: 'sebrae-blue-2026',
+    year: '2026',
+    period: { pt: '2026', en: '2026' },
+    category: 'tech',
+    title: {
+      pt: 'Desenvolvedor Front-End — Sebrae Blue (Blue Consult)',
+      en: 'Front-End Developer — Sebrae Blue (Blue Consult)',
+    },
+    organization: 'Blue Consult / Sebrae',
+    shortDesc: {
+      pt: 'Dashboard administrativo em React e Supabase para gestão em tempo real de Ordens de Serviço, clientes e métricas de desempenho.',
+      en: 'Administrative dashboard in React and Supabase for real-time management of Service Orders, clients, and performance metrics.',
+    },
+    highlights: {
+      pt: [
+        'Desenvolvimento de plataforma web em produção para a Blue Consult em parceria com o Sebrae.',
+        'Módulos completos de Login, Dashboard Gerencial, Ordens de Serviço e Relatórios.',
+        'Integração em tempo real com Supabase e deploy otimizado na Vercel.',
+      ],
+      en: [
+        'Built a production web platform for Blue Consult in partnership with Sebrae.',
+        'Implemented full Login, Management Dashboard, Service Orders, and Reports modules.',
+        'Real-time Supabase integration with continuous deployment on Vercel.',
+      ],
+    },
+    tags: ['React', 'Supabase', 'CSS3', 'Vercel'],
+    relatedProjectSlug: 'sebrae-blue',
+  },
+  {
+    id: 'duca-rebranding-2026',
+    year: '2026',
+    period: { pt: '2026', en: '2026' },
+    category: 'design',
+    title: {
+      pt: 'Designer Gráfico — Rebranding Duca',
+      en: 'Graphic Designer — Duca Rebranding',
+    },
+    organization: 'Duca Buffet Empresarial',
+    shortDesc: {
+      pt: 'Rebranding completo para empresa de buffet corporativo, incluindo logotipo, brandbook completo e enxoval de materiais aplicados.',
+      en: 'Complete rebranding for a corporate catering company, including logo, full brandbook, and branded merchandise.',
+    },
+    highlights: {
+      pt: [
+        'Criação da nova identidade visual, paleta cromática, tipografia e Brandbook oficial.',
+        'Aplicação da marca em aventais, camisetas, moletons, bonés, pins, placas e sacolas.',
+      ],
+      en: [
+        'Created the refreshed visual identity, color system, typography, and official Brandbook.',
+        'Applied brand guidelines across aprons, t-shirts, hoodies, caps, pins, signage, and bags.',
+      ],
+    },
+    tags: ['Branding', 'Brandbook', 'Mockups', 'Figma', 'Photoshop'],
+    relatedProjectSlug: 'duca-brandbook',
+  },
+  {
+    id: 'nucleotech-ej-2026',
+    year: '2026',
+    period: { pt: '2026 – Atual', en: '2026 – Present' },
+    category: 'design',
+    title: {
+      pt: 'Designer de Social Media & UI/UX — NúcleoTech (Empresa Júnior)',
+      en: 'Social Media & UI/UX Designer — NúcleoTech (Junior Enterprise)',
+    },
+    organization: 'NúcleoTech — EJ FECAP',
+    shortDesc: {
+      pt: 'Produção de carrosséis estratégicos, peças de social media e projetos digitais para a Empresa Júnior de Tecnologia da FECAP.',
+      en: 'Design of strategic carousels, social media assets, and digital products for FECAP’s Technology Junior Enterprise.',
+    },
+    highlights: {
+      pt: [
+        'Criação de 9+ carrosséis educativos e institucionais (Git, IA, Dicas Tech, Mascote, Processo Seletivo).',
+        'Design de interface (UI/UX) para a landing page FECAP Cases em parceria com o NúcleoTech.',
+      ],
+      en: [
+        'Produced 9+ educational and institutional carousels (Git, AI, Tech Tips, Mascot, Recruitment).',
+        'Crafted UI/UX for the FECAP Cases landing page in partnership with NúcleoTech.',
+      ],
+    },
+    tags: ['Social Media', 'Carrosséis', 'UI/UX', 'Figma', 'Photoshop'],
+    relatedProjectSlug: 'nucleotech-ej',
+  },
+  {
+    id: 'fecap-cases-2026',
+    year: '2026',
+    period: { pt: '2026', en: '2026' },
+    category: 'design',
+    title: {
+      pt: 'UI/UX Designer — FECAP Cases',
+      en: 'UI/UX Designer — FECAP Cases',
+    },
+    organization: 'FECAP Cases / NúcleoTech',
+    shortDesc: {
+      pt: 'Prototipagem e direção visual da landing page oficial do FECAP Cases para destacar casos de sucesso da instituição.',
+      en: 'UI/UX prototyping and visual direction for the official FECAP Cases landing page.',
+    },
+    highlights: {
+      pt: [
+        'Estruturação completa das seções de Home, Sobre, Programação, Patrocinadores, Galeria, Blog e FAQ.',
+      ],
+      en: [
+        'Designed complete page sections covering Home, About, Schedule, Sponsors, Gallery, Blog, and FAQ.',
+      ],
+    },
+    tags: ['UI/UX', 'Landing Page', 'Figma', 'Design System'],
+    relatedProjectSlug: 'fecap-cases',
+  },
+  {
     id: 'maratona-sbc-2025',
     year: '2025',
     period: { pt: '2025', en: '2025' },
@@ -35,7 +143,7 @@ export const experiences = [
       pt: 'Designer Oficial - Maratona SBC de Programação',
       en: 'Official Designer - SBC Programming Marathon',
     },
-    organization: 'Instituto Criativo / FECAP',
+    organization: 'Sociedade Brasileira de Computação / FECAP',
     shortDesc: {
       pt: 'Convidado pela Diretoria de Patrocínios após competir na 1ª fase para liderar toda a identidade visual da edição.',
       en: 'Invited by Sponsorship Direction after competing in phase 1 to lead the entire edition’s visual identity.',
@@ -56,7 +164,7 @@ export const experiences = [
   {
     id: 'freelancer-hl-2025',
     year: '2025',
-    period: { pt: '2025', en: '2025' },
+    period: { pt: 'Setembro 2025 - Atualmente', en: 'September 2025 - Present' },
     category: 'career',
     title: {
       pt: 'Freelancer - H&L (Automação & CRM)',
@@ -64,8 +172,8 @@ export const experiences = [
     },
     organization: 'H&L',
     shortDesc: {
-      pt: 'Configuração de plataforma de CRM, estruturação de funis e automação de planilhas operacionais.',
-      en: 'CRM platform setup, pipeline structuring, and operational spreadsheet automation.',
+      pt: 'Configuração de plataforma de CRM (RD Station), estruturação de funis e automação de planilhas operacionais.',
+      en: 'CRM platform (RD Station) setup, pipeline structuring, and operational spreadsheet automation.',
     },
     highlights: {
       pt: [
@@ -77,7 +185,7 @@ export const experiences = [
         'Structured and automated management spreadsheets to boost team productivity.',
       ],
     },
-    tags: ['CRM', 'Automação', 'Excel Avançado', 'Processos'],
+    tags: ['CRM', 'RD Station', 'Automação', 'Excel Avançado', 'Processos'],
   },
   {
     id: 'freelancer-volcano-2025',
@@ -105,6 +213,33 @@ export const experiences = [
     },
     tags: ['Embalagens', 'Catálogos', 'Photoshop', 'Design Comercial'],
     relatedProjectSlug: 'volcano',
+  },
+  {
+    id: 'aurea-2025',
+    year: '2025',
+    period: { pt: '2025', en: '2025' },
+    category: 'design',
+    title: {
+      pt: 'Designer de Embalagens — Áurea',
+      en: 'Packaging Designer — Áurea',
+    },
+    organization: 'Áurea',
+    shortDesc: {
+      pt: 'Sistema de rotulagem, caixa institucional e gabaritos técnicos para 7 linhas de aromatização e cuidados pessoais.',
+      en: 'Labeling system, signature box, and technical dielines across 7 home fragrance and body care product lines.',
+    },
+    highlights: {
+      pt: [
+        'Desenvolvimento de 29 artes e gabaritos nas versões Creme, Verde Botânico e Transparente.',
+        'Padronização visual para Água de Lençóis, Body Splash, Difusores, Home Spray, Sabonete e Vela Aromática.',
+      ],
+      en: [
+        'Delivered 29 artworks and dielines in Cream, Botanical Green, and Transparent editions.',
+        'Unified visual system across Linen Water, Body Splash, Diffusers, Home Spray, Liquid Soap, and Scented Candles.',
+      ],
+    },
+    tags: ['Embalagens', 'Rótulos', 'Gabaritos', 'Figma', 'Photoshop'],
+    relatedProjectSlug: 'aurea',
   },
   {
     id: 'aspire-leaders-2025',
@@ -136,8 +271,8 @@ export const experiences = [
     period: { pt: '2025 (3º Semestre)', en: '2025 (3rd Semester)' },
     category: 'tech',
     title: {
-      pt: 'Projeto Integrador III — Comedoria da Tia',
-      en: 'Integrative Project III — Comedoria da Tia',
+      pt: 'Projeto Integrador III - Comedoria da Tia',
+      en: 'Integrative Project III - Comedoria da Tia',
     },
     organization: 'FECAP',
     shortDesc: {
@@ -165,8 +300,8 @@ export const experiences = [
     period: { pt: '2025 (2º Semestre)', en: '2025 (2nd Semester)' },
     category: 'tech',
     title: {
-      pt: 'Projeto Integrador II — Plataforma Instituto Criativo',
-      en: 'Integrative Project II — Instituto Criativo Platform',
+      pt: 'Projeto Integrador II - Plataforma Instituto Criativo',
+      en: 'Integrative Project II - Instituto Criativo Platform',
     },
     organization: 'FECAP',
     shortDesc: {
@@ -194,8 +329,8 @@ export const experiences = [
     period: { pt: '2024 (1º Semestre)', en: '2024 (1st Semester)' },
     category: 'tech',
     title: {
-      pt: 'Projeto Integrador I — Barreira Ecológica Autônoma (B.E.A.)',
-      en: 'Integrative Project I — Autonomous Ecological Barrier (B.E.A.)',
+      pt: 'Projeto Integrador I - Barreira Ecológica Autônoma (B.E.A.)',
+      en: 'Integrative Project I - Autonomous Ecological Barrier (B.E.A.)',
     },
     organization: 'FECAP',
     shortDesc: {
