@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import LoadingScreen from './components/LoadingScreen';
+import Noise from './components/Noise';
 import SprayCanvas from './components/SprayCanvas';
 import ModeTransition from './components/ModeTransition';
 import FloatingMenu from './components/FloatingMenu';
@@ -21,6 +22,7 @@ function AppShell() {
 
   return (
     <>
+      <Noise />
       {!introFinished && <LoadingScreen onComplete={() => setIntroFinished(true)} />}
       {!isSprayLab && <SprayCanvas />}
       <ModeTransition />
