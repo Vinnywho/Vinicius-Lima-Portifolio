@@ -61,6 +61,7 @@ import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
 import photoshopIcon from '../assets/Icons/Photoshop.svg';
 import { buildSlides, getSinglePost } from './nucleoTechAssets';
+import { aureaCaixa, getAureaLineItems } from './aureaAssets';
 
 export const projects = [
   {
@@ -148,20 +149,20 @@ export const projects = [
     id: 'nucleotech-ej',
     slug: 'nucleotech-ej',
     category: 'design',
-    featured: true,
+    featured: false,
     year: '2026',
     accentColor: '#0066FF',
     coverImage: nucleoTechImg,
     title: {
-      pt: 'NúcleoTech — Empresa Júnior',
-      en: 'NúcleoTech — Junior Enterprise',
+      pt: 'NúcleoTech',
+      en: 'NúcleoTech',
     },
     shortDesc: {
       pt: 'Identidade visual, social media e carrosséis estratégicos desenvolvidos para a Empresa Júnior de Tecnologia da FECAP.',
       en: 'Visual identity, social media, and strategic carousels crafted for FECAP’s Technology Junior Enterprise.',
     },
     fullDesc: {
-      pt: 'Atuação na equipe de Design da NúcleoTech, Empresa Júnior de Tecnologia da FECAP, criando peças de social media, carrosséis informativos e materiais visuais para fortalecer a presença digital da EJ e atrair novos clientes e membros.',
+      pt: 'Cordenação do time de comunicação visual da NúcleoTech, Empresa Júnior de Tecnologia da FECAP, criando peças de social media, carrosséis educativos e materiais de comunicação visual para elevar a presença digital da EJ.',
       en: 'Design work for NúcleoTech, FECAP’s Technology Junior Enterprise, creating social media assets, educational carousels, and visual communication pieces to elevate the EJ’s digital presence.',
     },
     liveUrl: null,
@@ -171,7 +172,7 @@ export const projects = [
       { name: 'Photoshop', icon: photoshopIcon },
     ],
     designShowcase: {
-      client: 'NúcleoTech — Empresa Júnior FECAP',
+      client: 'NúcleoTech - Empresa Júnior FECAP',
       role: {
         pt: 'Designer de Social Media & Direção Visual',
         en: 'Social Media Designer & Visual Direction',
@@ -182,8 +183,8 @@ export const projects = [
       },
       palette: ['#0066FF', '#0A192F', '#38BDF8', '#F8FAFC'],
       typography: {
-        heading: 'Inter / Urban Calligraphy',
-        body: 'Inter',
+        heading: 'Anta',
+        body: 'Montserrat',
       },
       behanceBlocks: [
         {
@@ -252,8 +253,8 @@ export const projects = [
         {
           type: 'carousel',
           heading: {
-            pt: 'Dicas Tech — Edição 02',
-            en: 'Tech Tips — Edition 02',
+            pt: 'Dicas Tech - Edição 02',
+            en: 'Tech Tips - Edition 02',
           },
           slides: buildSlides('DicasTech2', 'Dicas Tech 02', 'Tech Tips 02'),
           caption: {
@@ -264,8 +265,8 @@ export const projects = [
         {
           type: 'carousel',
           heading: {
-            pt: 'Dicas Tech — Edição 03',
-            en: 'Tech Tips — Edition 03',
+            pt: 'Dicas Tech - Edição 03',
+            en: 'Tech Tips - Edition 03',
           },
           slides: buildSlides('DicasTech3', 'Dicas Tech 03', 'Tech Tips 03'),
           caption: {
@@ -311,8 +312,8 @@ export const projects = [
         {
           type: 'carousel',
           heading: {
-            pt: 'Empresas — Projeto Integrador 2026',
-            en: 'Companies — Integrative Project 2026',
+            pt: 'Empresas - Projeto Integrador 2026',
+            en: 'Companies - Integrative Project 2026',
           },
           slides: buildSlides('PI2026', 'Empresas PI 2026', 'Companies PI 2026'),
           caption: {
@@ -349,8 +350,8 @@ export const projects = [
             {
               image: getSinglePost('NotaMaxima'),
               caption: {
-                pt: 'Comunicado especial — Nota Máxima',
-                en: 'Special announcement — Top Score',
+                pt: 'Comunicado especial - Nota Máxima',
+                en: 'Special announcement - Top Score',
               },
             },
             {
@@ -578,6 +579,172 @@ export const projects = [
         },
       ],
     }
+  },
+  {
+    id: 'aurea-aromas',
+    slug: 'aurea',
+    category: 'design',
+    featured: false,
+    year: '2025',
+    accentColor: '#3E5F44',
+    coverImage: aureaCaixa,
+    title: {
+      pt: 'Áurea — Embalagens & Rótulos',
+      en: 'Áurea — Packaging & Labels',
+    },
+    shortDesc: {
+      pt: 'Sistema completo de rótulos, embalagens e gabaritos técnicos para 7 linhas de aromatização e cuidados pessoais.',
+      en: 'Complete label system, packaging, and technical dielines for 7 home fragrance and body care product lines.',
+    },
+    fullDesc: {
+      pt: 'Projeto de design de embalagens e rotulagem desenvolvido para a Áurea, abrangendo caixa institucional e sete linhas de produtos (Água de Lençóis, Body Splash, Difusor, Difusor Grande, Home Spray, Sabonete Líquido e Vela Aromática), cada uma com variações em creme/off-white, verde botânico, transparente e especificações técnicas de impressão.',
+      en: 'Packaging and label design system created for Áurea, covering the signature box and seven product lines (Linen Water, Body Splash, Reed Diffuser, Large Diffuser, Home Spray, Liquid Soap, and Scented Candle), each delivered in cream/off-white, botanical green, and transparent label editions alongside print-ready technical dielines.',
+    },
+    liveUrl: null,
+    repoUrl: null,
+    techs: [
+      { name: 'Figma', icon: figmaIcon },
+      { name: 'Photoshop', icon: photoshopIcon },
+    ],
+    designShowcase: {
+      client: 'Áurea',
+      role: {
+        pt: 'Designer de Embalagens & Identidade Visual',
+        en: 'Packaging & Visual Identity Designer',
+      },
+      deliverables: {
+        pt: ['Rótulos', 'Embalagem (Caixa)', 'Gabaritos & Medidas', 'Fechamento de Arquivo'],
+        en: ['Product Labels', 'Signature Box', 'Technical Dielines', 'Print Production'],
+      },
+      palette: ['#3E5F44', '#F4EFE6', '#C8A96A', '#1E241E'],
+      typography: {
+        heading: 'Cormorant Garamond / Urban Calligraphy',
+        body: 'Montserrat',
+      },
+      behanceBlocks: [
+        {
+          type: 'hero-image',
+          image: aureaCaixa,
+          caption: {
+            pt: 'Projeto estrutural e arte final da caixa institucional Áurea.',
+            en: 'Structural layout and print artwork for the Áurea signature box.',
+          },
+        },
+        {
+          type: 'metrics',
+          items: [
+            { value: '7', label: { pt: 'Linhas de Produto', en: 'Product Lines' } },
+            { value: '3', label: { pt: 'Variações por Rótulo', en: 'Editions per Label' } },
+            { value: '29', label: { pt: 'Artes & Gabaritos', en: 'Artworks & Dielines' } },
+          ],
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '01. Água de Lençóis',
+            en: '01. Linen Water',
+          },
+          body: {
+            pt: 'Desenvolvimento dos rótulos nas versões Creme, Verde Botânico e Transparente, acompanhados do gabarito técnico de corte e aplicação.',
+            en: 'Label variations in Cream, Botanical Green, and Transparent finishes, paired with the technical sizing dieline.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('AguaDeLencois', 'Água de Lençóis', 'Linen Water'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '02. Body Splash',
+            en: '02. Body Splash',
+          },
+          body: {
+            pt: 'Adaptação tipográfica e proporção vertical para frasco de Body Splash, mantendo harmonia visual entre as três variações de acabamento.',
+            en: 'Typographic adaptation and vertical proportioning for the Body Splash bottle across all three label finishes.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('BodySplash', 'Body Splash', 'Body Splash'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '03. Difusor de Ambientes',
+            en: '03. Reed Diffuser',
+          },
+          body: {
+            pt: 'Rótulos quadrados desenhados para leitura limpa à distância, com equilíbrio entre respiro visual e informações obrigatórias.',
+            en: 'Square labels designed for effortless legibility, balancing generous whitespace with product specifications.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('Difusor', 'Difusor', 'Reed Diffuser'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '04. Difusor Grande',
+            en: '04. Large Reed Diffuser',
+          },
+          body: {
+            pt: 'Redimensionamento proporcional e conversão final de fontes para a edição de maior volumetria da linha de difusores.',
+            en: 'Proportional scaling and outlined print-ready typography for the large-format reed diffuser edition.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('DifusorGrande', 'Difusor Grande', 'Large Diffuser'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '05. Home Spray',
+            en: '05. Home Spray',
+          },
+          body: {
+            pt: 'Padronização cromática e hierarquia de fragrâncias para a linha Home Spray em acabamento creme, verde e transparente.',
+            en: 'Color standardization and scent hierarchy for the Home Spray line across cream, green, and transparent labels.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('HomeSpray', 'Home Spray', 'Home Spray'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '06. Sabonete Líquido',
+            en: '06. Liquid Soap',
+          },
+          body: {
+            pt: 'Sistema modular quadrado adaptado para frascos de sabonete líquido, preservando contraste mesmo sobre vidro ou líquido colorido.',
+            en: 'Modular square label system tailored for liquid soap dispensers, preserving contrast on clear and tinted bottles.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('Sabonete', 'Sabonete Líquido', 'Liquid Soap'),
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '07. Vela Aromática',
+            en: '07. Scented Candle',
+          },
+          body: {
+            pt: 'Fechamento de arte final e gabarito de dimensões para os potes de vela aromática, concluindo a consistência da coleção.',
+            en: 'Final print artwork and dimension dielines for the scented candle jars, completing the collection consistency.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: getAureaLineItems('VelaAromatica', 'Vela Aromática', 'Scented Candle'),
+        },
+      ],
+    },
   },
   {
     id: 'financas-sem-fronteiras',
