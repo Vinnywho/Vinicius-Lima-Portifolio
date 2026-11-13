@@ -32,8 +32,8 @@ export const experiences = [
     period: { pt: 'Julho 2026 – 16 de Novembro 2026', en: 'July 2026 – Nov 16, 2026' },
     category: 'career',
     title: {
-      pt: 'Consultor de Tecnologia Autônomo — H&L',
-      en: 'Independent Technology Consultant — H&L',
+      pt: 'Consultor de Tecnologia Autônomo - H&L',
+      en: 'Independent Technology Consultant - H&L',
     },
     organization: 'H&L',
     shortDesc: {
@@ -82,6 +82,33 @@ export const experiences = [
     },
     tags: ['React', 'Supabase', 'CSS3', 'Vercel'],
     relatedProjectSlug: 'sebrae-blue',
+  },
+  {
+    id: 'fecap-pi5-asa-2026',
+    year: '2026',
+    period: { pt: '2026 (5º Semestre)', en: '2026 (5th Semester)' },
+    category: 'tech',
+    title: {
+      pt: 'Projeto Integrador V — ASA (App & Plataforma Web)',
+      en: 'Integrative Project V — ASA (App & Web Platform)',
+    },
+    organization: 'FECAP',
+    shortDesc: {
+      pt: 'Ecossistema integrado de atendimento, triagem, mural, visão 360° e assistente inteligente composto por aplicativo mobile e plataforma web.',
+      en: 'Integrated support, triage, notice board, 360° view, and intelligent assistant ecosystem combining a mobile app and a web platform.',
+    },
+    highlights: {
+      pt: [
+        'Desenvolvimento da plataforma web (asa-web-zeta.vercel.app) com módulos de Mural, Visão 360°, Triagem, Senhas, Documentos, 4D e Agente.',
+        'Construção de aplicativo mobile completo com Onboarding, Home Aluno/Funcionário, Ficha do Aluno, Chat, CAA e Perfil.',
+      ],
+      en: [
+        'Built the web platform (asa-web-zeta.vercel.app) featuring Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D, and Agent modules.',
+        'Developed the companion mobile app covering Onboarding, Student/Staff Home, Student Record, Chat, CAA, and Profile.',
+      ],
+    },
+    tags: ['React', 'JavaScript', 'Mobile', 'Vercel', 'Projeto Integrador'],
+    relatedProjectSlug: 'asa-app',
   },
   {
     id: 'duca-rebranding-2026',
@@ -195,8 +222,8 @@ export const experiences = [
     period: { pt: '20 de Setembro 2025 – Junho 2026', en: 'Sep 20, 2025 – June 2026' },
     category: 'career',
     title: {
-      pt: 'Freelancer — H&L (Automação & CRM)',
-      en: 'Freelancer — H&L (Automation & CRM)',
+      pt: 'Freelancer - H&L (Automação & CRM)',
+      en: 'Freelancer - H&L (Automation & CRM)',
     },
     organization: 'H&L',
     shortDesc: {

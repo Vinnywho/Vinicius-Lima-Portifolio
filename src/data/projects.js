@@ -71,6 +71,7 @@ import volcanoLata from '../assets/images/Projetos/Volcano/Lata.png';
 import volcanoRefil from '../assets/images/Projetos/Volcano/Refil.png';
 import volcanoRefil1 from '../assets/images/Projetos/Volcano/Refil-1.png';
 import volcanoTabelaPdf from '../assets/images/Projetos/Volcano/Tabela-de-precos.pdf';
+import { asaCover, asaWebFrames, asaMobileGallery } from './asaAssets';
 
 export const projects = [
   {
@@ -499,6 +500,60 @@ export const projects = [
     },
   },
   {
+    id: 'asa-app',
+    slug: 'asa-app',
+    category: 'dev',
+    featured: true,
+    year: '2026',
+    accentColor: '#0066FF',
+    coverImage: asaCover,
+    title: {
+      pt: 'ASA — App & Plataforma Web',
+      en: 'ASA — App & Web Platform',
+    },
+    shortDesc: {
+      pt: 'Projeto Integrador V (5º Semestre): ecossistema completo de atendimento, triagem, mural, visão 360° e agente inteligente para Web e Mobile.',
+      en: 'Integrative Project V (5th Semester): full support, triage, notice board, 360° view, and intelligent agent ecosystem for Web and Mobile.',
+    },
+    fullDesc: {
+      pt: 'Desenvolvido como Projeto Integrador V no 5º semestre de Ciência da Computação na FECAP, o ASA integra uma plataforma web administrativa completa (Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente Inteligente) a um aplicativo mobile dedicado para alunos e funcionários.',
+      en: 'Built as Integrative Project V in the 5th semester of Computer Science at FECAP, ASA connects a comprehensive administrative web platform (Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D-ADM, Algebra, and Intelligent Agent) with a dedicated mobile app for students and staff.',
+    },
+    liveUrl: 'https://asa-web-zeta.vercel.app/',
+    repoUrl: 'https://github.com/2026-2-NCC5/Projeto1',
+    techs: [
+      { name: 'React', icon: reactIcon },
+      { name: 'JavaScript', icon: jsIcon },
+      { name: 'HTML5', icon: htmlIcon },
+      { name: 'CSS3', icon: cssIcon },
+      { name: 'Vercel', icon: vercelIcon },
+    ],
+    devDetails: {
+      challenge: {
+        pt: 'Unificar em um único ecossistema digital o atendimento ao aluno, triagem de demandas, emissão de senhas, mural de avisos, documentos e acompanhamento 360° tanto para quem acessa pelo celular quanto para a equipe administrativa na web.',
+        en: 'Unify student support, request triage, queue ticketing, notice boards, documents, and 360° tracking into one seamless ecosystem across mobile and administrative web.',
+      },
+      solution: {
+        pt: 'Construção da plataforma web em React com deploy contínuo na Vercel (asa-web-zeta.vercel.app) organizada em módulos especializados (Mural, 360°, Triagem, Senhas, Documentos, 4D-ADM e Agente), integrada ao aplicativo mobile com fluxos separados para Aluno e Funcionário.',
+        en: 'Engineered the React web platform deployed on Vercel (asa-web-zeta.vercel.app) with specialized modules (Notice Board, 360°, Triage, Queue Tickets, Documents, 4D-ADM, and Agent), paired with a mobile app tailored to both Student and Staff workflows.',
+      },
+      highlights: {
+        pt: [
+          '8 módulos web em produção: Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente.',
+          '13 telas mobile cobrindo Entrada, Onboarding, Home Aluno/Funcionário, Ficha do Aluno, CAA, 4D, Chat, Docs, Educacional e Perfil.',
+          'Projeto Integrador V (5º Semestre — FECAP) com código aberto no GitHub e plataforma web online na Vercel.',
+        ],
+        en: [
+          '8 live web modules: Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D-ADM, Algebra, and Agent.',
+          '13 mobile screens spanning Splash, Onboarding, Student/Staff Home, Student Record, CAA, 4D, Chat, Docs, Educational, and Profile.',
+          'Integrative Project V (5th Semester — FECAP) with open-source repository on GitHub and live web deployment on Vercel.',
+        ],
+      },
+      scrollFrames: asaWebFrames,
+      gallery: asaMobileGallery,
+    },
+  },
+  {
     id: 'sebrae-blue',
     slug: 'sebrae-blue',
     category: 'dev',
@@ -606,8 +661,8 @@ export const projects = [
     accentColor: '#E11D48',
     coverImage: volcanoFogareiro,
     title: {
-      pt: 'Volcano — Embalagens & Catálogos',
-      en: 'Volcano — Packaging & Catalogs',
+      pt: 'Volcano - Embalagens & Catálogos',
+      en: 'Volcano - Packaging & Catalogs',
     },
     shortDesc: {
       pt: 'Adaptação de embalagens industriais, manuais técnicos, moldes gráficos e tabela comercial de preços para a linha Volcano.',
@@ -658,8 +713,8 @@ export const projects = [
         {
           type: 'text-section',
           heading: {
-            pt: '01. Linha Fogareiro — Caixa, Molde & Manual',
-            en: '01. Stove Line — Box, Dieline & Manual',
+            pt: '01. Linha Fogareiro - Caixa, Molde & Manual',
+            en: '01. Stove Line - Box, Dieline & Manual',
           },
           body: {
             pt: 'Adequação da caixa externa do fogareiro portátil, gabarito técnico (faca/molde) com áreas de dobra e sangria, e manual de instruções claro para o consumidor final.',
@@ -716,15 +771,15 @@ export const projects = [
             {
               image: volcanoRefil,
               caption: {
-                pt: 'Embalagem Refil — Versão Principal',
-                en: 'Refill Packaging — Primary Edition',
+                pt: 'Embalagem Refil - Versão Principal',
+                en: 'Refill Packaging - Primary Edition',
               },
             },
             {
               image: volcanoRefil1,
               caption: {
-                pt: 'Embalagem Refil — Variação & Detalhes',
-                en: 'Refill Packaging — Variation & Details',
+                pt: 'Embalagem Refil - Variação & Detalhes',
+                en: 'Refill Packaging - Variation & Details',
               },
             },
           ],
@@ -743,8 +798,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Tabela de Preços Volcano (PDF) — Role para visualizar',
-            en: 'Volcano Price List (PDF) — Scroll to inspect',
+            pt: 'Tabela de Preços Volcano (PDF) - Role para visualizar',
+            en: 'Volcano Price List (PDF) - Scroll to inspect',
           },
           pdf: volcanoTabelaPdf,
           caption: {
