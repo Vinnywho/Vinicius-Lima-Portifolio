@@ -1,4 +1,4 @@
-import revistasImg from '../assets/images/revistas.webp';
+import revistasImg from '../assets/images/revistas.png';
 import comedoriaImg from '../assets/images/dispositivos_comedoria.webp';
 import barreiraImg from '../assets/images/Projetos/383340179-3af2d9d0-9894-4afb-aace-7c225ca56bab 1.png';
 import petshopImg from '../assets/images/Projetos/434983031-1a4a1ce0-cd4f-4084-abc9-3694f2cdb74c 1.png';
@@ -46,6 +46,7 @@ import moletom from '../assets/images/Projetos/Duca/moletom.png';
 import pin from '../assets/images/Projetos/Duca/pin.png';
 import placa from '../assets/images/Projetos/Duca/placa.png';
 import sacola from '../assets/images/Projetos/Duca/sacola.png';
+import aurea from '../assets/images/Projetos/Aurea/Aurea.png';
 
 import cppIcon from '../assets/Icons/C++.svg';
 import jsIcon from '../assets/Icons/JS.svg';
@@ -62,6 +63,14 @@ import javaIcon from '../assets/Icons/java-4 (1).svg';
 import photoshopIcon from '../assets/Icons/Photoshop.svg';
 import { buildSlides, getSinglePost } from './nucleoTechAssets';
 import { aureaCaixa, getAureaLineItems } from './aureaAssets';
+import volcanoFogareiro from '../assets/images/Projetos/Volcano/Fogareiro.jpeg';
+import volcanoCaixa from '../assets/images/Projetos/Volcano/Fogareiro-Caixa.png';
+import volcanoManual from '../assets/images/Projetos/Volcano/Fogareiro-Manual.png';
+import volcanoMolde from '../assets/images/Projetos/Volcano/Fogareiro-Molde.png';
+import volcanoLata from '../assets/images/Projetos/Volcano/Lata.png';
+import volcanoRefil from '../assets/images/Projetos/Volcano/Refil.png';
+import volcanoRefil1 from '../assets/images/Projetos/Volcano/Refil-1.png';
+import volcanoTabelaPdf from '../assets/images/Projetos/Volcano/Tabela-de-precos.pdf';
 
 export const projects = [
   {
@@ -98,21 +107,29 @@ export const projects = [
         pt: ['Rebranding'],
         en: ['Rebranding'],
       },
-      palette: ['#5C040C', '#B88534', '#4A070C', '#FFF7F5','#141414'],
+      palette: ['#5C040C', '#B88534', '#4A070C', '#FFF7F5', '#141414'],
       typography: {
         heading: 'Playfair Display',
         body: 'Inter',
       },
-    behanceBlocks: [
+      behanceBlocks: [
+        {
+          type: 'hero-image',
+          image: Duca,
+          caption: {
+            pt: 'Logomarca e identidade visual da Duca.',
+            en: 'Duca logo and visual identity.',
+          },
+        },
         {
           type: 'scroll-frame',
           pdf: BrandbookDuca,
           title: {
-            pt: 'Brandbook — Role para inspecionar a identidade visual completa',
-            en: 'Brandbook — Scroll to inspect the full visual identity',
+            pt: 'Brandbook - Role para inspecionar a identidade visual completa',
+            en: 'Brandbook - Scroll to inspect the full visual identity',
           },
         },
-         {
+        {
           type: 'gallery-grid',
           heading: {
             pt: 'Páginas de Soluções & Área Restrita',
@@ -241,8 +258,8 @@ export const projects = [
         {
           type: 'carousel',
           heading: {
-            pt: 'Dicas Tech — Edição 01',
-            en: 'Tech Tips — Edition 01',
+            pt: 'Dicas Tech - Edição 01',
+            en: 'Tech Tips - Edition 01',
           },
           slides: buildSlides('DicasTech1', 'Dicas Tech 01', 'Tech Tips 01'),
           caption: {
@@ -400,7 +417,7 @@ export const projects = [
         pt: ['UI/UX Design', 'Landing Page'],
         en: ['UI/UX Design', 'Landing Page'],
       },
-      palette: ['#F34B24', '#5C57C0', '#D3EE33', '#003F5C','#72C1FD', '#9E2A2A', '#3D3A7C', '#8EA122', '#BACDE6','#151515','#FAF9F6'],
+      palette: ['#F34B24', '#5C57C0', '#D3EE33', '#003F5C', '#72C1FD', '#9E2A2A', '#3D3A7C', '#8EA122', '#BACDE6', '#151515', '#FAF9F6'],
       typography: {
         heading: 'Syne ExtraBold',
         body: 'Lexend Regular',
@@ -410,72 +427,72 @@ export const projects = [
           type: 'scroll-frame',
           image: home,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: sobre,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: patrocinadores,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: programacao,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: galeria,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: ingressos,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: blog,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: faq,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
         {
           type: 'scroll-frame',
           image: contatos,
           title: {
-            pt: 'Home — Role para inspecionar a identidade visual completa',
-            en: 'Home — Scroll to inspect the full visual identity',
+            pt: 'Home - Role para inspecionar a identidade visual completa',
+            en: 'Home - Scroll to inspect the full visual identity',
           },
         },
       ],
@@ -535,19 +552,19 @@ export const projects = [
       scrollFrames: [
         {
           title: {
-            pt: 'sebrae-three.vercel.app — Login & Acesso ao Sistema',
-            en: 'sebrae-three.vercel.app — Login & System Access',
+            pt: 'sebrae-three.vercel.app - Login & Acesso ao Sistema',
+            en: 'sebrae-three.vercel.app - Login & System Access',
           },
           image: LoginBlue,
           caption: {
-            pt: 'Tela de autenticação do sistema Sebrae Blue — role dentro da janela para inspecionar.',
-            en: 'Sebrae Blue authentication screen — scroll inside the frame to inspect.',
+            pt: 'Tela de autenticação do sistema Sebrae Blue.',
+            en: 'Sebrae Blue authentication screen.',
           },
         },
         {
           title: {
-            pt: 'Dashboard Principal — Visão Geral e Métricas',
-            en: 'Main Dashboard — Overview & Metrics',
+            pt: 'Dashboard Principal - Visão Geral e Métricas',
+            en: 'Main Dashboard - Overview & Metrics',
           },
           image: sebraeImg,
           caption: {
@@ -581,16 +598,174 @@ export const projects = [
     }
   },
   {
+    id: 'volcano-packaging',
+    slug: 'volcano',
+    category: 'design',
+    featured: false,
+    year: '2025',
+    accentColor: '#E11D48',
+    coverImage: volcanoFogareiro,
+    title: {
+      pt: 'Volcano — Embalagens & Catálogos',
+      en: 'Volcano — Packaging & Catalogs',
+    },
+    shortDesc: {
+      pt: 'Adaptação de embalagens industriais, manuais técnicos, moldes gráficos e tabela comercial de preços para a linha Volcano.',
+      en: 'Industrial packaging adaptations, technical manuals, print dielines, and commercial price catalog for the Volcano product line.',
+    },
+    fullDesc: {
+      pt: 'Projeto freelancer desenvolvido para a Volcano envolvendo a adequação gráfica e fechamento de embalagens (caixa do fogareiro, lata de gás, refil), diagrama de molde técnico, manual de instruções e diagramação de catálogo comercial / tabela de preços para vendas.',
+      en: 'Freelance project for Volcano covering graphic adaptation and print-ready packaging (portable stove box, gas canister, refill), technical dieline, user manual, and commercial price list catalog layout.',
+    },
+    liveUrl: null,
+    repoUrl: null,
+    techs: [
+      { name: 'Photoshop', icon: photoshopIcon },
+      { name: 'Figma', icon: figmaIcon },
+    ],
+    designShowcase: {
+      client: 'Volcano',
+      role: {
+        pt: 'Designer Gráfico Freelancer (Embalagens & Catálogos)',
+        en: 'Freelance Graphic Designer (Packaging & Catalogs)',
+      },
+      deliverables: {
+        pt: ['Embalagem Fogareiro', 'Molde & Manual', 'Lata & Refil', 'Tabela de Preços PDF'],
+        en: ['Stove Packaging', 'Dieline & Manual', 'Canister & Refill', 'Price Catalog PDF'],
+      },
+      palette: ['#E11D48', '#111827', '#F59E0B', '#F9FAFB'],
+      typography: {
+        heading: 'Montserrat',
+        body: 'Montserrat',
+      },
+      behanceBlocks: [
+        {
+          type: 'hero-image',
+          image: volcanoFogareiro,
+          caption: {
+            pt: 'Apresentação da linha de fogareiro portátil Volcano e sua aplicação visual.',
+            en: 'Showcase of the Volcano portable stove line and visual presentation.',
+          },
+        },
+        {
+          type: 'metrics',
+          items: [
+            { value: '7', label: { pt: 'Artes & Gabaritos', en: 'Artworks & Dielines' } },
+            { value: 'PDF', label: { pt: 'Tabela Comercial', en: 'Commercial Price List' } },
+            { value: '100%', label: { pt: 'Fechamento Gráfico', en: 'Print-Ready Production' } },
+          ],
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '01. Linha Fogareiro — Caixa, Molde & Manual',
+            en: '01. Stove Line — Box, Dieline & Manual',
+          },
+          body: {
+            pt: 'Adequação da caixa externa do fogareiro portátil, gabarito técnico (faca/molde) com áreas de dobra e sangria, e manual de instruções claro para o consumidor final.',
+            en: 'Adaptation of the portable stove outer box, technical print dieline with fold and bleed margins, and a clear consumer user manual.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: [
+            {
+              image: volcanoCaixa,
+              caption: {
+                pt: 'Arte final da caixa do Fogareiro Volcano',
+                en: 'Volcano Stove box final artwork',
+              },
+            },
+            {
+              image: volcanoMolde,
+              caption: {
+                pt: 'Molde técnico e gabarito de impressão',
+                en: 'Technical dieline and print template',
+              },
+            },
+            {
+              image: volcanoManual,
+              caption: {
+                pt: 'Diagramação do Manual de Instruções',
+                en: 'User Manual layout',
+              },
+            },
+          ],
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '02. Lata de Gás & Embalagens de Refil',
+            en: '02. Gas Canister & Refill Packaging',
+          },
+          body: {
+            pt: 'Adaptação da identidade visual Volcano para superfícies cilíndricas (lata) e embalagens de refil, mantendo leitura de segurança e destaque no ponto de venda.',
+            en: 'Visual identity adaptation for cylindrical gas canisters and refill packs, preserving safety legibility and retail shelf impact.',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          items: [
+            {
+              image: volcanoLata,
+              caption: {
+                pt: 'Rótulo e adaptação gráfica da Lata Volcano',
+                en: 'Volcano Gas Canister label & graphic adaptation',
+              },
+            },
+            {
+              image: volcanoRefil,
+              caption: {
+                pt: 'Embalagem Refil — Versão Principal',
+                en: 'Refill Packaging — Primary Edition',
+              },
+            },
+            {
+              image: volcanoRefil1,
+              caption: {
+                pt: 'Embalagem Refil — Variação & Detalhes',
+                en: 'Refill Packaging — Variation & Details',
+              },
+            },
+          ],
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '03. Catálogo & Tabela de Preços Comercial',
+            en: '03. Commercial Catalog & Price List',
+          },
+          body: {
+            pt: 'Diagramação do material comercial de vendas em PDF para apresentação de produtos, códigos e valores junto a distribuidores e lojistas.',
+            en: 'Layout of the commercial PDF sales catalog presenting product SKUs and pricing for distributors and retailers.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Tabela de Preços Volcano (PDF) — Role para visualizar',
+            en: 'Volcano Price List (PDF) — Scroll to inspect',
+          },
+          pdf: volcanoTabelaPdf,
+          caption: {
+            pt: 'Catálogo comercial e tabela de preços desenvolvida para a equipe de vendas Volcano.',
+            en: 'Commercial catalog and price list created for the Volcano sales team.',
+          },
+        },
+      ],
+    },
+  },
+  {
     id: 'aurea-aromas',
     slug: 'aurea',
     category: 'design',
     featured: false,
     year: '2025',
     accentColor: '#3E5F44',
-    coverImage: aureaCaixa,
+    coverImage: aurea,
     title: {
-      pt: 'Áurea — Embalagens & Rótulos',
-      en: 'Áurea — Packaging & Labels',
+      pt: 'Aurea - Embalagens & Rótulos',
+      en: 'Aurea - Packaging & Labels',
     },
     shortDesc: {
       pt: 'Sistema completo de rótulos, embalagens e gabaritos técnicos para 7 linhas de aromatização e cuidados pessoais.',
@@ -842,8 +1017,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Brandbook Digital — Role para inspecionar a identidade visual completa',
-            en: 'Brandbook Digital — Scroll to inspect the full brand identity',
+            pt: 'Brandbook Digital - Role para inspecionar a identidade visual completa',
+            en: 'Brandbook Digital - Scroll to inspect the full brand identity',
           },
           image: Brandbook,
           caption: {
@@ -873,8 +1048,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'financassemfronteira.com.br — Role para navegar pela Landing Page completa',
-            en: 'financassemfronteira.com.br — Scroll to inspect the full Landing Page',
+            pt: 'financassemfronteira.com.br - Role para navegar pela Landing Page completa',
+            en: 'financassemfronteira.com.br - Scroll to inspect the full Landing Page',
           },
           image: FinancasLP,
           caption: {
@@ -885,8 +1060,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'financassemfronteira.com.br/conversa-de-reconhecimento — Role para conhecer o RDD',
-            en: 'financassemfronteira.com.br/conversa-de-reconhecimento — Scroll to meet the RDD',
+            pt: 'financassemfronteira.com.br/conversa-de-reconhecimento - Role para conhecer o RDD',
+            en: 'financassemfronteira.com.br/conversa-de-reconhecimento - Scroll to meet the RDD',
           },
           image: rdd,
           caption: {
@@ -941,8 +1116,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Leitura do Artigo Completo no Blog — Role para inspecionar a tipografia editorial',
-            en: 'Full Blog Article View — Scroll to inspect editorial typography',
+            pt: 'Leitura do Artigo Completo no Blog - Role para inspecionar a tipografia editorial',
+            en: 'Full Blog Article View - Scroll to inspect editorial typography',
           },
           image: finSec16,
           caption: {
@@ -971,7 +1146,7 @@ export const projects = [
     },
     fullDesc: {
       pt: 'Participei da Maratona SBC de Programação em 2025 como competidor na primeira fase, me encantei pelo projeto, e a convite da Diretora de Patrocínios, Lucy Mary Tabutti, me tornei o designer oficial da edição. Desenvolvi o design da logo, mascotes, camisetas, cartazes, crachás, revista e álbum de figurinhas, todos utilizados no dia oficial da competição sediada pela FECAP.',
-      en: 'I joined the 2025 SBC Programming Marathon as a first-phase competitor, fell in love with the initiative, and at the invitation of Sponsorship Director Lucy Mary Tabutti became the official designer for the edition. I crafted the logo, mascots, t-shirts, posters, badges, official magazine, and sticker album—all deployed live at the FECAP-hosted competition.',
+      en: 'I joined the 2025 SBC Programming Marathon as a first-phase competitor, fell in love with the initiative, and at the invitation of Sponsorship Director Lucy Mary Tabutti became the official designer for the edition. I crafted the logo, mascots, t-shirts, posters, badges, official magazine, and sticker album-all deployed live at the FECAP-hosted competition.',
     },
     liveUrl: 'https://maratona.institutocriativo.org.br',
     repoUrl: null,
@@ -1023,8 +1198,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Revista Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
-            en: 'Official SBC Marathon Magazine 2025 — Scroll to inspect the full visual identity',
+            pt: 'Revista Oficial da Maratona SBC 2025 - Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Magazine 2025 - Scroll to inspect the full visual identity',
           },
           pdf: revista,
           caption: {
@@ -1035,8 +1210,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Álbum de Figurinhas Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
-            en: 'Official SBC Marathon Sticker Album 2025 — Scroll to inspect the full visual identity',
+            pt: 'Álbum de Figurinhas Oficial da Maratona SBC 2025 - Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Sticker Album 2025 - Scroll to inspect the full visual identity',
           },
           pdf: album,
           caption: {
@@ -1047,8 +1222,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Mascotes Oficiais da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
-            en: 'Official SBC Marathon Mascots 2025 — Scroll to inspect the full visual identity',
+            pt: 'Mascotes Oficiais da Maratona SBC 2025 - Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Mascots 2025 - Scroll to inspect the full visual identity',
           },
           image: Mascotes,
           caption: {
@@ -1059,8 +1234,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Wallpaper Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
-            en: 'Official SBC Marathon Wallpaper 2025 — Scroll to inspect the full visual identity',
+            pt: 'Wallpaper Oficial da Maratona SBC 2025 - Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Wallpaper 2025 - Scroll to inspect the full visual identity',
           },
           image: Wallpaper,
           caption: {
@@ -1071,8 +1246,8 @@ export const projects = [
         {
           type: 'scroll-frame',
           title: {
-            pt: 'Camisetas Oficiais da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
-            en: 'Official SBC Marathon T-Shirts 2025 — Scroll to inspect the full visual identity',
+            pt: 'Camisetas Oficiais da Maratona SBC 2025 - Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon T-Shirts 2025 - Scroll to inspect the full visual identity',
           },
           image: Camisetas,
           caption: {
@@ -1134,41 +1309,7 @@ export const projects = [
         ],
       },
       gallery: [comedoriaImg],
-    },
-    designShowcase: {
-      client: 'Comedoria da Tia — Projeto Integrador FECAP',
-      role: {
-        pt: 'UI/UX Designer & Desenvolvedor Front-End',
-        en: 'UI/UX Designer & Front-End Developer',
-      },
-      deliverables: {
-        pt: ['Pesquisa UX', 'Wireframes', 'UI Mobile & Web', 'Design System', 'Prototipação'],
-        en: ['UX Research', 'Wireframes', 'Mobile & Web UI', 'Design System', 'Prototyping'],
-      },
-      palette: ['#244F33', '#F4EFE6', '#E07A5F', '#1E1E1E', '#FFFFFF'],
-      typography: {
-        heading: 'Montserrat Bold',
-        body: 'Inter / Montserrat',
-      },
-      behanceBlocks: [
-        {
-          type: 'hero-image',
-          image: comedoriaImg,
-          caption: {
-            pt: 'Interface responsiva multi-dispositivo: experiência fluida no celular do estudante e no painel da cantina.',
-            en: 'Cross-device responsive interface: seamless experience across student mobile devices and counter displays.',
-          },
-        },
-        {
-          type: 'text-section',
-          heading: { pt: '01. Design Orientado à Agilidade', en: '01. Speed-Oriented Design' },
-          body: {
-            pt: 'A paleta verde-oliva e creme evoca comida artesanal e acolhimento, mantendo alto contraste para decisões rápidas em fila. O fluxo de compra foi reduzido para no máximo 3 toques entre escolher o lanche e confirmar o horário de retirada.',
-            en: 'The forest-green and cream palette evokes warmth and homemade food while preserving crisp contrast for rapid choices. Checkout was streamlined to at most 3 taps from menu selection to pickup confirmation.',
-          },
-        },
-      ],
-    },
+    }
   },
   {
     id: 'instituto-criativo-dashboard',
@@ -1278,8 +1419,8 @@ export const projects = [
     accentColor: '#F7DF1E',
     coverImage: petshopImg,
     title: {
-      pt: 'Pet Shop — Gestão & Agendamentos',
-      en: 'Pet Shop — Management & Scheduling',
+      pt: 'Pet Shop - Gestão & Agendamentos',
+      en: 'Pet Shop - Management & Scheduling',
     },
     shortDesc: {
       pt: 'Plataforma web completa de CRUD para cadastro de clientes, pets, histórico fotográfico e agendamento de serviços.',
@@ -1329,8 +1470,8 @@ export const projects = [
     accentColor: '#AA1719',
     coverImage: jogoImg,
     title: {
-      pt: 'O Acampamento — Text Adventure',
-      en: 'The Camp — Text Adventure',
+      pt: 'O Acampamento - Text Adventure',
+      en: 'The Camp - Text Adventure',
     },
     shortDesc: {
       pt: 'Jogo interativo de narrativa ramificada em JavaScript com múltiplos finais e sistema dinâmico de vidas.',
@@ -1379,7 +1520,7 @@ export const projects = [
     accentColor: '#E63946',
     coverImage: maeImg,
     title: {
-      pt: 'Homenagem — Dia das Mães',
+      pt: 'Homenagem - Dia das Mães',
       en: 'Mother’s Day Tribute Experience',
     },
     shortDesc: {
@@ -1418,40 +1559,6 @@ export const projects = [
         ],
       },
       gallery: [maeImg, maeAltImg],
-    },
-    designShowcase: {
-      client: 'Projeto Pessoal / Homenagem',
-      role: {
-        pt: 'Direção de Arte & Front-End',
-        en: 'Art Direction & Front-End',
-      },
-      deliverables: {
-        pt: ['Direção Visual', 'UI Afetiva', 'Desenvolvimento Web'],
-        en: ['Visual Direction', 'Emotional UI', 'Web Build'],
-      },
-      palette: ['#E63946', '#FFF1E6', '#2B2D42', '#FFB5A7'],
-      typography: {
-        heading: 'Display Editorial',
-        body: 'Montserrat',
-      },
-      behanceBlocks: [
-        {
-          type: 'hero-image',
-          image: maeImg,
-          caption: {
-            pt: 'Tela inicial da homenagem digital, equilibrando fotografia afetiva e tipografia expressiva.',
-            en: 'Hero screen of the digital tribute, balancing warm photography and expressive typography.',
-          },
-        },
-        {
-          type: 'hero-image',
-          image: maeAltImg,
-          caption: {
-            pt: 'Seções interativas e cards visuais adaptados para leitura confortável no smartphone.',
-            en: 'Interactive sections and visual cards tailored for comfortable mobile reading.',
-          },
-        },
-      ],
     },
   },
 ];

@@ -104,6 +104,7 @@ export const experiences = [
       ],
     },
     tags: ['Embalagens', 'Catálogos', 'Photoshop', 'Design Comercial'],
+    relatedProjectSlug: 'volcano',
   },
   {
     id: 'aspire-leaders-2025',
