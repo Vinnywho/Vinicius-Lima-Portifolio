@@ -27,6 +27,34 @@ export const experiences = [
     relatedProjectSlug: 'financas-sem-fronteiras',
   },
   {
+    id: 'consultor-hl-2026',
+    year: '2026',
+    period: { pt: 'Julho 2026 – 16 de Novembro 2026', en: 'July 2026 – Nov 16, 2026' },
+    category: 'career',
+    title: {
+      pt: 'Consultor de Tecnologia Autônomo — H&L',
+      en: 'Independent Technology Consultant — H&L',
+    },
+    organization: 'H&L',
+    shortDesc: {
+      pt: 'Contratado para gestão da plataforma RD Station e prestação de serviços pontuais de tecnologia, assistência técnica e instruções de uso de ferramentas digitais.',
+      en: 'Engaged to manage the RD Station platform and deliver on-demand technology services, technical support, and user guidance on digital tools.',
+    },
+    highlights: {
+      pt: [
+        'Administração, manutenção e personalização de fluxos e funis na plataforma RD Station.',
+        'Assistência técnica pontual, resolução de demandas operacionais de TI e suporte direto.',
+        'Instruções práticas e orientação da equipe para melhor uso de ferramentas tecnológicas.',
+      ],
+      en: [
+        'Administered, maintained, and customized workflows and pipelines inside RD Station.',
+        'Provided on-demand technical support, IT troubleshooting, and hands-on assistance.',
+        'Guided and trained staff on effectively using digital tools and workflows.',
+      ],
+    },
+    tags: ['RD Station', 'Consultoria Tech', 'Assistência Técnica', 'Suporte & Treinamento', 'CRM'],
+  },
+  {
     id: 'sebrae-blue-2026',
     year: '2026',
     period: { pt: '2026', en: '2026' },
@@ -164,30 +192,28 @@ export const experiences = [
   {
     id: 'freelancer-hl-2025',
     year: '2025',
-    period: { pt: 'Julho 2025 – 16 de Novembro 2025', en: 'July 2025 – Nov 16, 2025' },
+    period: { pt: '20 de Setembro 2025 – Junho 2026', en: 'Sep 20, 2025 – June 2026' },
     category: 'career',
     title: {
-      pt: 'Consultor de Tecnologia Autônomo — H&L',
-      en: 'Independent Technology Consultant — H&L',
+      pt: 'Freelancer — H&L (Automação & CRM)',
+      en: 'Freelancer — H&L (Automation & CRM)',
     },
     organization: 'H&L',
     shortDesc: {
-      pt: 'Gestão e configuração da plataforma RD Station, prestação de serviços pontuais de tecnologia, assistência técnica e orientação no uso de ferramentas digitais.',
-      en: 'Management and configuration of the RD Station platform, on-demand technology services, technical support, and user guidance on digital tools.',
+      pt: 'Atuação como freelancer em configuração inicial da plataforma de CRM (RD Station), estruturação de funis e automação de planilhas operacionais.',
+      en: 'Freelance engagement covering initial CRM (RD Station) setup, pipeline structuring, and operational spreadsheet automation.',
     },
     highlights: {
       pt: [
-        'Administração e personalização de fluxos, funis e automações na plataforma RD Station.',
-        'Assistência técnica pontual, resolução de problemas e suporte direto em demandas de tecnologia.',
-        'Instruções práticas e treinamento de uso de ferramentas tecnológicas e planilhas para a equipe.',
+        'Implantação e personalização inicial de fluxos de atendimento no CRM.',
+        'Organização e automação de planilhas gerenciais para ganho de produtividade.',
       ],
       en: [
-        'Administered and customized pipelines, workflows, and automations inside RD Station.',
-        'Provided on-demand technical support, troubleshooting, and hands-on IT assistance.',
-        'Delivered practical guidance and training on software tools and operational spreadsheets.',
+        'Implemented and customized initial customer workflows inside the CRM.',
+        'Structured and automated management spreadsheets to boost team productivity.',
       ],
     },
-    tags: ['RD Station', 'Consultoria Tech', 'Assistência Técnica', 'Suporte & Treinamento', 'CRM'],
+    tags: ['CRM', 'RD Station', 'Automação', 'Excel Avançado', 'Processos'],
   },
   {
     id: 'freelancer-volcano-2025',
