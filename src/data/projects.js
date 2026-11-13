@@ -60,6 +60,7 @@ import vercelIcon from '../assets/Icons/Vercel.svg';
 import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
 import photoshopIcon from '../assets/Icons/Photoshop.svg';
+import { buildSlides, getSinglePost } from './nucleoTechAssets';
 
 export const projects = [
   {
@@ -205,24 +206,161 @@ export const projects = [
           },
         },
         {
+          type: 'metrics',
+          items: [
+            { value: '9', label: { pt: 'Carrosséis Produzidos', en: 'Carousels Produced' } },
+            { value: '+45', label: { pt: 'Slides & Peças de Feed', en: 'Slides & Feed Assets' } },
+            { value: 'EJ', label: { pt: 'NúcleoTech FECAP', en: 'NúcleoTech FECAP' } },
+          ],
+        },
+        {
           type: 'carousel',
           heading: {
-            pt: 'Carrossel 01 — Conteúdo & Identidade NúcleoTech',
-            en: 'Carousel 01 — NúcleoTech Content & Identity',
+            pt: 'Como usar Git',
+            en: 'How to Use Git',
           },
-          slides: [
+          slides: buildSlides('ComoUsarGit', 'Como usar Git', 'How to Use Git'),
+          caption: {
+            pt: 'Guia visual prático sobre versionamento e fluxo de trabalho com Git (7 slides).',
+            en: 'Practical visual guide to version control and Git workflows (7 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Como usar IA de forma inteligente',
+            en: 'How to Use AI Smartly',
+          },
+          slides: buildSlides('ComoUsarIA', 'Como usar IA de forma inteligente', 'How to Use AI Smartly'),
+          caption: {
+            pt: 'Boas práticas e pensamento crítico no uso diário de Inteligência Artificial (5 slides).',
+            en: 'Best practices and critical thinking for daily AI usage (5 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Dicas Tech — Edição 01',
+            en: 'Tech Tips — Edition 01',
+          },
+          slides: buildSlides('DicasTech1', 'Dicas Tech 01', 'Tech Tips 01'),
+          caption: {
+            pt: 'Série de dicas rápidas sobre tecnologia, ferramentas e produtividade (6 slides).',
+            en: 'Quick tips series on technology, tools, and productivity (6 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Dicas Tech — Edição 02',
+            en: 'Tech Tips — Edition 02',
+          },
+          slides: buildSlides('DicasTech2', 'Dicas Tech 02', 'Tech Tips 02'),
+          caption: {
+            pt: 'Segunda edição da série Dicas Tech para engajamento da comunidade (6 slides).',
+            en: 'Second edition of the Tech Tips series for community engagement (6 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Dicas Tech — Edição 03',
+            en: 'Tech Tips — Edition 03',
+          },
+          slides: buildSlides('DicasTech3', 'Dicas Tech 03', 'Tech Tips 03'),
+          caption: {
+            pt: 'Terceira edição da série Dicas Tech com aprofundamento visual (7 slides).',
+            en: 'Third edition of the Tech Tips series with visual deep dives (7 slides).',
+          },
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '02. Institucional, Mascote & Processo Seletivo',
+            en: '02. Institutional, Mascot & Recruitment',
+          },
+          body: {
+            pt: 'Além dos conteúdos educativos, produzi campanhas institucionais para apresentação do mascote, divulgação de processo seletivo, parceria com empresas no Projeto Integrador 2026 e recomendações literárias.',
+            en: 'Alongside educational series, I produced institutional campaigns introducing our mascot, recruitment drives, 2026 Integrative Project corporate partnerships, and book recommendations.',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Conheça nosso Mascote',
+            en: 'Meet Our Mascot',
+          },
+          slides: buildSlides('Mascote', 'Conheça nosso Mascote', 'Meet Our Mascot'),
+          caption: {
+            pt: 'Apresentação oficial do mascote da NúcleoTech nas redes sociais (4 slides).',
+            en: 'Official social media introduction of the NúcleoTech mascot (4 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Processo Seletivo NúcleoTech',
+            en: 'NúcleoTech Recruitment',
+          },
+          slides: buildSlides('ProcessoSeletivo', 'Processo Seletivo', 'Recruitment'),
+          caption: {
+            pt: 'Campanha de captação de novos membros para a Empresa Júnior (5 slides).',
+            en: 'Campaign to attract new members to the Junior Enterprise (5 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Empresas — Projeto Integrador 2026',
+            en: 'Companies — Integrative Project 2026',
+          },
+          slides: buildSlides('PI2026', 'Empresas PI 2026', 'Companies PI 2026'),
+          caption: {
+            pt: 'Carrossel institucional voltado para empresas parceiras do PI 2026 (4 slides).',
+            en: 'Institutional carousel aimed at PI 2026 partner companies (4 slides).',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Indicação de Livro',
+            en: 'Book Recommendation',
+          },
+          slides: buildSlides('Livro', 'Indicação de Livro', 'Book Recommendation'),
+          caption: {
+            pt: 'Post editorial em carrossel com recomendação de leitura para devs (2 slides).',
+            en: 'Editorial carousel post featuring a reading recommendation for devs (2 slides).',
+          },
+        },
+        {
+          type: 'gallery-grid',
+          heading: {
+            pt: 'Peças Únicas & Comunicados de Feed',
+            en: 'Single Posts & Feed Announcements',
+          },
+          items: [
             {
-              image: nucleoTechImg,
+              image: getSinglePost('BemVindosBichos'),
               caption: {
-                pt: 'Capa / Slide 01 — Adicione aqui os próximos slides exportados do carrossel.',
-                en: 'Cover / Slide 01 — Add exported carousel slides here.',
+                pt: 'Boas-vindas aos novos ingressantes (Bixos FECAP)',
+                en: 'Welcome post for incoming freshmen (FECAP)',
+              },
+            },
+            {
+              image: getSinglePost('NotaMaxima'),
+              caption: {
+                pt: 'Comunicado especial — Nota Máxima',
+                en: 'Special announcement — Top Score',
+              },
+            },
+            {
+              image: getSinglePost('PalestraFeed'),
+              caption: {
+                pt: 'Divulgação de Palestra no Feed',
+                en: 'Talk & Event Feed Announcement',
               },
             },
           ],
-          caption: {
-            pt: 'Deslize ou use as setas/miniaturas para navegar entre os slides do carrossel.',
-            en: 'Swipe or use arrows/thumbnails to navigate through carousel slides.',
-          },
         },
       ],
     },
