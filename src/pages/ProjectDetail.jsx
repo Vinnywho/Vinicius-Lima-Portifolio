@@ -184,30 +184,38 @@ export default function ProjectDetail() {
       {gallery.length > 1 && (
         <section className="detail-box" style={{ marginBottom: '2.5rem' }}>
           <h2>{t.projectDetail.gallery}</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
-            {gallery.map((imgSrc, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className="detail-gallery-card"
-                onClick={() =>
-                  setLightboxImg({
-                    src: imgSrc,
-                    caption: `${tr(project.title)} - ${idx + 1}`,
-                  })
-                }
-                aria-label={`${tr(project.title)} - ${idx + 1}`}
-              >
-                <img
-                  src={imgSrc}
-                  alt={`${tr(project.title)} - ${idx + 1}`}
-                />
-                <span className="behance-zoom-badge">
-                  <ZoomIn size={15} />
-                  <span>{lang === 'pt' ? 'Tela cheia' : 'Fullscreen'}</span>
-                </span>
-              </button>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
+            {gallery.map((item, idx) => {
+              const imgSrc = typeof item === 'string' ? item : item.image;
+              const imgCaption =
+                typeof item === 'string'
+                  ? `${tr(project.title)} — ${String(idx + 1).padStart(2, '0')}`
+                  : tr(item.caption);
+
+              return (
+                <figure key={idx} className="behance-grid-card">
+                  <button
+                    type="button"
+                    className="detail-gallery-card"
+                    style={{ border: 'none', borderRadius: 0 }}
+                    onClick={() =>
+                      setLightboxImg({
+                        src: imgSrc,
+                        caption: imgCaption,
+                      })
+                    }
+                    aria-label={imgCaption}
+                  >
+                    <img src={imgSrc} alt={imgCaption} loading="lazy" />
+                    <span className="behance-zoom-badge">
+                      <ZoomIn size={15} />
+                      <span>{lang === 'pt' ? 'Tela cheia' : 'Fullscreen'}</span>
+                    </span>
+                  </button>
+                  <figcaption className="behance-grid-caption">{imgCaption}</figcaption>
+                </figure>
+              );
+            })}
           </div>
         </section>
       )}

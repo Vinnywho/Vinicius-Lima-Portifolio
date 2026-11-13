@@ -172,7 +172,7 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
               onLoad={(e) => {
                 const { naturalWidth, naturalHeight } = e.currentTarget;
                 setTallScrollSrc(
-                  naturalWidth > 0 && naturalHeight / naturalWidth > 1.85
+                  naturalWidth > 0 && naturalHeight / naturalWidth > 2.6
                     ? image.src
                     : null
                 );

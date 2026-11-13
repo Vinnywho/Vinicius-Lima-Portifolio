@@ -13,8 +13,8 @@ export const asaWebFrames = [
   {
     key: 'Mural.png',
     title: {
-      pt: 'asa-web-zeta.vercel.app — Mural & Visão Geral',
-      en: 'asa-web-zeta.vercel.app — Notice Board & Overview',
+      pt: 'asa-web-zeta.vercel.app - Mural & Visão Geral',
+      en: 'asa-web-zeta.vercel.app - Notice Board & Overview',
     },
     caption: {
       pt: 'Mural web principal do ecossistema ASA para comunicação e avisos.',
@@ -106,22 +106,25 @@ export const asaWebFrames = [
     caption: item.caption,
   }));
 
-const mobileOrder = [
-  'Entrada.jpeg',
-  'Onboarding1.jpeg',
-  'Onboarding2.jpeg',
-  'Onboarding3.jpeg',
-  'Home-Aluno.jpeg',
-  'Home-Funcionário.jpeg',
-  'Ficha-Aluno.jpeg',
-  'CAA.jpeg',
-  '4D.jpeg',
-  'Chat.jpeg',
-  'Docs.jpeg',
-  'Educacional.jpeg',
-  'Perfil.jpeg',
+const mobileScreens = [
+  { key: 'Entrada.jpeg', pt: 'Tela de Entrada (Splash)', en: 'Splash Screen' },
+  { key: 'Onboarding1.jpeg', pt: 'Onboarding — Boas-vindas (01/03)', en: 'Onboarding — Welcome (01/03)' },
+  { key: 'Onboarding2.jpeg', pt: 'Onboarding — Recursos (02/03)', en: 'Onboarding — Features (02/03)' },
+  { key: 'Onboarding3.jpeg', pt: 'Onboarding — Começar (03/03)', en: 'Onboarding — Get Started (03/03)' },
+  { key: 'Home-Aluno.jpeg', pt: 'Home — Visão do Aluno', en: 'Home — Student View' },
+  { key: 'Home-Funcionário.jpeg', pt: 'Home — Visão do Funcionário', en: 'Home — Staff View' },
+  { key: 'Ficha-Aluno.jpeg', pt: 'Ficha Completa do Aluno', en: 'Student Record' },
+  { key: 'CAA.jpeg', pt: 'CAA — Central de Atendimento', en: 'CAA — Support Center' },
+  { key: '4D.jpeg', pt: 'Módulo 4D (Mobile)', en: '4D Module (Mobile)' },
+  { key: 'Chat.jpeg', pt: 'Chat & Atendimento Direto', en: 'Chat & Direct Support' },
+  { key: 'Docs.jpeg', pt: 'Documentos & Solicitações', en: 'Documents & Requests' },
+  { key: 'Educacional.jpeg', pt: 'Área Educacional', en: 'Educational Area' },
+  { key: 'Perfil.jpeg', pt: 'Perfil do Usuário', en: 'User Profile' },
 ];
 
-export const asaMobileGallery = mobileOrder
-  .map((name) => byName[name])
-  .filter(Boolean);
+export const asaMobileGallery = mobileScreens
+  .filter((item) => byName[item.key])
+  .map((item) => ({
+    image: byName[item.key],
+    caption: { pt: item.pt, en: item.en },
+  }));
