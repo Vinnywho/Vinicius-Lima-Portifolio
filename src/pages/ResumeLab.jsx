@@ -174,8 +174,8 @@ export default function ResumeLab() {
           summary: 'APRESENTAÇÃO',
           education: 'FORMAÇÃO ACADÊMICA',
           experiences: 'EXPERIÊNCIA PROFISSIONAL',
-          academicExperiences: 'PROJETOS & EXPERIÊNCIA ACADÊMICA',
-          projects: 'PROJETOS SELECIONADOS',
+          academicExperiences: 'EXPERIÊNCIA ACADÊMICA',
+          projects: 'PROJETOS',
           skills: 'COMPETÊNCIAS & FERRAMENTAS',
           softSkills: 'PERFIL PROFISSIONAL & DIFERENCIAIS',
         }
@@ -183,8 +183,8 @@ export default function ResumeLab() {
           summary: 'PROFESSIONAL SUMMARY',
           education: 'EDUCATION',
           experiences: 'PROFESSIONAL EXPERIENCE',
-          academicExperiences: 'ACADEMIC PROJECTS & EXPERIENCE',
-          projects: 'SELECTED PROJECTS',
+          academicExperiences: 'ACADEMIC EXPERIENCE',
+          projects: 'PROJECTS',
           skills: 'TECHNICAL SKILLS & TOOLS',
           softSkills: 'SOFT SKILLS & LANGUAGES',
         };
@@ -369,23 +369,6 @@ export default function ResumeLab() {
             </div>
           </div>
 
-          {/* Academic Projects & Experience Selection */}
-          <div className="cvlab-field">
-            <label>{t.cvLab.fields.sections.academicExperiences}</label>
-            <div className="cvlab-checklist">
-              {academicExperiences.map((exp) => (
-                <label key={exp.id} className="cvlab-check-item">
-                  <input
-                    type="checkbox"
-                    checked={(draft.selectedAcademicExperiences || []).includes(exp.id)}
-                    onChange={() => toggleItem('selectedAcademicExperiences', exp.id)}
-                  />
-                  <span>{tr(exp.title)}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
           {/* Projects Selection */}
           <div className="cvlab-field">
             <label>{t.cvLab.fields.sections.projects}</label>
@@ -398,6 +381,23 @@ export default function ResumeLab() {
                     onChange={() => toggleItem('selectedProjects', proj.id)}
                   />
                   <span>{tr(proj.title)}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Academic Experience Selection */}
+          <div className="cvlab-field">
+            <label>{t.cvLab.fields.sections.academicExperiences}</label>
+            <div className="cvlab-checklist">
+              {academicExperiences.map((exp) => (
+                <label key={exp.id} className="cvlab-check-item">
+                  <input
+                    type="checkbox"
+                    checked={(draft.selectedAcademicExperiences || []).includes(exp.id)}
+                    onChange={() => toggleItem('selectedAcademicExperiences', exp.id)}
+                  />
+                  <span>{tr(exp.title)}</span>
                 </label>
               ))}
             </div>
@@ -530,6 +530,23 @@ export default function ResumeLab() {
               </section>
             )}
 
+            {activeProjects.length > 0 && (
+              <section className="cv-paper-section">
+                <h2>{headers.projects}</h2>
+                {activeProjects.map((proj) => (
+                  <div key={proj.id} className="cv-paper-entry">
+                    <div className="cv-paper-entry-head">
+                      <span>{resText(proj.title)}</span>
+                      <span style={{ fontWeight: 500, color: '#555' }}>
+                        {proj.techs.map((tItem) => tItem.name).join(' • ')}
+                      </span>
+                    </div>
+                    <p style={{ color: '#333', fontSize: '0.8rem' }}>{resText(proj.shortDesc)}</p>
+                  </div>
+                ))}
+              </section>
+            )}
+
             {activeAcademicExperiences.length > 0 && (
               <section className="cv-paper-section">
                 <h2>{headers.academicExperiences}</h2>
@@ -544,23 +561,6 @@ export default function ResumeLab() {
                     <p style={{ color: '#333', fontSize: '0.8rem', marginTop: '0.15rem' }}>
                       {resText(exp.shortDesc)}
                     </p>
-                  </div>
-                ))}
-              </section>
-            )}
-
-            {activeProjects.length > 0 && (
-              <section className="cv-paper-section">
-                <h2>{headers.projects}</h2>
-                {activeProjects.map((proj) => (
-                  <div key={proj.id} className="cv-paper-entry">
-                    <div className="cv-paper-entry-head">
-                      <span>{resText(proj.title)}</span>
-                      <span style={{ fontWeight: 500, color: '#555' }}>
-                        {proj.techs.map((tItem) => tItem.name).join(' • ')}
-                      </span>
-                    </div>
-                    <p style={{ color: '#333', fontSize: '0.8rem' }}>{resText(proj.shortDesc)}</p>
                   </div>
                 ))}
               </section>
