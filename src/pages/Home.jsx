@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Download, ArrowDown, MessageCircle } from 'lucide-react';
+import { Download, ArrowDown, MessageCircle, SprayCan, ArrowUpRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { profile } from '../data/profile';
 import { projects } from '../data/projects';
@@ -18,7 +18,7 @@ import portrait from '../assets/images/portrait.png';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const { mode, t } = useApp();
+  const { mode, lang, t, navigateWithTransition } = useApp();
   const rootRef = useRef(null);
 
   // Filter projects coherently per active facet (Dev vs Design)
@@ -182,6 +182,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SPRAY LAB INVITE (DESIGN MODE ONLY) */}
+      {mode === 'design' && (
+        <section className="spray-invite-section container">
+          <div className="spray-invite-card gsap-reveal">
+            <div className="spray-invite-content">
+              <div className="spray-invite-badge">
+                <SprayCan size={16} />
+                <span>
+                  {lang === 'pt' ? 'SPRAY LAB • MURAL INTERATIVO' : 'SPRAY LAB • INTERACTIVE CANVAS'}
+                </span>
+              </div>
+              <h2 className="spray-invite-title">
+                {lang === 'pt'
+                  ? 'Teste sua criatividade no Spray Lab'
+                  : 'Test your creativity in Spray Lab'}
+              </h2>
+              <p className="spray-invite-desc">
+                {lang === 'pt'
+                  ? 'Escolha suas cores, desenhe com física real de tinta escorrendo e crie sua própria arte urbana direto na tela.'
+                  : 'Pick your colors, draw with realistic paint-drip physics, and craft your own street art right on screen.'}
+              </p>
+            </div>
+            <Link
+              to="/spray-lab"
+              onClick={(e) => {
+                e.preventDefault();
+                navigateWithTransition('/spray-lab');
+              }}
+              className="btn-primary spray-invite-cta"
+            >
+              <SprayCan size={18} />
+              <span>{lang === 'pt' ? 'Abrir Spray Lab' : 'Open Spray Lab'}</span>
+              <ArrowUpRight size={17} />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* INTERACTIVE TIMELINE */}
       <Timeline />
