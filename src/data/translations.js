@@ -137,9 +137,9 @@ export const translations = {
       introTitleDev: 'WEB, MOBILE & SISTEMAS',
       introTitleDesign: 'UI/UX, MARCAS & IDENTIDADE',
       introDescDev:
-        'Desenvolvo aplicações web e mobile com React, React Native, JavaScript, Python, C# e bancos em nuvem — unindo interface clara, automação e solução real.',
+        'Desenvolvo aplicações web e mobile com React, React Native, JavaScript, Python, C# e bancos em nuvem, unindo interface clara, automação e solução real.',
       introDescDesign:
-        'Crio interfaces no Figma, identidades visuais, embalagens, revistas e peças digitais — conectando direção de arte, usabilidade e cultura urbana.',
+        'Crio interfaces no Figma, identidades visuais, embalagens, revistas e peças digitais - conectando direção de arte, usabilidade e cultura urbana.',
       scrollHint: 'Role para navegar horizontalmente',
       mobileSwipeHint: '← Deslize para ver os pilares →',
       outroBadge: 'PRÓXIMO PASSO',
@@ -172,7 +172,7 @@ export const translations = {
           id: '04',
           badge: 'Direção de Arte',
           title: 'Design Gráfico & Cultura Urbana',
-          desc: 'Identidade visual, embalagens, editoriais, social media e mascotes com personalidade própria — unindo técnica visual à estética do graffiti.',
+          desc: 'Identidade visual, embalagens, editoriais, social media e mascotes com personalidade própria, unindo técnica visual à estética.',
           highlight: 'Designer Oficial da Maratona SBC 2025.',
         },
       ],
@@ -203,7 +203,8 @@ export const translations = {
         cvLang: 'Idioma do Currículo',
         sections: {
           education: 'Formação Acadêmica',
-          experiences: 'Experiências Profissionais',
+          experiences: 'Experiência Profissional',
+          academicExperiences: 'Projetos & Experiência Acadêmica',
           projects: 'Projetos Relevantes',
           devSkills: 'Stack Técnica (Dev)',
           designSkills: 'Ferramentas de Design',
@@ -213,7 +214,8 @@ export const translations = {
       previewHeaders: {
         summary: 'APRESENTAÇÃO',
         education: 'FORMAÇÃO ACADÊMICA',
-        experiences: 'EXPERIÊNCIAS PROFISSIONAIS E ACADÊMICAS',
+        experiences: 'EXPERIÊNCIA PROFISSIONAL',
+        academicExperiences: 'PROJETOS & EXPERIÊNCIA ACADÊMICA',
         projects: 'PROJETOS DE DESTAQUE',
         skills: 'COMPETÊNCIAS & FERRAMENTAS',
         softSkills: 'PERFIL PROFISSIONAL & DIFERENCIAIS',
@@ -386,9 +388,9 @@ export const translations = {
       introTitleDev: 'WEB, MOBILE & SYSTEMS',
       introTitleDesign: 'UI/UX, BRANDS & IDENTITY',
       introDescDev:
-        'I build web and mobile applications with React, React Native, JavaScript, Python, C#, and cloud databases — combining clean UI, automation, and real-world utility.',
+        'I build web and mobile applications with React, React Native, JavaScript, Python, C#, and cloud databases - combining clean UI, automation, and real-world utility.',
       introDescDesign:
-        'I design Figma interfaces, visual identities, packaging, magazines, and digital assets — connecting art direction, usability, and street culture.',
+        'I design Figma interfaces, visual identities, packaging, magazines, and digital assets - connecting art direction, usability, and street culture.',
       scrollHint: 'Scroll to explore horizontally',
       mobileSwipeHint: '← Swipe to explore the pillars →',
       outroBadge: 'NEXT STEP',
@@ -421,7 +423,7 @@ export const translations = {
           id: '04',
           badge: 'Art Direction',
           title: 'Graphic Design & Street Culture',
-          desc: 'Brand identities, packaging, editorials, social media, and original mascots — blending visual craft with authentic urban graffiti aesthetics.',
+          desc: 'Brand identities, packaging, editorials, social media, and original mascots blending visual craft with authentic urban graffiti aesthetics.',
           highlight: 'Official Designer for SBC Marathon 2025.',
         },
       ],
@@ -452,7 +454,8 @@ export const translations = {
         cvLang: 'Resume Language',
         sections: {
           education: 'Education',
-          experiences: 'Work & Academic Experience',
+          experiences: 'Professional Experience',
+          academicExperiences: 'Academic Projects & Experience',
           projects: 'Selected Projects',
           devSkills: 'Tech Stack (Dev)',
           designSkills: 'Design Tools',
@@ -462,7 +465,8 @@ export const translations = {
       previewHeaders: {
         summary: 'SUMMARY',
         education: 'EDUCATION',
-        experiences: 'EXPERIENCE & ACADEMIC PROJECTS',
+        experiences: 'PROFESSIONAL EXPERIENCE',
+        academicExperiences: 'ACADEMIC PROJECTS & EXPERIENCE',
         projects: 'FEATURED PROJECTS',
         skills: 'TECHNICAL SKILLS & TOOLS',
         softSkills: 'SOFT SKILLS & LANGUAGES',

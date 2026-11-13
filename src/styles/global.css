@@ -2954,6 +2954,19 @@
     color: #333;
   }
 
+  .cv-paper-contact a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.25);
+    text-underline-offset: 2px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  .cv-paper-contact a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
   .cv-paper-section {
     margin-bottom: 1rem;
   }

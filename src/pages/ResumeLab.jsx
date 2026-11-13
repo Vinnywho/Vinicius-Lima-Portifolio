@@ -9,6 +9,26 @@ import { skills, designCapabilities } from '../data/skills';
 
 const STORAGE_KEY = 'vinicius-cv-lab-draft-v1';
 
+const ACADEMIC_EXPERIENCE_IDS = new Set([
+  'fecap-pi5-asa-2026',
+  'nucleotech-ej-2026',
+  'fecap-cases-2026',
+  'maratona-sbc-2025',
+  'aspire-leaders-2025',
+  'fecap-pi3-comedoria-2025',
+  'fecap-pi2-instituto-criativo-2025',
+  'fecap-pi1-bea-2024',
+  'fecap-ingresso-2024',
+  'etec-adm-conclusao-2024',
+  'informatica-basica-2013',
+]);
+
+const isAcademicExperience = (exp) =>
+  exp.scope === 'academic' || ACADEMIC_EXPERIENCE_IDS.has(exp.id);
+
+const professionalExperiences = experiences.filter((e) => !isAcademicExperience(e));
+const academicExperiences = experiences.filter((e) => isAcademicExperience(e));
+
 function buildPreset(presetType, cvLang) {
   const allEdu = profile.education.map((e) => e.id);
   const allSoft = profile.softSkills.map((s) => s.id);
@@ -17,10 +37,13 @@ function buildPreset(presetType, cvLang) {
     return {
       cvLang,
       layoutStyle: 'classic',
-      targetRole: cvLang === 'pt' ? 'DESENVOLVEDOR FRONT-END' : 'FRONT-END DEVELOPER',
+      targetRole: cvLang === 'pt' ? 'DESENVOLVEDOR FULL-STACK' : 'FULL-STACK DEVELOPER',
       summary: profile.cvSummaries.dev[cvLang],
       selectedEducation: allEdu.slice(0, 2),
-      selectedExperiences: experiences
+      selectedExperiences: professionalExperiences
+        .filter((e) => e.category === 'tech' || e.category === 'career')
+        .map((e) => e.id),
+      selectedAcademicExperiences: academicExperiences
         .filter((e) => e.category === 'tech' || e.category === 'career')
         .map((e) => e.id),
       selectedProjects: projects
@@ -40,7 +63,10 @@ function buildPreset(presetType, cvLang) {
       targetRole: cvLang === 'pt' ? 'DESIGNER UI/UX & GRÁFICO' : 'UI/UX & GRAPHIC DESIGNER',
       summary: profile.cvSummaries.design[cvLang],
       selectedEducation: allEdu.slice(0, 2),
-      selectedExperiences: experiences
+      selectedExperiences: professionalExperiences
+        .filter((e) => e.category === 'design' || e.category === 'career')
+        .map((e) => e.id),
+      selectedAcademicExperiences: academicExperiences
         .filter((e) => e.category === 'design' || e.category === 'career')
         .map((e) => e.id),
       selectedProjects: projects
@@ -62,7 +88,8 @@ function buildPreset(presetType, cvLang) {
         : 'FRONT-END DEVELOPER & UI/UX DESIGNER',
     summary: profile.cvSummaries.hybrid[cvLang],
     selectedEducation: allEdu,
-    selectedExperiences: experiences.map((e) => e.id),
+    selectedExperiences: professionalExperiences.map((e) => e.id),
+    selectedAcademicExperiences: academicExperiences.map((e) => e.id),
     selectedProjects: projects.map((p) => p.id),
     selectedDevSkills: skills.map((s) => s.id),
     selectedDesignSkills: designCapabilities.map((d) => d.id),
@@ -76,7 +103,21 @@ export default function ResumeLab() {
   const [draft, setDraft] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (!Array.isArray(parsed.selectedAcademicExperiences)) {
+          const prevSelected = Array.isArray(parsed.selectedExperiences)
+            ? parsed.selectedExperiences
+            : [];
+          parsed.selectedExperiences = prevSelected.filter(
+            (id) => !ACADEMIC_EXPERIENCE_IDS.has(id)
+          );
+          parsed.selectedAcademicExperiences = prevSelected.filter((id) =>
+            ACADEMIC_EXPERIENCE_IDS.has(id)
+          );
+        }
+        return parsed;
+      }
     } catch {
       // ignore
     }
@@ -132,7 +173,8 @@ export default function ResumeLab() {
       ? {
           summary: 'APRESENTAÇÃO',
           education: 'FORMAÇÃO ACADÊMICA',
-          experiences: 'EXPERIÊNCIAS PROFISSIONAIS E ACADÊMICAS',
+          experiences: 'EXPERIÊNCIA PROFISSIONAL',
+          academicExperiences: 'PROJETOS & EXPERIÊNCIA ACADÊMICA',
           projects: 'PROJETOS SELECIONADOS',
           skills: 'COMPETÊNCIAS & FERRAMENTAS',
           softSkills: 'PERFIL PROFISSIONAL & DIFERENCIAIS',
@@ -140,7 +182,8 @@ export default function ResumeLab() {
       : {
           summary: 'PROFESSIONAL SUMMARY',
           education: 'EDUCATION',
-          experiences: 'WORK & ACADEMIC EXPERIENCE',
+          experiences: 'PROFESSIONAL EXPERIENCE',
+          academicExperiences: 'ACADEMIC PROJECTS & EXPERIENCE',
           projects: 'SELECTED PROJECTS',
           skills: 'TECHNICAL SKILLS & TOOLS',
           softSkills: 'SOFT SKILLS & LANGUAGES',
@@ -149,8 +192,11 @@ export default function ResumeLab() {
   const activeEducation = profile.education.filter((e) =>
     draft.selectedEducation.includes(e.id)
   );
-  const activeExperiences = experiences.filter((e) =>
+  const activeExperiences = professionalExperiences.filter((e) =>
     draft.selectedExperiences.includes(e.id)
+  );
+  const activeAcademicExperiences = academicExperiences.filter((e) =>
+    (draft.selectedAcademicExperiences || []).includes(e.id)
   );
   const activeProjects = projects.filter((p) =>
     draft.selectedProjects.includes(p.id)
@@ -306,16 +352,33 @@ export default function ResumeLab() {
             </div>
           </div>
 
-          {/* Experiences Selection */}
+          {/* Professional Experiences Selection */}
           <div className="cvlab-field">
             <label>{t.cvLab.fields.sections.experiences}</label>
             <div className="cvlab-checklist">
-              {experiences.map((exp) => (
+              {professionalExperiences.map((exp) => (
                 <label key={exp.id} className="cvlab-check-item">
                   <input
                     type="checkbox"
                     checked={draft.selectedExperiences.includes(exp.id)}
                     onChange={() => toggleItem('selectedExperiences', exp.id)}
+                  />
+                  <span>{tr(exp.title)}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Academic Projects & Experience Selection */}
+          <div className="cvlab-field">
+            <label>{t.cvLab.fields.sections.academicExperiences}</label>
+            <div className="cvlab-checklist">
+              {academicExperiences.map((exp) => (
+                <label key={exp.id} className="cvlab-check-item">
+                  <input
+                    type="checkbox"
+                    checked={(draft.selectedAcademicExperiences || []).includes(exp.id)}
+                    onChange={() => toggleItem('selectedAcademicExperiences', exp.id)}
                   />
                   <span>{tr(exp.title)}</span>
                 </label>
@@ -405,13 +468,23 @@ export default function ResumeLab() {
               <div className="cv-paper-contact">
                 <span>{profile.location}</span>
                 <span>•</span>
-                <span>{profile.phoneDisplay}</span>
+                <a
+                  href={`https://wa.me/${profile.whatsappNumber}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {profile.phoneDisplay}
+                </a>
                 <span>•</span>
-                <span>{profile.email}</span>
+                <a href={`mailto:${profile.email}`}>{profile.email}</a>
                 <span>•</span>
-                <span>github.com/Vinnywho</span>
+                <a href={profile.links.github} target="_blank" rel="noreferrer">
+                  github.com/Vinnywho
+                </a>
                 <span>•</span>
-                <span>linkedin.com/in/vinicius-cardoso-de-lima</span>
+                <a href={profile.links.linkedin} target="_blank" rel="noreferrer">
+                  linkedin.com/in/vinicius-cardoso-de-lima
+                </a>
               </div>
             </header>
 
@@ -445,7 +518,26 @@ export default function ResumeLab() {
                   <div key={exp.id} className="cv-paper-entry">
                     <div className="cv-paper-entry-head">
                       <span>
-                        {resText(exp.title)} — <em style={{ fontWeight: 500 }}>{exp.organization}</em>
+                        {resText(exp.title)} - <em style={{ fontWeight: 500 }}>{exp.organization}</em>
+                      </span>
+                      <span style={{ fontWeight: 500, color: '#555' }}>{resText(exp.period)}</span>
+                    </div>
+                    <p style={{ color: '#333', fontSize: '0.8rem', marginTop: '0.15rem' }}>
+                      {resText(exp.shortDesc)}
+                    </p>
+                  </div>
+                ))}
+              </section>
+            )}
+
+            {activeAcademicExperiences.length > 0 && (
+              <section className="cv-paper-section">
+                <h2>{headers.academicExperiences}</h2>
+                {activeAcademicExperiences.map((exp) => (
+                  <div key={exp.id} className="cv-paper-entry">
+                    <div className="cv-paper-entry-head">
+                      <span>
+                        {resText(exp.title)} - <em style={{ fontWeight: 500 }}>{exp.organization}</em>
                       </span>
                       <span style={{ fontWeight: 500, color: '#555' }}>{resText(exp.period)}</span>
                     </div>
