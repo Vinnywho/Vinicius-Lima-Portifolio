@@ -23,7 +23,7 @@ export default function ScrollFrame({
           <span />
         </div>
         <span className="behance-browser-title">{title || defaultTitle}</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+        <div className="behance-browser-actions">
           {pdf && (
             <a
               href={pdf}

@@ -2102,6 +2102,8 @@
   /* Frame de navegador rolável para Full-Page Mockups */
   .behance-scroll-block {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2109,6 +2111,8 @@
 
   .behance-browser-bar {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2118,6 +2122,7 @@
     border: 1.5px solid var(--border-color);
     border-bottom: none;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
+    overflow: hidden;
   }
 
   .behance-browser-dots {
@@ -2145,12 +2150,37 @@
   }
 
   .behance-browser-title {
+    flex: 1;
+    min-width: 0;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-secondary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .behance-browser-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .behance-browser-bar {
+      padding: 0.55rem 0.7rem;
+      gap: 0.5rem;
+    }
+
+    .behance-browser-dots {
+      display: none;
+    }
+
+    .behance-expand-btn {
+      padding: 0.28rem 0.55rem;
+      font-size: 0.7rem;
+    }
   }
 
   .behance-expand-btn {
