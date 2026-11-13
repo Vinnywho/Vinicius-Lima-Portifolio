@@ -47,6 +47,7 @@ import pin from '../assets/images/Projetos/Duca/pin.png';
 import placa from '../assets/images/Projetos/Duca/placa.png';
 import sacola from '../assets/images/Projetos/Duca/sacola.png';
 import aurea from '../assets/images/Projetos/Aurea/Aurea.png';
+import Asa from '../assets/images/Projetos/ASA-App/ASA.png';
 
 import cppIcon from '../assets/Icons/C++.svg';
 import jsIcon from '../assets/Icons/JS.svg';
@@ -71,7 +72,7 @@ import volcanoLata from '../assets/images/Projetos/Volcano/Lata.png';
 import volcanoRefil from '../assets/images/Projetos/Volcano/Refil.png';
 import volcanoRefil1 from '../assets/images/Projetos/Volcano/Refil-1.png';
 import volcanoTabelaPdf from '../assets/images/Projetos/Volcano/Tabela-de-precos.pdf';
-import { asaCover, asaWebFrames, asaMobileGallery } from './asaAssets';
+import { asaWebFrames, asaMobileGallery } from './asaAssets';
 
 export const projects = [
   {
@@ -505,19 +506,19 @@ export const projects = [
     category: 'dev',
     featured: true,
     year: '2026',
-    accentColor: '#0066FF',
-    coverImage: asaCover,
+    accentColor: '#00AB7E',
+    coverImage: Asa,
     title: {
-      pt: 'ASA — App & Plataforma Web',
-      en: 'ASA — App & Web Platform',
+      pt: 'Projeto Integrador V - ASA - App & Plataforma Web',
+      en: 'Projeto Integrador V - ASA - App & Web Platform',
     },
     shortDesc: {
       pt: 'Projeto Integrador V (5º Semestre): ecossistema completo de atendimento, triagem, mural, visão 360° e agente inteligente para Web e Mobile.',
       en: 'Integrative Project V (5th Semester): full support, triage, notice board, 360° view, and intelligent agent ecosystem for Web and Mobile.',
     },
     fullDesc: {
-      pt: 'Desenvolvido como Projeto Integrador V no 5º semestre de Ciência da Computação na FECAP, o ASA integra uma plataforma web administrativa completa (Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente Inteligente) a um aplicativo mobile dedicado para alunos e funcionários.',
-      en: 'Built as Integrative Project V in the 5th semester of Computer Science at FECAP, ASA connects a comprehensive administrative web platform (Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D-ADM, Algebra, and Intelligent Agent) with a dedicated mobile app for students and staff.',
+      pt: 'Desenvolvido como Projeto Integrador V no 5º semestre de Ciência da Computação na FECAP, o ASA-App integra uma plataforma web administrativa completa (Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente Inteligente) a um aplicativo mobile dedicado para alunos e funcionários com agentes de Inteligência Artificial Assistênciando tanto no atendimento quanto na análise.',
+      en: 'Developed as Integrative Project V in the 5th semester of Computer Science at FECAP, ASA-App integrates a full administrative web platform (Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D-ADM, Algebra, and Intelligent Agent) with a dedicated mobile app for students and staff, featuring AI Assistants to support both service and analysis.',
     },
     liveUrl: 'https://asa-web-zeta.vercel.app/',
     repoUrl: 'https://github.com/2026-2-NCC5/Projeto1',
@@ -539,14 +540,14 @@ export const projects = [
       },
       highlights: {
         pt: [
-          '8 módulos web em produção: Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente.',
-          '13 telas mobile cobrindo Entrada, Onboarding, Home Aluno/Funcionário, Ficha do Aluno, CAA, 4D, Chat, Docs, Educacional e Perfil.',
-          'Projeto Integrador V (5º Semestre — FECAP) com código aberto no GitHub e plataforma web online na Vercel.',
+          'Módulos web em produção: Mural, Visão 360°, Triagem, Senhas, Documentos, 4D-ADM, Álgebra e Agente.',
+          'Telas mobile cobrindo Entrada, Onboarding, Home Aluno/Funcionário, Ficha do Aluno, CAA, 4D, Chat, Docs, Educacional e Perfil.',
+          'Projeto Integrador V (5º Semestre - FECAP) com código aberto no GitHub e plataforma web online na Vercel.',
         ],
         en: [
           '8 live web modules: Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D-ADM, Algebra, and Agent.',
           '13 mobile screens spanning Splash, Onboarding, Student/Staff Home, Student Record, CAA, 4D, Chat, Docs, Educational, and Profile.',
-          'Integrative Project V (5th Semester — FECAP) with open-source repository on GitHub and live web deployment on Vercel.',
+          'Integrative Project V (5th Semester - FECAP) with open-source repository on GitHub and live web deployment on Vercel.',
         ],
       },
       scrollFrames: asaWebFrames,

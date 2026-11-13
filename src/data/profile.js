@@ -19,7 +19,7 @@ export const profile = {
   education: [
     {
       id: 'fecap-cc',
-      institution: 'FECAP — Fundação Escola de Comércio Álvares Penteado',
+      institution: 'FECAP - Fundação Escola de Comércio Álvares Penteado',
       course: {
         pt: 'Bacharelado em Ciência da Computação (4º Semestre)',
         en: 'B.Sc. in Computer Science (4th Semester)',

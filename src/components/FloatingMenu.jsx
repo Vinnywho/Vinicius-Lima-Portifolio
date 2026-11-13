@@ -125,7 +125,7 @@ export default function FloatingMenu() {
           type="button"
           className="floating-brand-badge"
           onClick={() => goToRoute('/')}
-          aria-label="Vinicius Lima — Home"
+          aria-label="Vinicius Lima - Home"
         >
           <span className="brand-dot" aria-hidden="true" />
           <span className="brand-name-text">Vinicius Lima</span>

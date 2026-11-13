@@ -12,25 +12,25 @@ function getVariantCaption(filename, ptLine, enLine) {
   const lower = filename.toLowerCase();
   if (lower.includes('medidas')) {
     return {
-      pt: `${ptLine} — Medidas & Gabarito Técnico`,
-      en: `${enLine} — Dimensions & Technical Spec`,
+      pt: `${ptLine} - Medidas & Gabarito Técnico`,
+      en: `${enLine} - Dimensions & Technical Spec`,
     };
   }
   if (lower.includes('creme') || lower.includes('off white')) {
     return {
-      pt: `${ptLine} — Versão Creme / Off-White`,
-      en: `${enLine} — Cream / Off-White Edition`,
+      pt: `${ptLine} - Versão Creme / Off-White`,
+      en: `${enLine} - Cream / Off-White Edition`,
     };
   }
   if (lower.includes('verde')) {
     return {
-      pt: `${ptLine} — Versão Verde Botânico`,
-      en: `${enLine} — Botanical Green Edition`,
+      pt: `${ptLine} - Versão Verde Botânico`,
+      en: `${enLine} - Botanical Green Edition`,
     };
   }
   return {
-    pt: `${ptLine} — Versão Transparente`,
-    en: `${enLine} — Transparent Edition`,
+    pt: `${ptLine} - Versão Transparente`,
+    en: `${enLine} - Transparent Edition`,
   };
 }
 

@@ -142,7 +142,7 @@ export default function ModeTransition() {
           ) : (
             <div className="badge-dev-mode">
               <span className="badge-dev-sub">&gt; INITIALIZING RUNTIME...</span>
-              <h2 className="badge-dev-title">&lt;FRONT-END /&gt;</h2>
+              <h2 className="badge-dev-title">&lt;FULL-STACK /&gt;</h2>
             </div>
           )}
         </div>

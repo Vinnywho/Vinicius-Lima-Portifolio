@@ -39,8 +39,8 @@ export function buildSlides(folderName, ptPrefix, enPrefix) {
   return getFolderSlides(folderName).map((image, idx) => ({
     image,
     caption: {
-      pt: `${ptPrefix} — Slide ${String(idx + 1).padStart(2, '0')}`,
-      en: `${enPrefix} — Slide ${String(idx + 1).padStart(2, '0')}`,
+      pt: `${ptPrefix} - Slide ${String(idx + 1).padStart(2, '0')}`,
+      en: `${enPrefix} - Slide ${String(idx + 1).padStart(2, '0')}`,
     },
   }));
 }

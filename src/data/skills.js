@@ -23,7 +23,7 @@ export const skills = [
     icon: reactIcon,
     mode: 'dev',
     category: { pt: 'Front-End', en: 'Front-End' },
-    level: 90,
+    level: 80,
     color: '#61DAFB',
     description: {
       pt: 'SPAs modernas, hooks customizados, Context API, arquitetura de componentes escalável e integração com GSAP.',
@@ -51,7 +51,7 @@ export const skills = [
     icon: csharpIcon,
     mode: 'dev',
     category: { pt: 'Linguagem & Back-End', en: 'Language & Back-End' },
-    level: 82,
+    level: 60,
     color: '#9B4F96',
     description: {
       pt: 'Lógica orientada a objetos (POO), desenvolvimento de APIs e integração de dados com Microsoft Azure.',
@@ -65,7 +65,7 @@ export const skills = [
     icon: cppIcon,
     mode: 'dev',
     category: { pt: 'IoT & Microprocessadores', en: 'IoT & Microprocessors' },
-    level: 78,
+    level: 30,
     color: '#00599C',
     description: {
       pt: 'Programação de microcontroladores (Arduino & ESP32), leitura contínua de sensores infravermelhos e motores de passo.',
@@ -79,7 +79,7 @@ export const skills = [
     icon: cIcon,
     mode: 'dev',
     category: { pt: 'Linguagem & Fundamentos', en: 'Language & Fundamentals' },
-    level: 75,
+    level: 20,
     color: '#00599C',
     description: {
       pt: 'Estruturas de dados fundamentais, ponteiros, alocação de memória e algoritmos de base na FECAP.',
@@ -93,7 +93,7 @@ export const skills = [
     icon: pythonIcon,
     mode: 'dev',
     category: { pt: 'Linguagem & Automação', en: 'Language & Automation' },
-    level: 76,
+    level: 75,
     color: '#3776AB',
     description: {
       pt: 'Scripts de automação, manipulação de dados, prototipagem ágil e algoritmos acadêmicos.',
@@ -107,7 +107,7 @@ export const skills = [
     icon: javaIcon,
     mode: 'dev',
     category: { pt: 'Mobile & POO', en: 'Mobile & OOP' },
-    level: 76,
+    level: 40,
     color: '#ED8B00',
     description: {
       pt: 'Desenvolvimento Android Studio nativo, princípios de POO e integração mobile com APIs REST.',
@@ -121,7 +121,7 @@ export const skills = [
     icon: androidStudioIcon,
     mode: 'dev',
     category: { pt: 'Desenvolvimento Mobile', en: 'Mobile Development' },
-    level: 78,
+    level: 50,
     color: '#3DDC84',
     description: {
       pt: 'Criação de aplicativos mobile para Android (Java/React Native), emuladores, ciclo de vida e layouts XML.',
@@ -163,7 +163,7 @@ export const skills = [
     icon: mysqlIcon,
     mode: 'dev',
     category: { pt: 'Banco de Dados', en: 'Database' },
-    level: 80,
+    level: 50,
     color: '#4479A1',
     description: {
       pt: 'Modelagem relacional, consultas normalizadas, CRUD e persistência para sistemas de gestão.',
@@ -177,7 +177,7 @@ export const skills = [
     icon: supabaseIcon,
     mode: 'dev',
     category: { pt: 'BaaS & PostgreSQL', en: 'BaaS & PostgreSQL' },
-    level: 82,
+    level: 80,
     color: '#3ECF8E',
     description: {
       pt: 'PostgreSQL em nuvem, realtime database subscriptions, autenticação de usuários e cloud storage.',
@@ -191,7 +191,7 @@ export const skills = [
     icon: azureIcon,
     mode: 'dev',
     category: { pt: 'Cloud & Infra', en: 'Cloud & Infra' },
-    level: 74,
+    level: 30,
     color: '#0078D4',
     description: {
       pt: 'Hospedagem de serviços corporativos acadêmicos, bancos gerenciados e deploy de aplicações.',
@@ -205,7 +205,7 @@ export const skills = [
     icon: vercelIcon,
     mode: 'dev',
     category: { pt: 'Deploy & Edge', en: 'Deploy & Edge' },
-    level: 88,
+    level: 85,
     color: '#FFFFFF',
     description: {
       pt: 'Deploy contínuo integrado ao GitHub, gerenciamento de domínios customizados e build edge otimizado.',
@@ -219,7 +219,7 @@ export const skills = [
     icon: githubIcon,
     mode: 'dev',
     category: { pt: 'Versionamento', en: 'Version Control' },
-    level: 88,
+    level: 80,
     color: '#F05032',
     description: {
       pt: 'Fluxos de branch (Git Flow), pull requests, resolução de conflitos e histórico de commits limpo.',
@@ -235,7 +235,7 @@ export const designCapabilities = [
     name: 'Figma',
     icon: figmaIcon,
     color: '#F24E1E',
-    level: 94,
+    level: 95,
     description: {
       pt: 'Prototipagem interativa, Design Systems com tokens, Auto Layout responsivo e handoff milimétrico para código.',
       en: 'Interactive prototyping, token-based Design Systems, responsive Auto Layout, and precise dev handoff.',
@@ -247,7 +247,7 @@ export const designCapabilities = [
     name: 'Adobe Photoshop',
     icon: photoshopIcon,
     color: '#31A8FF',
-    level: 88,
+    level: 70,
     description: {
       pt: 'Manipulação de imagens, criação de mockups realistas, tratamento de fotos, embalagens comerciais e peças para impressão.',
       en: 'Image manipulation, realistic mockups, photo retouching, commercial packaging, and print collateral.',
@@ -258,7 +258,7 @@ export const designCapabilities = [
     name: 'UI/UX Design',
     icon: figmaIcon,
     color: '#0066FF',
-    level: 93,
+    level: 90,
     description: {
       pt: 'Pesquisa com usuários, mapeamento de jornadas, wireframing de alta fidelidade e interfaces digitais fluidas.',
       en: 'User research, journey mapping, high-fidelity wireframing, and fluid digital interface design.',
@@ -269,7 +269,7 @@ export const designCapabilities = [
     name: 'Identidade Visual & Grafite',
     icon: photoshopIcon,
     color: '#AA1719',
-    level: 92,
+    level: 85,
     description: {
       pt: 'Criação de marcas, mascotes, tipografia expressiva e sistemas visuais completos para eventos e iniciativas corporativas.',
       en: 'Branding, mascots, expressive typography, and comprehensive visual systems for events and corporate brands.',
@@ -280,7 +280,7 @@ export const designCapabilities = [
     name: 'Design Editorial & Gráfico',
     icon: figmaIcon,
     color: '#0052CC',
-    level: 90,
+    level: 70,
     description: {
       pt: 'Diagramação de revistas completas, álbuns de figurinhas colecionáveis, catálogos de venda, crachás e cartazes.',
       en: 'Complete magazine layout, collectible sticker albums, sales catalogs, badges, and exhibition posters.',
@@ -291,7 +291,7 @@ export const designCapabilities = [
     name: 'Embalagens & Catálogos',
     icon: photoshopIcon,
     color: '#2563EB',
-    level: 86,
+    level: 75,
     description: {
       pt: 'Adequação gráfica de embalagens para linhas industriais e confecção de catálogos comerciais de vendas (Volcano).',
       en: 'Product line packaging design and commercial sales catalogs tailored for retail performance (Volcano).',

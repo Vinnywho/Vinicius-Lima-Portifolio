@@ -7,8 +7,8 @@ export const faqItems = [
       en: 'What is your current availability and preferred work engagement model?',
     },
     answer: {
-      pt: 'Estou no 5º semestre de Ciência da Computação na FECAP (bolsa integral Prouni) e disponível para vagas de Estágio ou Desenvolvedor Júnior (Front-End, Mobile ou UI/UX), além de projetos Freelance em desenvolvimento, design gráfico e consultoria tecnológica. Atuo em modelo remoto, híbrido ou presencial em São Paulo capital.',
-      en: 'I am in my 5th semester of Computer Science at FECAP (full Prouni scholarship) and available for Internship or Junior Developer roles (Front-End, Mobile, or UI/UX), as well as freelance projects in development, graphic design, and tech consulting. I work remotely, hybrid, or on-site in São Paulo.',
+      pt: 'Estou no 5º semestre de Ciência da Computação na FECAP e disponível para vagas de Estágio ou Desenvolvedor Júnior (Front-End, Mobile ou UI/UX), além de projetos Freelance em desenvolvimento, design gráfico e consultoria tecnológica. Atuo em modelo remoto, híbrido ou presencial em São Paulo capital.',
+      en: 'I am in my 5th semester of Computer Science at FECAP and available for Internship or Junior Developer roles (Front-End, Mobile, or UI/UX), as well as freelance projects in development, graphic design, and tech consulting. I work remotely, hybrid, or on-site in São Paulo.',
     },
   },
   {
@@ -19,8 +19,8 @@ export const faqItems = [
       en: 'What is your primary tech stack in software development?',
     },
     answer: {
-      pt: 'No front-end e mobile trabalho principalmente com React, React Native, JavaScript (ES6+), HTML5, CSS3, Vite e animações com GSAP. Também atuo com C#, Python (automações e dados), Java / Android Studio, C/C++ para embarcados (Arduino e ESP32), além de bancos e nuvem como Supabase, Firebase, MySQL e Microsoft Azure.',
-      en: 'For web and mobile I primarily work with React, React Native, JavaScript (ES6+), HTML5, CSS3, Vite, and GSAP animations. I also have hands-on experience with C#, Python (automation and data), Java / Android Studio, C/C++ for embedded systems (Arduino & ESP32), and cloud databases like Supabase, Firebase, MySQL, and Microsoft Azure.',
+      pt: 'No front-end e mobile trabalho principalmente com React, React Native, JavaScript (ES6+), HTML5, CSS3 e Vite. Também atuo com C#, Python (automações e dados), Java / Android Studio, C/C++ para embarcados (Arduino e ESP32), além de bancos e nuvem como Supabase, Firebase, MySQL e Microsoft Azure.',
+      en: 'For web and mobile I primarily work with React, React Native, JavaScript (ES6+), HTML5, CSS3 and Vite. I also have hands-on experience with C#, Python (automation and data), Java / Android Studio, C/C++ for embedded systems (Arduino & ESP32), and cloud databases like Supabase, Firebase, MySQL, and Microsoft Azure.',
     },
   },
   {
@@ -43,8 +43,8 @@ export const faqItems = [
       en: 'Beyond web interfaces, do you also build mobile apps, automations, and integrations?',
     },
     answer: {
-      pt: 'Sim. Desenvolvo aplicativos mobile com React Native (como no ASA-App integrado a web, Supabase/nuvem e fluxo de usuários), aplicações desktop e APIs com C# e Azure, scripts de automação em Python e também presto consultoria tecnológica pontual — incluindo configuração de plataformas como RD Station, suporte técnico e orientação de uso.',
-      en: 'Yes. I build mobile apps with React Native (such as ASA-App paired with a web panel and cloud database), desktop apps and APIs with C# and Azure, Python automation scripts, and hands-on tech consulting — including RD Station setup, technical support, and user guidance.',
+      pt: 'Sim. Desenvolvo aplicativos mobile com React Native (como no ASA-App integrado a web, Supabase/nuvem e fluxo de usuários), aplicações desktop e APIs com C# e Azure, scripts de automação em Python e também presto consultoria tecnológica pontual, incluindo configuração de plataformas como RD Station, suporte técnico e orientação de uso.',
+      en: 'Yes. I build mobile apps with React Native (such as ASA-App paired with a web panel and cloud database), desktop apps and APIs with C# and Azure, Python automation scripts, and hands-on tech consulting - including RD Station setup, technical support, and user guidance.',
     },
   },
   {
@@ -55,8 +55,8 @@ export const faqItems = [
       en: 'What types of design projects do you create?',
     },
     answer: {
-      pt: 'Crio interfaces UI/UX no Figma (web e mobile), identidades visuais completas, brandbooks, embalagens, revistas/editoriais, social media, carrosséis e mascotes/ilustrações no Photoshop e Illustrator. Entre os destaques estão projetos como Duca, Áurea, Volcano, NucleoTech EJ e a atuação como Designer Oficial da Maratona SBC 2025.',
-      en: 'I create web and mobile UI/UX in Figma, full visual identities, brandbooks, packaging, magazines/editorials, social media carousels, and mascots/illustrations in Photoshop and Illustrator. Highlights include Duca, Áurea, Volcano, NucleoTech EJ, and serving as Official Designer for the 2025 SBC Programming Marathon.',
+      pt: 'Crio interfaces UI/UX no Figma (web e mobile), identidades visuais completas, brandbooks, embalagens, revistas/editoriais, social media, carrosséis e mascotes/ilustrações no Photoshop e Illustrator. Entre os destaques estão projetos como Duca, Áurea, Volcano, NucleoTech e a atuação como Designer Oficial da Maratona SBC 2025.',
+      en: 'I create web and mobile UI/UX in Figma, full visual identities, brandbooks, packaging, magazines/editorials, social media carousels, and mascots/illustrations in Photoshop and Illustrator. Highlights include Duca, Áurea, Volcano, NucleoTech, and serving as Official Designer for the 2025 SBC Programming Marathon.',
     },
   },
   {
@@ -79,8 +79,8 @@ export const faqItems = [
       en: 'What is the fastest way to reach you about a job opportunity or project?',
     },
     answer: {
-      pt: 'O canal mais ágil é o meu WhatsApp ou LinkedIn. Você também pode usar o formulário no final da página para enviar sua mensagem direto para o WhatsApp ou montar um currículo personalizado para a sua vaga no Lab de Currículo.',
-      en: 'The fastest channel is WhatsApp or LinkedIn. You can also use the form at the bottom of the page to send a pre-formatted WhatsApp message or tailor a resume for your role in the Resume Lab.',
+      pt: 'O canal mais ágil é o meu WhatsApp ou LinkedIn. Você também pode usar o formulário no final da página para enviar sua mensagem direto para o WhatsApp',
+      en: 'The fastest channel is WhatsApp or LinkedIn. You can also use the form at the bottom of the page to send a pre-formatted WhatsApp message.',
     },
   },
 ];

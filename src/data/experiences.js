@@ -3,7 +3,7 @@ export const experiences = [
     id: 'freelancer-2026',
     year: '2026',
     period: { pt: '2026 – Atual', en: '2026 – Present' },
-    category: 'tech',
+    category: 'career',
     title: {
       pt: 'Desenvolvedor Front-End & Designer Freelancer',
       en: 'Freelance Front-End Developer & Designer',
@@ -89,8 +89,8 @@ export const experiences = [
     period: { pt: '2026 (5º Semestre)', en: '2026 (5th Semester)' },
     category: 'tech',
     title: {
-      pt: 'Projeto Integrador V — ASA (App & Plataforma Web)',
-      en: 'Integrative Project V — ASA (App & Web Platform)',
+      pt: 'Projeto Integrador V - ASA (App & Plataforma Web)',
+      en: 'Integrative Project V - ASA (App & Web Platform)',
     },
     organization: 'FECAP',
     shortDesc: {

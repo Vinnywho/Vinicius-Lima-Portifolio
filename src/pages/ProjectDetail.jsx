@@ -189,7 +189,7 @@ export default function ProjectDetail() {
               const imgSrc = typeof item === 'string' ? item : item.image;
               const imgCaption =
                 typeof item === 'string'
-                  ? `${tr(project.title)} — ${String(idx + 1).padStart(2, '0')}`
+                  ? `${tr(project.title)} - ${String(idx + 1).padStart(2, '0')}`
                   : tr(item.caption);
 
               return (
