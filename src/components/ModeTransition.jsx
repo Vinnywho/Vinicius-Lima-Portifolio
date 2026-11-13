@@ -131,7 +131,7 @@ export default function ModeTransition() {
                 {lang === 'pt' ? 'CARREGANDO EXPERIÊNCIA...' : 'LOADING CASE STUDY...'}
               </span>
               <h2 className={isTargetDesign ? 'badge-design-title' : 'badge-dev-title'}>
-                {isTargetDesign ? 'SHOWCASE VISUAL' : '<PROJETO />'}
+                {isTargetDesign ? 'MODO DESIGN' : '<PROJETO />'}
               </h2>
             </div>
           ) : isTargetDesign ? (

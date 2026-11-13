@@ -94,7 +94,7 @@ export default function DesignShowcase() {
             className="featured-badge"
             style={{ backgroundColor: project.accentColor || 'var(--accent)' }}
           >
-            BEHANCE SHOWCASE • {project.year}
+            {lang === 'pt' ? 'PROJETO VISUAL' : 'DESIGN CASE STUDY'} • {project.year}
           </span>
           <h1 className="detail-hero-title">
             {tr(project.title)}
