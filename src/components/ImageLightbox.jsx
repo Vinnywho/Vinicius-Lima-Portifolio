@@ -7,6 +7,8 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
   const dialogRef = useRef(null);
   const isClosingRef = useRef(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [tallScrollSrc, setTallScrollSrc] = useState(null);
+  const isTallScroll = Boolean(image?.src && tallScrollSrc === image.src);
 
   const handleClose = useCallback(() => {
     if (isClosingRef.current) return;
@@ -152,7 +154,11 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
           </button>
         </div>
 
-        <div className={`behance-lightbox-scroll ${image.pdf ? 'is-pdf' : ''}`}>
+        <div
+          className={`behance-lightbox-scroll ${image.pdf ? 'is-pdf' : ''} ${
+            isTallScroll ? 'is-tall-scroll' : ''
+          }`}
+        >
           {image.pdf ? (
             <iframe
               className="behance-lightbox-pdf"
@@ -160,7 +166,18 @@ export default function ImageLightbox({ image, onClose, lang = 'pt' }) {
               title={image.caption || 'PDF'}
             />
           ) : (
-            <img src={image.src} alt={image.caption || ''} />
+            <img
+              src={image.src}
+              alt={image.caption || ''}
+              onLoad={(e) => {
+                const { naturalWidth, naturalHeight } = e.currentTarget;
+                setTallScrollSrc(
+                  naturalWidth > 0 && naturalHeight / naturalWidth > 1.85
+                    ? image.src
+                    : null
+                );
+              }}
+            />
           )}
         </div>
 

@@ -1473,7 +1473,7 @@
   }
 
   /* ========================================================
-     SOBRE MIM — IMAGEM FLUTUANTE SEM BORDA PESADA
+     SOBRE MIM - IMAGEM FLUTUANTE SEM BORDA PESADA
      ======================================================== */
   .about-section {
     background-color: var(--accent);
@@ -1555,7 +1555,7 @@
   }
 
   /* ========================================================
-     PROJETOS EM DESTAQUE — MÍDIA FLUTUANTE
+     PROJETOS EM DESTAQUE - MÍDIA FLUTUANTE
      ======================================================== */
   .projects-section {
     padding: clamp(3.5rem, 7vw, 5.5rem) 0;
@@ -2286,17 +2286,18 @@
     width: 100%;
     background: #0d1117;
     border: none;
-    padding: 0;
+    padding: 0.5rem;
     cursor: zoom-in;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .behance-grid-media img {
     width: 100%;
-    height: auto;
-    max-height: 290px;
-    object-fit: cover;
-    object-position: top center;
+    height: 280px;
+    object-fit: contain;
     display: block;
     transition: transform 0.35s ease;
   }
@@ -2398,11 +2399,21 @@
   }
 
   .behance-lightbox-scroll {
-    overflow-y: auto;
-    max-height: calc(92vh - 5.5rem);
+    overflow: hidden;
+    max-height: calc(90vh - 5.5rem);
     border-radius: var(--radius-sm);
     background: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
     transition: max-height 0.3s ease, border-radius 0.3s ease;
+  }
+
+  .behance-lightbox-scroll.is-tall-scroll {
+    overflow-y: auto;
+    display: block;
+    padding: 0;
   }
 
   .behance-lightbox-dialog.is-fullscreen .behance-lightbox-scroll {
@@ -2410,19 +2421,44 @@
     max-height: calc(100dvh - 4rem);
     border-radius: 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
   }
 
+  .behance-lightbox-dialog.is-fullscreen .behance-lightbox-scroll.is-tall-scroll {
+    display: block;
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
   .behance-lightbox-scroll img {
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: calc(90vh - 6.5rem);
+    object-fit: contain;
     display: block;
     margin-inline: auto;
+    border-radius: 6px;
+  }
+
+  .behance-lightbox-scroll.is-tall-scroll img {
+    width: 100%;
+    max-height: none;
+    height: auto;
+    object-fit: initial;
+    border-radius: 0;
   }
 
   .behance-lightbox-dialog.is-fullscreen .behance-lightbox-scroll img {
+    max-width: 100%;
+    max-height: calc(100dvh - 5rem);
+  }
+
+  .behance-lightbox-dialog.is-fullscreen .behance-lightbox-scroll.is-tall-scroll img {
     max-width: min(1440px, 100%);
+    max-height: none;
+    width: 100%;
   }
 
   .behance-scroll-viewport.is-pdf {
@@ -3411,7 +3447,7 @@
   }
 
   /* ========================================================
-     SPRAY LAB — CANVAS URBANO DE DESENHO
+     SPRAY LAB - CANVAS URBANO DE DESENHO
      ======================================================== */
   .spraylab-dock {
     display: flex;
