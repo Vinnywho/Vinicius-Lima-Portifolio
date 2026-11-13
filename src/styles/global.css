@@ -124,19 +124,19 @@
     word-spacing: 0.08em;
   }
 
-  /* Otimização de legibilidade para a tipografia Grafitti */
+  /* Otimização de legibilidade apenas para elementos que usam a tipografia Grafitti */
   .loading-title,
   .spraycan-label-tag,
   .phone-logo-mark,
   .badge-design-title,
   .designer-font,
-  :root[data-mode='design'] h1,
-  :root[data-mode='design'] h2,
-  :root[data-mode='design'] h3,
   :root[data-mode='design'] .hero-title,
   :root[data-mode='design'] .about-title,
   :root[data-mode='design'] .footer-brand-name,
-  :root[data-mode='design'] .fullscreen-nav-link {
+  :root[data-mode='design'] .fullscreen-nav-link,
+  :root[data-mode='design'] .panel-title,
+  :root[data-mode='design'] .mobile-showcase-title,
+  :root[data-mode='design'] .mobile-card-title {
     letter-spacing: 0.15em;
     word-spacing: 0.08em;
   }
