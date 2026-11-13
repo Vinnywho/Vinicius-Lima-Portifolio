@@ -2457,6 +2457,212 @@
     background: #141821;
   }
 
+  /* Carrossel interativo para posts/slides no Behance Showcase */
+  .behance-carousel-block {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    outline: none;
+  }
+
+  .behance-carousel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .behance-carousel-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .behance-carousel-heading {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 800;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .behance-carousel-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .behance-carousel-counter {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.28rem 0.65rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .behance-carousel-stage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--border-color);
+    background: #0d1117;
+    box-shadow: var(--shadow-card);
+  }
+
+  .behance-carousel-track {
+    display: flex;
+    transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .behance-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .behance-carousel-zoom-btn {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: zoom-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .behance-carousel-zoom-btn img {
+    max-height: clamp(320px, 62vh, 620px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+  }
+
+  .behance-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    background: rgba(15, 18, 26, 0.85);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 2;
+    backdrop-filter: blur(6px);
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .behance-carousel-arrow:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  .behance-carousel-arrow.is-prev {
+    left: 0.75rem;
+  }
+
+  .behance-carousel-arrow.is-next {
+    right: 0.75rem;
+  }
+
+  .behance-carousel-thumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    overflow-x: auto;
+    padding: 0.25rem 0.1rem 0.4rem;
+    scrollbar-width: thin;
+  }
+
+  .behance-carousel-thumb {
+    position: relative;
+    flex: 0 0 auto;
+    width: 66px;
+    height: 66px;
+    padding: 0;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    background: #0d1117;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .behance-carousel-thumb:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+  }
+
+  .behance-carousel-thumb.is-active {
+    border-color: var(--accent);
+    opacity: 1;
+  }
+
+  .behance-carousel-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .behance-carousel-thumb-num {
+    position: absolute;
+    bottom: 3px;
+    right: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+  }
+
+  @media (max-width: 560px) {
+    .behance-carousel-arrow {
+      width: 34px;
+      height: 34px;
+    }
+
+    .behance-carousel-arrow.is-prev {
+      left: 0.45rem;
+    }
+
+    .behance-carousel-arrow.is-next {
+      right: 0.45rem;
+    }
+
+    .behance-carousel-thumb {
+      width: 54px;
+      height: 54px;
+    }
+  }
+
   .behance-lightbox-caption {
     font-size: 0.88rem;
     color: var(--text-secondary);

@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 import { projects } from '../data/projects';
 import ImageLightbox from '../components/ImageLightbox';
 import ScrollFrame from '../components/ScrollFrame';
+import CarouselShowcase from '../components/CarouselShowcase';
 
 export default function DesignShowcase() {
   const { slug } = useParams();
@@ -202,6 +203,20 @@ export default function DesignShowcase() {
                 title={tr(block.title)}
                 caption={tr(block.caption)}
                 onExpand={setLightboxImg}
+                lang={lang}
+              />
+            );
+          }
+
+          if (block.type === 'carousel') {
+            return (
+              <CarouselShowcase
+                key={idx}
+                heading={block.heading}
+                slides={block.slides}
+                caption={block.caption}
+                onExpand={setLightboxImg}
+                tr={tr}
                 lang={lang}
               />
             );

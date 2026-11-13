@@ -8,6 +8,7 @@ import maeImg from '../assets/images/Projetos/image 36.png';
 import maeAltImg from '../assets/images/Projetos/image 36-1.png';
 import financasImg from '../assets/images/Projetos/financassemfronteira.webp';
 import sebraeImg from '../assets/images/Projetos/Sebrae/sebrae.png';
+import CapaBlue from '../assets/images/Projetos/Sebrae/Capa.png';
 import Os from '../assets/images/Projetos/Sebrae/os.png';
 import Relatorios from '../assets/images/Projetos/Sebrae/relatorios.png';
 import LoginBlue from '../assets/images/Projetos/Sebrae/login.png';
@@ -20,6 +21,31 @@ import finSec14 from '../assets/images/Projetos/Financas/section14.png';
 import finSec15 from '../assets/images/Projetos/Financas/section15.png';
 import finSec16 from '../assets/images/Projetos/Financas/section16.png';
 import finSec17 from '../assets/images/Projetos/Financas/section17.png';
+import revista from '../assets/images/Projetos/Maratona/Revista.pdf';
+import album from '../assets/images/Projetos/Maratona/Album.pdf';
+import Camisetas from '../assets/images/Projetos/Maratona/Camisetas.png';
+import Mascotes from '../assets/images/Projetos/Maratona/Mascotes.png';
+import Wallpaper from '../assets/images/Projetos/Maratona/Wallpaper.png';
+import home from '../assets/images/Projetos/Cases/home.png';
+import sobre from '../assets/images/Projetos/Cases/sobre.png';
+import patrocinadores from '../assets/images/Projetos/Cases/patrocinadores.png';
+import programacao from '../assets/images/Projetos/Cases/programacao.png';
+import galeria from '../assets/images/Projetos/Cases/galeria.png';
+import ingressos from '../assets/images/Projetos/Cases/ingressos.png';
+import blog from '../assets/images/Projetos/Cases/blog.png';
+import faq from '../assets/images/Projetos/Cases/faq.png';
+import nucleoTechImg from '../assets/images/Projetos/NucleoTech/NucleoTech.png';
+import contatos from '../assets/images/Projetos/Cases/contatos.png';
+import heroCases from '../assets/images/Projetos/Cases/heroCases.png';
+import BrandbookDuca from '../assets/images/Projetos/Duca/BrandbookDuca.pdf';
+import Duca from '../assets/images/Projetos/Duca/ducaLogo.png';
+import avental from '../assets/images/Projetos/Duca/avental.png';
+import bone from '../assets/images/Projetos/Duca/bone.png';
+import camiseta from '../assets/images/Projetos/Duca/camiseta.png';
+import moletom from '../assets/images/Projetos/Duca/moletom.png';
+import pin from '../assets/images/Projetos/Duca/pin.png';
+import placa from '../assets/images/Projetos/Duca/placa.png';
+import sacola from '../assets/images/Projetos/Duca/sacola.png';
 
 import cppIcon from '../assets/Icons/C++.svg';
 import jsIcon from '../assets/Icons/JS.svg';
@@ -33,8 +59,289 @@ import mysqlIcon from '../assets/Icons/mysql-logo-pure.svg';
 import vercelIcon from '../assets/Icons/Vercel.svg';
 import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
+import photoshopIcon from '../assets/Icons/Photoshop.svg';
 
 export const projects = [
+  {
+    id: 'duca-brandbook',
+    slug: 'duca-brandbook',
+    category: 'design',
+    featured: true,
+    year: '2026',
+    accentColor: '#5C040C',
+    coverImage: Duca,
+    title: {
+      pt: 'Rebranding Duca',
+      en: 'Duca Rebranding',
+    },
+    shortDesc: {
+      pt: 'Rebranding desenvolvido para a instituição Duca',
+      en: 'Rebranding developed for the Duca institution',
+    },
+    fullDesc: {
+      pt: 'Rebranding completo da Duca, uma empresa de buffet empresarial, incluindo toda a identidade visual da marca. Desenvolvimento de logotipo, paleta de cores, tipografia, mockups, brandbook e elementos gráficos para criar uma presença visual coesa e profissional.',
+      en: 'Complete rebranding for Duca, a corporate catering company, including the entire brand visual identity. Development of logo, color palette, typography, mockups, brandbook, and graphic elements to create a cohesive and professional visual presence.',
+    },
+    techs: [
+      { name: 'figma', icon: figmaIcon },
+      { name: 'Photoshop', icon: photoshopIcon },
+    ],
+    designShowcase: {
+      client: 'Duca',
+      role: {
+        pt: 'Designer Gráfico',
+        en: 'Graphic Designer',
+      },
+      deliverables: {
+        pt: ['Rebranding'],
+        en: ['Rebranding'],
+      },
+      palette: ['#5C040C', '#B88534', '#4A070C', '#FFF7F5','#141414'],
+      typography: {
+        heading: 'Playfair Display',
+        body: 'Inter',
+      },
+    behanceBlocks: [
+        {
+          type: 'scroll-frame',
+          pdf: BrandbookDuca,
+          title: {
+            pt: 'Brandbook — Role para inspecionar a identidade visual completa',
+            en: 'Brandbook — Scroll to inspect the full visual identity',
+          },
+        },
+         {
+          type: 'gallery-grid',
+          heading: {
+            pt: 'Páginas de Soluções & Área Restrita',
+            en: 'Solution Pages & Restricted Portal',
+          },
+          items: [
+            {
+              image: avental,
+            },
+            {
+              image: bone,
+            },
+            {
+              image: camiseta,
+            },
+            {
+              image: moletom,
+            },
+            {
+              image: pin,
+            },
+            {
+              image: placa,
+            },
+            {
+              image: sacola,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'nucleotech-ej',
+    slug: 'nucleotech-ej',
+    category: 'design',
+    featured: true,
+    year: '2026',
+    accentColor: '#0066FF',
+    coverImage: nucleoTechImg,
+    title: {
+      pt: 'NúcleoTech — Empresa Júnior',
+      en: 'NúcleoTech — Junior Enterprise',
+    },
+    shortDesc: {
+      pt: 'Identidade visual, social media e carrosséis estratégicos desenvolvidos para a Empresa Júnior de Tecnologia da FECAP.',
+      en: 'Visual identity, social media, and strategic carousels crafted for FECAP’s Technology Junior Enterprise.',
+    },
+    fullDesc: {
+      pt: 'Atuação na equipe de Design da NúcleoTech, Empresa Júnior de Tecnologia da FECAP, criando peças de social media, carrosséis informativos e materiais visuais para fortalecer a presença digital da EJ e atrair novos clientes e membros.',
+      en: 'Design work for NúcleoTech, FECAP’s Technology Junior Enterprise, creating social media assets, educational carousels, and visual communication pieces to elevate the EJ’s digital presence.',
+    },
+    liveUrl: null,
+    repoUrl: null,
+    techs: [
+      { name: 'Figma', icon: figmaIcon },
+      { name: 'Photoshop', icon: photoshopIcon },
+    ],
+    designShowcase: {
+      client: 'NúcleoTech — Empresa Júnior FECAP',
+      role: {
+        pt: 'Designer de Social Media & Direção Visual',
+        en: 'Social Media Designer & Visual Direction',
+      },
+      deliverables: {
+        pt: ['Carrosséis Instagram', 'Social Media', 'Direção de Arte', 'Design System Social'],
+        en: ['Instagram Carousels', 'Social Media', 'Art Direction', 'Social Design System'],
+      },
+      palette: ['#0066FF', '#0A192F', '#38BDF8', '#F8FAFC'],
+      typography: {
+        heading: 'Inter / Urban Calligraphy',
+        body: 'Inter',
+      },
+      behanceBlocks: [
+        {
+          type: 'hero-image',
+          image: nucleoTechImg,
+          caption: {
+            pt: 'Apresentação visual e linguagem gráfica dos conteúdos da NúcleoTech.',
+            en: 'Visual presentation and graphic language for NúcleoTech content.',
+          },
+        },
+        {
+          type: 'text-section',
+          heading: {
+            pt: '01. Comunicação Visual & Carrosséis Estratégicos',
+            en: '01. Visual Communication & Strategic Carousels',
+          },
+          body: {
+            pt: 'Os carrosséis foram pensados com ritmo editorial contínuo entre os slides, tipografia de alto contraste e elementos visuais tecnológicos para maximizar a retenção e o compartilhamento nas redes sociais da Empresa Júnior.',
+            en: 'The carousels were designed with seamless slide-to-slide editorial flow, high-contrast typography, and tech-inspired visual cues to maximize retention and shares.',
+          },
+        },
+        {
+          type: 'carousel',
+          heading: {
+            pt: 'Carrossel 01 — Conteúdo & Identidade NúcleoTech',
+            en: 'Carousel 01 — NúcleoTech Content & Identity',
+          },
+          slides: [
+            {
+              image: nucleoTechImg,
+              caption: {
+                pt: 'Capa / Slide 01 — Adicione aqui os próximos slides exportados do carrossel.',
+                en: 'Cover / Slide 01 — Add exported carousel slides here.',
+              },
+            },
+          ],
+          caption: {
+            pt: 'Deslize ou use as setas/miniaturas para navegar entre os slides do carrossel.',
+            en: 'Swipe or use arrows/thumbnails to navigate through carousel slides.',
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: 'fecap-cases',
+    slug: 'fecap-cases',
+    category: 'design',
+    featured: true,
+    year: '2026',
+    accentColor: '#F34B24',
+    coverImage: heroCases,
+    title: {
+      pt: 'FECAP Cases',
+      en: 'FECAP Cases',
+    },
+    shortDesc: {
+      pt: 'Landing page desenvolvida para o FECAP Cases em parceria com o Núcleo Tech',
+      en: 'Landing page developed for FECAP Cases in partnership with the Núcleo Tech',
+    },
+    fullDesc: {
+      pt: 'Landing page desenvolvida para o FECAP Cases em parceria com o Núcleo Tech, com o objetivo de apresentar os casos de sucesso da instituição e promover sua visibilidade no mercado.',
+      en: 'Landing page developed for FECAP Cases in partnership with the Núcleo Tech, with the objective of presenting the institution\'s success cases and promoting its visibility in the market.',
+    },
+    liveUrl: 'https://fecapcases.com.br/',
+    techs: [
+      { name: 'figma', icon: figmaIcon },
+    ],
+    designShowcase: {
+      client: 'FECAP Cases (Núcleo Tech)',
+      role: {
+        pt: 'UI/UX Designer',
+        en: 'UI/UX Designer',
+      },
+      deliverables: {
+        pt: ['UI/UX Design', 'Landing Page'],
+        en: ['UI/UX Design', 'Landing Page'],
+      },
+      palette: ['#F34B24', '#5C57C0', '#D3EE33', '#003F5C','#72C1FD', '#9E2A2A', '#3D3A7C', '#8EA122', '#BACDE6','#151515','#FAF9F6'],
+      typography: {
+        heading: 'Syne ExtraBold',
+        body: 'Lexend Regular',
+      },
+      behanceBlocks: [
+        {
+          type: 'scroll-frame',
+          image: home,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: sobre,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: patrocinadores,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: programacao,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: galeria,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: ingressos,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: blog,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: faq,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          image: contatos,
+          title: {
+            pt: 'Home — Role para inspecionar a identidade visual completa',
+            en: 'Home — Scroll to inspect the full visual identity',
+          },
+        },
+      ],
+    },
+  },
   {
     id: 'sebrae-blue',
     slug: 'sebrae-blue',
@@ -42,7 +349,7 @@ export const projects = [
     featured: true,
     year: '2026',
     accentColor: '#0066FF',
-    coverImage: sebraeImg,
+    coverImage: CapaBlue,
     title: {
       pt: 'Sebrae Blue',
       en: 'Sebrae Blue',
@@ -408,14 +715,74 @@ export const projects = [
             { value: 'FECAP', label: { pt: 'Sede Oficial 2025', en: '2025 Official Host' } },
           ],
         },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Revista Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Magazine 2025 — Scroll to inspect the full visual identity',
+          },
+          pdf: revista,
+          caption: {
+            pt: 'Visão contínua da revista da edição de 2025, com mascotes, artigos, programação e patrocinadores.',
+            en: 'Continuous scroll view of the 2025 edition magazine, featuring mascots, articles, schedule, and sponsors.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Álbum de Figurinhas Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Sticker Album 2025 — Scroll to inspect the full visual identity',
+          },
+          pdf: album,
+          caption: {
+            pt: 'Visão contínua do álbum de figurinhas da edição de 2025, com mascotes, artigos, programação e patrocinadores.',
+            en: 'Continuous scroll view of the 2025 edition sticker album, featuring mascots, articles, schedule, and sponsors.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Mascotes Oficiais da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Mascots 2025 — Scroll to inspect the full visual identity',
+          },
+          image: Mascotes,
+          caption: {
+            pt: 'Visão contínua dos mascotes da edição de 2025, com camisetas, artigos, programação e patrocinadores.',
+            en: 'Continuous scroll view of the 2025 edition mascots, featuring t-shirts, articles, schedule, and sponsors.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Wallpaper Oficial da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon Wallpaper 2025 — Scroll to inspect the full visual identity',
+          },
+          image: Wallpaper,
+          caption: {
+            pt: 'Visão contínua dos wallpapers da edição de 2025, com mascotes, artigos, programação e patrocinadores.',
+            en: 'Continuous scroll view of the 2025 edition wallpapers, featuring mascots, articles, schedule, and sponsors.',
+          },
+        },
+        {
+          type: 'scroll-frame',
+          title: {
+            pt: 'Camisetas Oficiais da Maratona SBC 2025 — Role para inspecionar a identidade visual completa',
+            en: 'Official SBC Marathon T-Shirts 2025 — Scroll to inspect the full visual identity',
+          },
+          image: Camisetas,
+          caption: {
+            pt: 'Visão contínua das camisetas da edição de 2025, com mascotes, artigos, programação e patrocinadores.',
+            en: 'Continuous scroll view of the 2025 edition t-shirts, featuring mascots, articles, schedule, and sponsors.',
+          },
+        },
       ],
     },
   },
   {
     id: 'comedoria-da-tia',
     slug: 'comedoria-da-tia',
-    category: 'both',
-    featured: true,
+    category: 'dev',
+    featured: false,
     year: '2025',
     accentColor: '#244F33',
     coverImage: comedoriaImg,
@@ -701,7 +1068,7 @@ export const projects = [
   {
     id: 'dia-das-maes',
     slug: 'dia-das-maes',
-    category: 'both',
+    category: 'dev',
     featured: false,
     year: '2024',
     accentColor: '#E63946',
