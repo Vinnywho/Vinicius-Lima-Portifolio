@@ -119,78 +119,80 @@ export default function FloatingMenu() {
 
   return (
     <>
-      {/* Brand Badge Fixo no Canto Superior Esquerdo */}
-      <button
-        type="button"
-        className="floating-brand-badge no-print"
-        onClick={() => goToRoute('/')}
-        aria-label="Vinicius Lima — Home"
-      >
-        <span className="brand-dot" aria-hidden="true" />
-        <span>Vinicius Lima</span>
-        <span className="brand-role-hide" style={{ opacity: 0.65, fontSize: '0.78rem' }}>
-          • {mode === 'dev' ? 'DEV' : 'DESIGN'}
-        </span>
-      </button>
-
-      {/* Controles Fixos no Canto Superior Direito */}
-      <div className="floating-corner-controls no-print">
-        {/* Botão de Destaque para Transicionar Dev ⇄ Designer */}
+      <header className={`floating-topbar no-print ${menuOpen ? 'is-menu-open' : ''}`}>
+        {/* Brand Badge Fixo no Canto Superior Esquerdo */}
         <button
           type="button"
-          className="corner-pill-btn corner-mode-btn"
-          onClick={() => switchMode()}
-          aria-label={t.nav.modeLabel}
-          title={mode === 'dev' ? 'Mudar para Modo Designer' : 'Mudar para Modo Dev'}
+          className="floating-brand-badge"
+          onClick={() => goToRoute('/')}
+          aria-label="Vinicius Lima — Home"
         >
-          {mode === 'dev' ? (
-            <>
-              <Palette size={16} style={{ color: '#0066ff' }} />
-              <span className="corner-mode-text">DESIGN</span>
-            </>
-          ) : (
-            <>
-              <Code2 size={16} style={{ color: '#aa1719' }} />
-              <span className="corner-mode-text">DEV</span>
-            </>
-          )}
-        </button>
-
-        <button
-          type="button"
-          className="corner-pill-btn"
-          onClick={toggleLang}
-          aria-label={t.nav.langLabel}
-          title={t.nav.langLabel}
-        >
-          <Globe size={16} />
-          <span>{lang.toUpperCase()}</span>
-        </button>
-
-        <button
-          type="button"
-          className="corner-pill-btn"
-          onClick={toggleTheme}
-          aria-label={t.nav.themeLabel}
-          title={t.nav.themeLabel}
-        >
-          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-          <span className="hide-mobile">
-            {theme === 'dark' ? t.nav.light : t.nav.dark}
+          <span className="brand-dot" aria-hidden="true" />
+          <span className="brand-name-text">Vinicius Lima</span>
+          <span className="brand-role-hide" style={{ opacity: 0.65, fontSize: '0.78rem' }}>
+            • {mode === 'dev' ? 'DEV' : 'DESIGN'}
           </span>
         </button>
 
-        <button
-          type="button"
-          className="corner-pill-btn corner-menu-btn"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-expanded={menuOpen}
-          aria-controls="fullscreen-nav-overlay"
-          aria-label={menuOpen ? t.nav.closeMenu : t.nav.menuLabel}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
+        {/* Controles Fixos no Canto Superior Direito */}
+        <div className="floating-corner-controls">
+          {/* Botão de Destaque para Transicionar Dev ⇄ Designer */}
+          <button
+            type="button"
+            className="corner-pill-btn corner-mode-btn"
+            onClick={() => switchMode()}
+            aria-label={t.nav.modeLabel}
+            title={mode === 'dev' ? 'Mudar para Modo Designer' : 'Mudar para Modo Dev'}
+          >
+            {mode === 'dev' ? (
+              <>
+                <Palette size={16} style={{ color: '#0066ff' }} />
+                <span className="corner-mode-text">DESIGN</span>
+              </>
+            ) : (
+              <>
+                <Code2 size={16} style={{ color: '#aa1719' }} />
+                <span className="corner-mode-text">DEV</span>
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            className="corner-pill-btn corner-lang-btn"
+            onClick={toggleLang}
+            aria-label={t.nav.langLabel}
+            title={t.nav.langLabel}
+          >
+            <Globe size={16} className="corner-lang-icon" />
+            <span>{lang.toUpperCase()}</span>
+          </button>
+
+          <button
+            type="button"
+            className="corner-pill-btn"
+            onClick={toggleTheme}
+            aria-label={t.nav.themeLabel}
+            title={t.nav.themeLabel}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            <span className="hide-mobile">
+              {theme === 'dark' ? t.nav.light : t.nav.dark}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className="corner-pill-btn corner-menu-btn"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-expanded={menuOpen}
+            aria-controls="fullscreen-nav-overlay"
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.menuLabel}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </header>
 
       {/* Overlay Fullscreen Animado */}
       <div
