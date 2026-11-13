@@ -3824,15 +3824,20 @@
 @media (max-width: 768px) {
   /* Centralização das informações da Hero */
   .hero-section {
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
-    min-height: auto;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5.25rem;
+    padding-bottom: 2.75rem;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.75rem;
     text-align: center;
+    justify-items: center;
+    width: 100%;
   }
 
   .hero-content {
@@ -3840,14 +3845,244 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 6vw, 2.4rem);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.85rem;
-    line-height: 1.08;
+    font-size: clamp(2.75rem, 12vw, 3.75rem);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.9rem;
+    line-height: 0.98;
     text-align: center;
+    text-shadow: 0 6px 24px rgba(170, 23, 25, 0.14);
+  }
+
+  :root[data-mode='design'] .hero-title {
+    font-size: clamp(2.55rem, 11vw, 3.5rem);
+    text-shadow: 0 6px 24px rgba(0, 102, 255, 0.18);
+  }
+
+  .hero-visual-slot {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Marquee Divertida de Skills no Mobile */
+  .mobile-skills-marquee {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    overflow: hidden;
+    padding: 0.35rem 0;
+  }
+
+  .mobile-marquee-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+
+  .mobile-marquee-rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.35rem 0;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .mobile-marquee-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .mobile-marquee-viewport:nth-child(1) {
+    transform: rotate(-1.2deg);
+  }
+
+  .mobile-marquee-viewport:nth-child(2) {
+    transform: rotate(1.2deg);
+  }
+
+  .mobile-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 0.6rem;
+    padding: 0.15rem 0;
+  }
+
+  .mobile-marquee-track.is-left {
+    animation: mobileMarqueeLeft 26s linear infinite;
+  }
+
+  .mobile-marquee-track.is-right {
+    animation: mobileMarqueeRight 30s linear infinite;
+  }
+
+  .mobile-marquee-rows:hover .mobile-marquee-track,
+  .mobile-marquee-rows:focus-within .mobile-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes mobileMarqueeLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes mobileMarqueeRight {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-marquee-track.is-left,
+    .mobile-marquee-track.is-right {
+      animation: none;
+    }
+  }
+
+  .mobile-marquee-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .mobile-marquee-pill:active,
+  .mobile-marquee-pill.is-active {
+    transform: scale(1.06) rotate(-2deg);
+    border-color: var(--pill-color, var(--accent));
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--pill-color, var(--accent)) 28%, transparent);
+  }
+
+  .mobile-marquee-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--pill-color, var(--accent)) 16%, transparent);
+    padding: 3px;
+  }
+
+  .mobile-marquee-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .mobile-marquee-hint {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .mobile-marquee-detail {
+    width: min(100%, 420px);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 0.9rem 1rem;
+    text-align: left;
+    box-shadow: var(--shadow-card);
+  }
+
+  .mobile-marquee-detail-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .mobile-marquee-detail-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  .mobile-marquee-detail-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .mobile-marquee-close {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface-alt);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .mobile-marquee-meter {
+    margin-bottom: 0.55rem;
+  }
+
+  .mobile-marquee-meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  .mobile-marquee-meter-bar {
+    height: 6px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface-alt);
+    overflow: hidden;
+  }
+
+  .mobile-marquee-meter-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+  }
+
+  .mobile-marquee-detail-desc {
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
   }
 
   .hero-bio {

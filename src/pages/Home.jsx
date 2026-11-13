@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,6 +7,7 @@ import { useApp } from '../context/AppContext';
 import { profile } from '../data/profile';
 import { projects } from '../data/projects';
 import Phone3D from '../components/Phone3D';
+import MobileSkillsMarquee from '../components/MobileSkillsMarquee';
 import ModeSwitcher from '../components/ModeSwitcher';
 import FeaturedProject from '../components/FeaturedProject';
 import ProjectCard from '../components/ProjectCard';
@@ -20,6 +21,15 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const { mode, lang, t, navigateWithTransition } = useApp();
   const rootRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  );
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Filter projects coherently per active facet (Dev vs Design)
   const modeProjects = projects.filter(
@@ -121,8 +131,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-animate">
-            <Phone3D key={mode} />
+          <div className="hero-animate hero-visual-slot">
+            {isMobile ? <MobileSkillsMarquee key={mode} /> : <Phone3D key={mode} />}
           </div>
         </div>
       </section>
