@@ -39,21 +39,13 @@ export default function ContactWhatsApp() {
       else if (msgErr) messageRef.current?.focus();
       return;
     }
+    
+    const msg = 
+      lang === 'pt'
+        ? `Olá Vinicius! Meu nome é *${name.trim()}*. Vim através do seu portfólio para falar sobre *${activeSubject}*.\n${message.trim()}`
+        : `Hi Vinicius! My name is *${name.trim()}*. I came across your portfolio to discuss *${activeSubject}*.\n${message.trim()}`;
 
-    const greeting =
-      lang === 'pt'
-        ? `Olá Vinicius! Meu nome é *${name.trim()}*.`
-        : `Hi Vinicius! My name is *${name.trim()}*.`;
-    const topicLine =
-      lang === 'pt'
-        ? `*Assunto:* ${activeSubject}`
-        : `*Topic:* ${activeSubject}`;
-    const bodyLine =
-      lang === 'pt'
-        ? `*Mensagem:* ${message.trim()}`
-        : `*Message:* ${message.trim()}`;
-
-    const fullText = encodeURIComponent(`${greeting}\n${topicLine}\n\n${bodyLine}`);
+    const fullText = encodeURIComponent(`${msg}`);
     const url = `https://wa.me/${profile.whatsappNumber}?text=${fullText}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
