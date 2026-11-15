@@ -948,27 +948,59 @@
     align-items: center;
   }
 
-  /* Nome Interativo Letra por Letra */
+  /* Nome Interativo com Spotlight & Inclinação 3D Sutil */
+  .hero-name-stage {
+    perspective: 900px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
   .interactive-hero-name {
+    position: relative;
+    display: inline-block;
     cursor: default;
     user-select: none;
-  }
-
-  .hero-name-word {
-    display: inline-block;
-    white-space: nowrap;
-  }
-
-  .hero-name-char {
-    display: inline-block;
-    cursor: pointer;
-    transform-origin: center bottom;
+    transform-style: preserve-3d;
     will-change: transform;
   }
 
-  .hero-name-space {
-    display: inline-block;
-    width: 0.28em;
+  .hero-name-base {
+    display: block;
+  }
+
+  .hero-name-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    color: transparent;
+    background-image: radial-gradient(
+      110px circle at var(--spot-x, -200px) var(--spot-y, -200px),
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.72) 38%,
+      transparent 74%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  :root[data-mode='dev'][data-theme='dark'] .hero-name-spotlight {
+    background-image: radial-gradient(
+      120px circle at var(--spot-x, -200px) var(--spot-y, -200px),
+      #ff4d50 0%,
+      rgba(217, 38, 41, 0.8) 42%,
+      transparent 75%
+    );
+  }
+
+  :root[data-mode='design'] .hero-name-spotlight {
+    background-image: radial-gradient(
+      120px circle at var(--spot-x, -200px) var(--spot-y, -200px),
+      #38bdf8 0%,
+      rgba(56, 189, 248, 0.78) 42%,
+      transparent 75%
+    );
   }
 
   /* Elementos Flutuantes & Parallax na Hero */
