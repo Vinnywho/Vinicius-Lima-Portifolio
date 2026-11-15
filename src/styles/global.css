@@ -134,6 +134,17 @@
   :root[data-mode='dev'] .fullscreen-nav-link {
     letter-spacing: 0.05em;
     word-spacing: 0.06em;
+  }
+
+  :root[data-mode='dev'][data-theme='dark'] .section-heading,
+  :root[data-mode='dev'][data-theme='dark'] .detail-hero-title,
+  :root[data-mode='dev'][data-theme='dark'] .hero-title,
+  :root[data-mode='dev'][data-theme='dark'] .about-title,
+  :root[data-mode='dev'][data-theme='dark'] .panel-title,
+  :root[data-mode='dev'][data-theme='dark'] .mobile-card-title,
+  :root[data-mode='dev'][data-theme='dark'] .mobile-showcase-title,
+  :root[data-mode='dev'][data-theme='dark'] .footer-brand-name,
+  :root[data-mode='dev'][data-theme='dark'] .fullscreen-nav-link {
     color: var(--text-primary);
   }
 
