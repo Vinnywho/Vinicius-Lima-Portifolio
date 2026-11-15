@@ -134,6 +134,7 @@
   :root[data-mode='dev'] .fullscreen-nav-link {
     letter-spacing: 0.05em;
     word-spacing: 0.06em;
+    color: var(--text-primary);
   }
 
   :root[data-mode='design'] .section-heading,
