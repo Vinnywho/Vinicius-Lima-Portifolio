@@ -98,11 +98,29 @@
   .detail-hero-title {
     font-family: var(--font-display);
     font-size: clamp(2.1rem, 5vw, 3.8rem);
-    font-weight: 800;
+    font-weight: 400;
     line-height: 1.12;
     letter-spacing: 0.05em;
     word-spacing: 0.05em;
     margin-bottom: 1rem;
+  }
+
+  .section-heading,
+  .detail-hero-title,
+  .hero-title,
+  .about-title,
+  .panel-title,
+  .mobile-card-title,
+  .mobile-showcase-title,
+  .footer-brand-name,
+  .fullscreen-nav-link,
+  .badge-dev-title,
+  .badge-design-title,
+  .spraycan-label-tag,
+  .designer-font {
+    font-weight: 400;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
   }
 
   :root[data-mode='dev'] .section-heading,
@@ -116,72 +134,6 @@
   :root[data-mode='dev'] .fullscreen-nav-link {
     letter-spacing: 0.05em;
     word-spacing: 0.06em;
-    text-shadow:
-      0 0 14px rgba(170, 23, 25, 0.34),
-      0 0 34px rgba(217, 38, 41, 0.2),
-      0 4px 12px rgba(170, 23, 25, 0.14);
-  }
-
-  :root[data-mode='dev'][data-theme='dark'] .section-heading,
-  :root[data-mode='dev'][data-theme='dark'] .detail-hero-title,
-  :root[data-mode='dev'][data-theme='dark'] .hero-title,
-  :root[data-mode='dev'][data-theme='dark'] .about-title,
-  :root[data-mode='dev'][data-theme='dark'] .panel-title,
-  :root[data-mode='dev'][data-theme='dark'] .mobile-card-title,
-  :root[data-mode='dev'][data-theme='dark'] .mobile-showcase-title,
-  :root[data-mode='dev'][data-theme='dark'] .footer-brand-name,
-  :root[data-mode='dev'][data-theme='dark'] .fullscreen-nav-link {
-    text-shadow:
-      0 0 16px rgba(217, 38, 41, 0.62),
-      0 0 38px rgba(217, 38, 41, 0.38),
-      0 0 70px rgba(255, 80, 80, 0.22);
-  }
-
-  :root[data-mode='dev'] .hero-title {
-    animation: avalorsGlowPulse 3.6s ease-in-out infinite;
-  }
-
-  :root[data-mode='dev'][data-theme='dark'] .hero-title {
-    animation: avalorsGlowPulseDark 3.6s ease-in-out infinite;
-  }
-
-  @keyframes avalorsGlowPulse {
-    0%,
-    100% {
-      text-shadow:
-        0 0 18px rgba(170, 23, 25, 0.38),
-        0 0 42px rgba(217, 38, 41, 0.24),
-        0 0 72px rgba(255, 90, 95, 0.14);
-    }
-    50% {
-      text-shadow:
-        0 0 26px rgba(217, 38, 41, 0.56),
-        0 0 58px rgba(217, 38, 41, 0.34),
-        0 0 96px rgba(255, 90, 95, 0.22);
-    }
-  }
-
-  @keyframes avalorsGlowPulseDark {
-    0%,
-    100% {
-      text-shadow:
-        0 0 18px rgba(217, 38, 41, 0.65),
-        0 0 44px rgba(217, 38, 41, 0.4),
-        0 0 78px rgba(255, 80, 80, 0.24);
-    }
-    50% {
-      text-shadow:
-        0 0 28px rgba(255, 70, 75, 0.85),
-        0 0 64px rgba(217, 38, 41, 0.55),
-        0 0 105px rgba(255, 95, 95, 0.34);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    :root[data-mode='dev'] .hero-title,
-    :root[data-mode='dev'][data-theme='dark'] .hero-title {
-      animation: none;
-    }
   }
 
   :root[data-mode='design'] .section-heading,
@@ -557,10 +509,6 @@
     font-size: clamp(2.8rem, 8vw, 6rem);
     letter-spacing: 0.05em;
     color: #fbfbf2;
-    text-shadow:
-      0 0 20px rgba(217, 38, 41, 0.72),
-      0 0 48px rgba(217, 38, 41, 0.45),
-      0 0 84px rgba(255, 80, 80, 0.25);
   }
 
   .badge-design-mode {

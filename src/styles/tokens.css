@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'Grafitti';
-  src: url('../assets/fonts/JunkyStyle-Drip.ttf') format('truetype');
+  src: url('../assets/fonts/UrbanCalligraphy.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -27,7 +27,7 @@
   --brand-black: #0e0e0e;
   --brand-dark-surface: #121216;
 
-  /* Fontes: DEV = Avalors (Display/Tech) | DESIGN = Grafitti (JunkyStyle-Drip) */
+  /* Fontes: DEV = Avalors (Display/Tech) | DESIGN = Grafitti (UrbanCalligraphy) */
   --font-display-dev: 'Avalors', 'JetBrains Mono', monospace;
   --font-display-design: 'Grafitti', 'Syne', sans-serif;
   --font-display: var(--font-display-dev);
