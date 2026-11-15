@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
+import InteractiveBackground from './components/InteractiveBackground';
 import SprayCanvas from './components/SprayCanvas';
 import ModeTransition from './components/ModeTransition';
 import FloatingMenu from './components/FloatingMenu';
@@ -18,6 +19,7 @@ function AppShell() {
 
   return (
     <>
+      {!isSprayLab && <InteractiveBackground />}
       {!isSprayLab && <SprayCanvas />}
       <ModeTransition />
       <FloatingMenu />

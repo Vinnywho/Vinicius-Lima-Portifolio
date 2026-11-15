@@ -1038,8 +1038,8 @@ export const projects = [
     designShowcase: {
       client: 'Finanças Sem Fronteiras (Janina Janino)',
       role: {
-        pt: 'UI/UX Designer & Desenvolvedor Front-End',
-        en: 'UI/UX Designer & Front-End Developer',
+        pt: 'UI/UX Designer & Desenvolvedor Full-Stack',
+        en: 'UI/UX Designer & Full-Stack Developer',
       },
       deliverables: {
         pt: ['Rebranding & Identidade Visual', 'UI/UX Design', 'Mockups Criativos', 'Blog & Área Restrita'],

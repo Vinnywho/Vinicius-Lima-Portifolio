@@ -7,8 +7,8 @@ export const faqItems = [
       en: 'What is your current availability and preferred work engagement model?',
     },
     answer: {
-      pt: 'Estou no 5º semestre de Ciência da Computação na FECAP e disponível para vagas de Estágio ou Desenvolvedor Júnior (Front-End, Mobile ou UI/UX), além de projetos Freelance em desenvolvimento, design gráfico e consultoria tecnológica. Atuo em modelo remoto, híbrido ou presencial em São Paulo capital.',
-      en: 'I am in my 5th semester of Computer Science at FECAP and available for Internship or Junior Developer roles (Front-End, Mobile, or UI/UX), as well as freelance projects in development, graphic design, and tech consulting. I work remotely, hybrid, or on-site in São Paulo.',
+      pt: 'Estou no 5º semestre de Ciência da Computação na FECAP e disponível para vagas de Estágio ou Desenvolvedor Júnior (Full-Stack, Mobile ou UI/UX), além de projetos Freelance em desenvolvimento, design gráfico e consultoria tecnológica. Atuo em modelo remoto, híbrido ou presencial em São Paulo capital.',
+      en: 'I am in my 5th semester of Computer Science at FECAP and available for Internship or Junior Developer roles (Full-Stack, Mobile, or UI/UX), as well as freelance projects in development, graphic design, and tech consulting. I work remotely, hybrid, or on-site in São Paulo.',
     },
   },
   {

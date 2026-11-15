@@ -96,16 +96,16 @@ export const profile = {
   ],
   cvSummaries: {
     dev: {
-      pt: 'Tenho proficiência em C#, C++, JavaScript, Python, Java e Front-End no geral, principalmente com React e Vite. Na universidade e em projetos freelancers, desenvolvi desde sistemas IoT com microprocessadores até aplicações Web completas para empresas reais e aplicativos Android integrados a bancos em nuvem (MySQL, PostgreSQL, Supabase, Firebase, Azure e Vercel). Busco evoluir constantemente entregando código limpo e interfaces performáticas.',
-      en: 'Proficient in C#, C++, JavaScript, Python, Java, and Front-End Engineering, primarily with React and Vite. Across university integrative projects and freelance engagements, I have built everything from IoT microprocessor systems to production Web platforms and Android apps integrated with cloud databases (MySQL, PostgreSQL, Supabase, Firebase, Azure, and Vercel).',
+      pt: 'Tenho proficiência em C#, C++, JavaScript, Python, Java e Full-Stack no geral, principalmente com React e Vite. Na universidade e em projetos freelancers, desenvolvi desde sistemas IoT com microprocessadores até aplicações Web completas para empresas reais e aplicativos Android integrados a bancos em nuvem (MySQL, PostgreSQL, Supabase, Firebase, Azure e Vercel). Busco evoluir constantemente entregando código limpo e interfaces performáticas.',
+      en: 'Proficient in C#, C++, JavaScript, Python, Java, and Full-Stack Engineering, primarily with React and Vite. Across university integrative projects and freelance engagements, I have built everything from IoT microprocessor systems to production Web platforms and Android apps integrated with cloud databases (MySQL, PostgreSQL, Supabase, Firebase, Azure, and Vercel).',
     },
     design: {
       pt: 'Designer Gráfico e UI/UX em formação, unindo estética autoral urbana com princípios sólidos de usabilidade e arquitetura da informação. Experiência como Designer Oficial da Maratona SBC de Programação 2025 (logo, mascotes, camisetas, cartazes, crachás, revista e álbum de figurinhas) e na criação de catálogos, embalagens e interfaces responsivas no Figma e Adobe Photoshop.',
       en: 'Graphic & UI/UX Designer blending urban visual identity with solid usability and information architecture principles. Experience as the Official Designer for the 2025 SBC Programming Marathon (logo, mascots, t-shirts, posters, badges, magazine, and sticker album) as well as commercial catalogs, packaging, and responsive UI in Figma and Photoshop.',
     },
     hybrid: {
-      pt: 'Estudante de Ciência da Computação (FECAP) com formação técnica em Administração (ETEC), atuando na interseção entre Engenharia Front-End (React, JS, C#, C++, Java, Python) e Design UI/UX & Gráfico (Figma, Photoshop, Identidade Visual). Experiência em projetos reais web, mobile e IoT, combinando inteligência emocional, comunicação ágil (Scrum) e visão de negócio do código ao deploy.',
-      en: 'Computer Science undergraduate (FECAP) with a Business Administration degree (ETEC), operating at the intersection of Front-End Engineering (React, JS, C#, C++, Java, Python) and UI/UX & Graphic Design (Figma, Photoshop, Visual Identity). Experienced across real-world web, mobile, and IoT systems.',
+      pt: 'Estudante de Ciência da Computação (FECAP) com formação técnica em Administração (ETEC), atuando na interseção entre Engenharia Full-Stack (React, JS, C#, C++, Java, Python) e Design UI/UX & Gráfico (Figma, Photoshop, Identidade Visual). Experiência em projetos reais web, mobile e IoT, combinando inteligência emocional, comunicação ágil (Scrum) e visão de negócio do código ao deploy.',
+      en: 'Computer Science undergraduate (FECAP) with a Business Administration degree (ETEC), operating at the intersection of Full-Stack Engineering (React, JS, C#, C++, Java, Python) and UI/UX & Graphic Design (Figma, Photoshop, Visual Identity). Experienced across real-world web, mobile, and IoT systems.',
     },
   },
 };

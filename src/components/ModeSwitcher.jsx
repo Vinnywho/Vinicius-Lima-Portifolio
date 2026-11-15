@@ -18,7 +18,7 @@ export default function ModeSwitcher() {
           </div>
           <div className="mode-option-meta">
             <span className="mode-option-title">{t.nav.devMode}</span>
-            <span className="mode-option-tag">Frontend & Code</span>
+            <span className="mode-option-tag">Fullstack & Code</span>
           </div>
         </button>
 

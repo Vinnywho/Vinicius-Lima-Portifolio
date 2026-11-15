@@ -84,8 +84,8 @@ function buildPreset(presetType, cvLang) {
     layoutStyle: 'editorial',
     targetRole:
       cvLang === 'pt'
-        ? 'DESENVOLVEDOR FRONT-END & DESIGNER UI/UX'
-        : 'FRONT-END DEVELOPER & UI/UX DESIGNER',
+        ? 'DESENVOLVEDOR FULL-STACK & DESIGNER UI/UX'
+        : 'FULL-STACK DEVELOPER & UI/UX DESIGNER',
     summary: profile.cvSummaries.hybrid[cvLang],
     selectedEducation: allEdu,
     selectedExperiences: professionalExperiences.map((e) => e.id),

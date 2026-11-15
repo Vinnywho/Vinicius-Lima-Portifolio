@@ -5,8 +5,8 @@ export const experiences = [
     period: { pt: '2026 – Atual', en: '2026 – Present' },
     category: 'career',
     title: {
-      pt: 'Desenvolvedor Front-End & Designer Freelancer',
-      en: 'Freelance Front-End Developer & Designer',
+      pt: 'Desenvolvedor Full-Stack & Designer Freelancer',
+      en: 'Freelance Full-Stack Developer & Designer',
     },
     organization: 'Autônomo / Projetos Sob Demanda',
     shortDesc: {
