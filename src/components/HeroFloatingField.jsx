@@ -57,18 +57,6 @@ export default function HeroFloatingField({ sectionRef }) {
           ease: 'sine.inOut',
         });
       });
-
-      gsap.utils.toArray('.hero-ambient-orb').forEach((orb, idx) => {
-        gsap.to(orb, {
-          scale: 1.14,
-          x: idx % 2 === 0 ? 20 : -20,
-          y: idx % 2 === 0 ? -16 : 16,
-          duration: 6 + idx * 1.4,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-        });
-      });
     }, fieldRef);
 
     // Smooth parallax on outer wrapper so it never conflicts with inner bob

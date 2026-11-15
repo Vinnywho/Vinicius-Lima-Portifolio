@@ -157,7 +157,6 @@
   /* Otimização de legibilidade apenas para elementos que usam a tipografia Grafitti */
   .loading-title,
   .spraycan-label-tag,
-  .phone-logo-mark,
   .badge-design-title,
   .designer-font,
   :root[data-mode='design'] .hero-title,
@@ -283,8 +282,8 @@
   /* Correção para ícones puramente brancos sumindo no tema claro */
   :root:not([data-theme='dark']) .tech-pill img[src*="Vercel"],
   :root:not([data-theme='dark']) .tech-pill img[src*="github"],
-  :root:not([data-theme='dark']) .phone-app-img[src*="Vercel"],
-  :root:not([data-theme='dark']) .phone-app-img[src*="github"],
+  :root:not([data-theme='dark']) .hero-deck-skill-icon[src*="Vercel"],
+  :root:not([data-theme='dark']) .hero-deck-skill-icon[src*="github"],
   :root:not([data-theme='dark']) .project-card-overlay-techs img[src*="Vercel"],
   :root:not([data-theme='dark']) .project-card-overlay-techs img[src*="github"] {
     filter: invert(1);
@@ -928,7 +927,7 @@
   }
 
   /* ========================================================
-     HERO & SMARTPHONE 3D HIPER-REALISTA
+     HERO CINÉTICA & 3D SPATIAL STUDIO DECK
      ======================================================== */
   .hero-section {
     min-height: 100dvh;
@@ -943,64 +942,80 @@
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: clamp(1.5rem, 3.8vw, 3.25rem);
     align-items: center;
   }
 
-  /* Nome Interativo com Spotlight & Inclinação 3D Sutil */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Nome Interativo Split-Character com Hover por Letra & Glitch Periódico */
   .hero-name-stage {
-    perspective: 900px;
-    width: fit-content;
+    width: 100%;
     max-width: 100%;
   }
 
   .interactive-hero-name {
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.3em;
+    row-gap: 0.08em;
+    align-items: baseline;
     cursor: default;
     user-select: none;
-    transform-style: preserve-3d;
-    will-change: transform;
+    overflow: visible;
   }
 
-  .hero-name-base {
-    display: block;
+  .hero-word {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
   }
 
-  .hero-name-spotlight {
-    position: absolute;
-    inset: 0;
+  .hero-char-cell {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    cursor: pointer;
+    padding-inline: 0.012em;
+  }
+
+  .hero-char-sizer {
+    grid-area: 1 / 1;
+    visibility: hidden;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    color: transparent;
-    background-image: radial-gradient(
-      110px circle at var(--spot-x, -200px) var(--spot-y, -200px),
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.72) 38%,
-      transparent 74%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
   }
 
-  :root[data-mode='dev'][data-theme='dark'] .hero-name-spotlight {
-    background-image: radial-gradient(
-      120px circle at var(--spot-x, -200px) var(--spot-y, -200px),
-      #ff4d50 0%,
-      rgba(217, 38, 41, 0.8) 42%,
-      transparent 75%
-    );
+  .hero-char-main {
+    grid-area: 1 / 1;
+    position: relative;
+    display: inline-block;
+    pointer-events: none;
+    transition: color 0.18s ease, filter 0.18s ease;
   }
 
-  :root[data-mode='design'] .hero-name-spotlight {
-    background-image: radial-gradient(
-      120px circle at var(--spot-x, -200px) var(--spot-y, -200px),
-      #38bdf8 0%,
-      rgba(56, 189, 248, 0.78) 42%,
-      transparent 75%
-    );
+  .hero-char-cell:hover .hero-char-main {
+    color: var(--brand-red-bright);
+    filter: brightness(1.15);
+  }
+
+  :root[data-mode='dev'][data-theme='dark'] .hero-char-cell:hover .hero-char-main {
+    color: #ff4d50;
+  }
+
+  :root[data-mode='design'] .hero-char-cell:hover .hero-char-main {
+    color: var(--brand-blue-cyan);
   }
 
   /* Elementos Flutuantes & Parallax na Hero */
@@ -1015,25 +1030,32 @@
   .hero-ambient-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.22;
+    filter: none;
     pointer-events: none;
   }
 
   .hero-ambient-orb.orb-1 {
-    width: 340px;
-    height: 340px;
-    top: 8%;
-    left: -6%;
-    background: radial-gradient(circle, var(--accent) 0%, transparent 72%);
+    width: 420px;
+    height: 420px;
+    top: 4%;
+    left: -8%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--accent) 18%, transparent) 0%,
+      transparent 70%
+    );
   }
 
   .hero-ambient-orb.orb-2 {
-    width: 300px;
-    height: 300px;
-    bottom: 6%;
-    right: -4%;
-    background: radial-gradient(circle, var(--accent) 0%, transparent 72%);
+    width: 380px;
+    height: 380px;
+    bottom: 2%;
+    right: -6%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--accent) 18%, transparent) 0%,
+      transparent 70%
+    );
   }
 
   .hero-icon-parallax {
@@ -1061,8 +1083,7 @@
     width: 62px;
     height: 62px;
     border-radius: 20px;
-    background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
-    backdrop-filter: blur(8px);
+    background: var(--bg-surface);
     border: 1.5px solid var(--border-color);
     box-shadow: var(--shadow-card);
     display: flex;
@@ -1070,7 +1091,7 @@
     justify-content: center;
     padding: 14px;
     cursor: pointer;
-    opacity: 0.85;
+    opacity: 0.9;
     transition: border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
     will-change: transform;
   }
@@ -1140,6 +1161,10 @@
     margin-bottom: 1.75rem;
   }
 
+  .hero-magnetic-btn {
+    will-change: transform;
+  }
+
   .hero-switch-wrap {
     display: flex;
     flex-direction: column;
@@ -1154,508 +1179,659 @@
     font-family: var(--font-mono);
   }
 
-  /* Smartphone Hiper-Realista */
-  .phone-realistic-stage {
-    perspective: 1600px;
+  /* ========================================================
+     3D SPATIAL STUDIO & STACK DECK
+     ======================================================== */
+  .hero-deck-stage {
+    perspective: 1400px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.85rem;
-    user-select: none;
+    padding: 1.25rem;
     max-width: 100%;
+    user-select: none;
   }
 
-  .phone-realistic-body {
-    width: min(310px, 86vw);
-    height: 610px;
+  .hero-deck-body {
     position: relative;
+    width: min(510px, 100%);
     transform-style: preserve-3d;
-    cursor: grab;
     will-change: transform;
-    border-radius: 46px;
-    box-shadow:
-      0 30px 80px -15px rgba(0, 0, 0, 0.45),
-      0 0 0 1px rgba(255, 255, 255, 0.12) inset;
   }
 
-  .phone-realistic-body:active {
-    cursor: grabbing;
-  }
-
-  /* Botões Laterais em 3D Metálicos */
-  .phone-btn-power {
-    position: absolute;
-    right: -5px;
-    top: 140px;
-    width: 5px;
-    height: 60px;
-    background: linear-gradient(180deg, #3f3f46, #71717a, #3f3f46);
-    border-radius: 0 4px 4px 0;
-  }
-
-  .phone-btn-action {
-    position: absolute;
-    left: -5px;
-    top: 105px;
-    width: 5px;
-    height: 30px;
-    background: linear-gradient(180deg, #3f3f46, #71717a, #3f3f46);
-    border-radius: 4px 0 0 4px;
-  }
-
-  .phone-btn-vol-up {
-    position: absolute;
-    left: -5px;
-    top: 155px;
-    width: 5px;
-    height: 50px;
-    background: linear-gradient(180deg, #3f3f46, #71717a, #3f3f46);
-    border-radius: 4px 0 0 4px;
-  }
-
-  .phone-btn-vol-down {
-    position: absolute;
-    left: -5px;
-    top: 220px;
-    width: 5px;
-    height: 50px;
-    background: linear-gradient(180deg, #3f3f46, #71717a, #3f3f46);
-    border-radius: 4px 0 0 4px;
-  }
-
-  /* Traseira do Smartphone (Matte Glass Pro com 3 Lentes) */
-  .phone-back-face {
+  .hero-deck-backplate {
     position: absolute;
     inset: 0;
-    border-radius: 46px;
-    background: linear-gradient(155deg, #181920 0%, #0d0e12 100%);
-    border: 3px solid #272832;
-    transform: rotateY(180deg) translateZ(12px);
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    color: #fbfbf2;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6) inset;
-  }
-
-  .phone-camera-plate {
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    width: 95px;
-    height: 95px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1.5px solid rgba(255, 255, 255, 0.14);
-    border-radius: 28px;
-    backdrop-filter: blur(12px);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 10px;
-  }
-
-  .phone-lens-ring {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3f3f46, #18181b);
-    border: 2px solid #52525b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  .phone-lens-glass {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #2563eb 0%, #050510 70%);
-  }
-
-  .phone-flash-led {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #fef08a;
-    border: 2px solid #ca8a04;
-    align-self: center;
-    justify-self: center;
-  }
-
-  .phone-lidar-sensor {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #09090b;
-    border: 1.5px solid #27272a;
-    align-self: center;
-    justify-self: center;
-  }
-
-  .phone-back-branding {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    opacity: 0.75;
-  }
-
-  .phone-logo-mark {
-    font-family: 'Grafitti', sans-serif;
-    font-size: 2.2rem;
-    color: var(--accent);
-  }
-
-  .phone-back-branding span {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-  }
-
-  /* Frente e Tela do Smartphone */
-  .phone-front-face {
-    position: absolute;
-    inset: 0;
-    border-radius: 46px;
-    background: #090a0f;
-    border: 3.5px solid #30313d;
-    transform: translateZ(12px);
-    backface-visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  /* Reflexo de Vidro Especular */
-  .phone-glass-glare {
-    position: absolute;
-    inset: -50%;
-    width: 200%;
-    height: 200%;
+    border-radius: var(--radius-lg);
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, transparent);
     background: linear-gradient(
-      115deg,
-      transparent 35%,
-      rgba(255, 255, 255, 0.08) 45%,
-      rgba(255, 255, 255, 0.18) 50%,
-      rgba(255, 255, 255, 0.05) 55%,
+      135deg,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0%,
       transparent 65%
     );
+    transform: translateZ(-24px) translate(14px, 14px);
     pointer-events: none;
-    z-index: 25;
-    transition: transform 0.1s ease-out;
   }
 
-  .phone-inner-screen {
-    flex: 1;
-    border-radius: 36px;
-    background: radial-gradient(circle at top right, #1a1622 0%, #09090d 80%);
-    color: #fbfbf2;
+  .hero-deck-satellite {
+    position: absolute;
+    z-index: 8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.42rem 0.72rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    cursor: pointer;
+    transform: translateZ(38px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    will-change: transform;
+  }
+
+  .hero-deck-satellite:hover,
+  .hero-deck-satellite.is-active {
+    border-color: var(--sat-color, var(--accent));
+    box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--sat-color, var(--accent)) 45%, transparent);
+  }
+
+  .hero-deck-satellite.sat-pos-1 {
+    top: -14px;
+    left: -14px;
+  }
+
+  .hero-deck-satellite.sat-pos-2 {
+    top: 26%;
+    right: -18px;
+  }
+
+  .hero-deck-satellite.sat-pos-3 {
+    bottom: 20%;
+    left: -18px;
+  }
+
+  .hero-deck-satellite.sat-pos-4 {
+    bottom: -14px;
+    right: -12px;
+  }
+
+  .hero-deck-sat-icon {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .hero-deck-sat-label {
+    white-space: nowrap;
+  }
+
+  .hero-deck-surface {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    box-shadow:
+      var(--shadow-hover),
+      0 24px 60px -18px rgba(0, 0, 0, 0.22);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+
+  :root[data-theme='dark'] .hero-deck-surface {
+    background: var(--bg-surface);
+    box-shadow:
+      var(--shadow-hover),
+      0 28px 70px -18px rgba(0, 0, 0, 0.65);
+  }
+
+  /* Deck Top HUD */
+  .hero-deck-hud {
     position: relative;
-    padding: 0.75rem 0.75rem 0.6rem;
-  }
-
-  :root[data-mode='design'] .phone-inner-screen {
-    background: radial-gradient(circle at top right, #0b1a3a 0%, #060912 85%);
-  }
-
-  .phone-status-bar {
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 24px;
-    margin-bottom: 0.65rem;
-    z-index: 10;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg-surface-alt);
+    border-bottom: 1px solid var(--border-color);
   }
 
-  .phone-clock {
-    font-size: 0.72rem;
-    font-weight: 700;
-    font-family: var(--font-mono);
-  }
-
-  .phone-dynamic-island {
-    width: 90px;
-    height: 22px;
-    background: #000;
-    border-radius: 99px;
+  .hero-deck-hud-title {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    gap: 0.55rem;
+    min-width: 0;
   }
 
-  .phone-camera-dot {
+  .hero-deck-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+  }
+
+  .hero-deck-dots span {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: radial-gradient(circle, #1e3a8a, #020617);
   }
 
-  .phone-sensor-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #111;
+  .hero-deck-dots .dot-accent {
+    background: var(--accent);
   }
 
-  .phone-status-icons {
+  .hero-deck-dots .dot-mid {
+    background: color-mix(in srgb, var(--text-secondary) 55%, transparent);
+  }
+
+  .hero-deck-dots .dot-soft {
+    background: color-mix(in srgb, var(--text-secondary) 28%, transparent);
+  }
+
+  .hero-deck-hud-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-deck-hud-controls {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.45rem;
   }
 
-  .phone-home-view {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
+  .hero-deck-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
   }
 
-  .phone-user-widget {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 18px;
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
-    backdrop-filter: blur(8px);
-  }
-
-  .phone-widget-badge {
+  .hero-deck-tab {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 0.25rem;
-  }
-
-  .phone-widget-title {
-    font-size: 0.92rem;
-    font-weight: 800;
-    margin-bottom: 0.15rem;
-  }
-
-  .phone-widget-sub {
-    font-size: 0.72rem;
-    color: rgba(251, 251, 242, 0.7);
-  }
-
-  .phone-apps-matrix {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-    overflow-y: auto;
-    max-height: 290px;
-    padding-bottom: 0.4rem;
-  }
-
-  .phone-app-tile {
-    background: transparent;
+    padding: 0.3rem 0.68rem;
+    border-radius: var(--radius-pill);
     border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .hero-deck-tab.is-active {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .hero-deck-pause-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero-deck-pause-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.06);
+  }
+
+  /* Deck Body */
+  .hero-deck-content {
+    position: relative;
+    z-index: 2;
+    padding: 1rem 1.1rem;
+  }
+
+  .hero-deck-stack-view {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    cursor: pointer;
-    color: #fbfbf2;
-    padding: 0.2rem;
-    transition: transform 0.18s ease;
+    gap: 0.95rem;
   }
 
-  .phone-app-tile:hover {
-    transform: translateY(-3px) scale(1.05);
+  /* Active Skill Reactor Card */
+  .hero-reactor-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.95rem;
+    padding: 0.95rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface-alt);
+    border: 1.5px solid color-mix(in srgb, var(--skill-color, var(--accent)) 35%, var(--border-color));
+    transition: border-color 0.25s ease;
   }
 
-  .phone-app-icon-wrap {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+  .hero-reactor-gauge {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
     display: grid;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  .phone-app-img {
-    width: 26px;
-    height: 26px;
+  .hero-reactor-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .hero-reactor-track {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 5;
+  }
+
+  .hero-reactor-progress {
+    fill: none;
+    stroke: var(--skill-color, var(--accent));
+    stroke-width: 5.5;
+    stroke-linecap: round;
+  }
+
+  .hero-reactor-pct {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .hero-reactor-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-reactor-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .hero-reactor-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .hero-reactor-icon {
+    width: 21px;
+    height: 21px;
     object-fit: contain;
   }
 
-  .phone-app-text-badge {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
+  .hero-reactor-titles {
+    min-width: 0;
+  }
+
+  .hero-reactor-cat {
+    display: block;
     font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+
+  .hero-reactor-name {
+    font-size: 1.02rem;
     font-weight: 800;
-    font-size: 0.72rem;
-    color: #fff;
+    color: var(--text-primary);
+    line-height: 1.2;
   }
 
-  .phone-app-name {
+  .hero-reactor-desc {
+    font-size: 0.8rem;
+    line-height: 1.48;
+    color: var(--text-secondary);
+    margin-bottom: 0.55rem;
+  }
+
+  .hero-reactor-projects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .hero-reactor-rel-label {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+
+  .hero-reactor-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .hero-reactor-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.22rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     font-size: 0.68rem;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.1;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 
-  .phone-dock {
-    height: 54px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px;
+  .hero-reactor-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* Interactive Skill Matrix */
+  .hero-deck-matrix-head {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 0 0.5rem;
-    margin-top: 0.5rem;
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-primary);
   }
 
-  .phone-dock-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+  .hero-deck-matrix-hint {
+    font-weight: 600;
+    font-size: 0.66rem;
+    color: var(--text-secondary);
+  }
+
+  .hero-deck-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.45rem;
+    max-height: 196px;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .hero-deck-skill-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.32rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    will-change: transform;
+  }
+
+  .hero-deck-skill-tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--skill-color, var(--accent));
+  }
+
+  .hero-deck-skill-tile.is-active {
+    border-color: var(--skill-color, var(--accent));
+    background: color-mix(in srgb, var(--skill-color, var(--accent)) 14%, var(--bg-surface));
+    box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--skill-color, var(--accent)) 45%, transparent);
+  }
+
+  .hero-deck-tile-icon-wrap {
+    width: 26px;
+    height: 26px;
     display: grid;
     place-items: center;
-    cursor: pointer;
   }
 
-  .phone-dock-icon img {
+  .hero-deck-tile-icon {
     width: 22px;
     height: 22px;
     object-fit: contain;
   }
 
-  .phone-app-opened-view {
-    flex: 1;
+  .hero-deck-tile-name {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.15;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Featured Cases Spotlight Tab */
+  .hero-deck-cases-view {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 0.85rem;
-    overflow-y: auto;
+    gap: 0.85rem;
   }
 
-  .phone-app-back-btn {
+  .hero-case-preview {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface-alt);
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero-case-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-case-year,
+  .hero-case-counter {
+    position: absolute;
+    top: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: rgba(12, 12, 16, 0.78);
+    backdrop-filter: blur(8px);
+    color: #fbfbf2;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .hero-case-year {
+    left: 0.65rem;
+  }
+
+  .hero-case-counter {
+    right: 0.65rem;
+  }
+
+  .hero-case-title {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-case-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0.7rem;
+  }
+
+  .hero-case-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-case-tech-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fbfbf2;
-    padding: 0.3rem 0.65rem;
-    border-radius: 99px;
-    font-size: 0.74rem;
+    gap: 0.3rem;
+    padding: 0.24rem 0.55rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-color);
+    font-size: 0.7rem;
     font-weight: 700;
-    cursor: pointer;
-    margin-bottom: 0.75rem;
+    color: var(--text-primary);
   }
 
-  .phone-opened-header {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .phone-opened-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-  }
-
-  .phone-opened-icon img {
-    width: 28px;
-    height: 28px;
+  .hero-case-tech-pill img {
+    width: 14px;
+    height: 14px;
     object-fit: contain;
   }
 
-  .phone-meter-card {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 0.65rem;
-    margin-bottom: 0.65rem;
-  }
-
-  .phone-meter-bar {
-    height: 6px;
-    border-radius: 99px;
-    background: rgba(255, 255, 255, 0.14);
-    overflow: hidden;
-  }
-
-  .phone-meter-fill {
-    height: 100%;
-    border-radius: 99px;
-  }
-
-  .phone-opened-desc {
-    font-size: 0.78rem;
-    line-height: 1.45;
-    color: rgba(251, 251, 242, 0.88);
-  }
-
-  .phone-rel-title {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    opacity: 0.65;
-    margin-bottom: 0.35rem;
-    text-transform: uppercase;
-  }
-
-  .phone-rel-item {
+  .hero-case-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.4rem 0.6rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #fbfbf2;
-    font-size: 0.72rem;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: left;
+    gap: 0.65rem;
   }
 
-  .phone-home-bar {
-    width: 110px;
-    height: 4px;
-    border-radius: 99px;
-    background: rgba(255, 255, 255, 0.4);
-    margin: 0.4rem auto 0;
-  }
-
-  .phone3d-drag-hint {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-secondary);
+  .hero-case-nav {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.35rem;
+  }
+
+  .hero-case-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-surface-alt);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero-case-nav-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .hero-case-cta {
+    min-height: 40px;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.82rem;
+  }
+
+  /* Deck Footer Status Bar */
+  .hero-deck-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    padding: 0.72rem 1.1rem;
+    background: var(--bg-surface-alt);
+    border-top: 1px solid var(--border-color);
+  }
+
+  .hero-deck-status-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .hero-deck-count {
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .hero-deck-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hero-deck-quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .hero-deck-quick-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-deck-quick-btn.is-accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .hero-deck-quick-btn.is-accent:hover {
+    color: var(--accent-contrast);
+    opacity: 0.92;
   }
 
   /* ========================================================
@@ -3998,6 +4174,28 @@
     grid-template-columns: 1fr;
   }
 
+  .hero-deck-stage {
+    padding: 1rem 0.5rem;
+  }
+
+  .hero-deck-satellite.sat-pos-1 {
+    top: -10px;
+    left: -6px;
+  }
+
+  .hero-deck-satellite.sat-pos-2 {
+    right: -6px;
+  }
+
+  .hero-deck-satellite.sat-pos-3 {
+    left: -6px;
+  }
+
+  .hero-deck-satellite.sat-pos-4 {
+    bottom: -10px;
+    right: -6px;
+  }
+
   .featured-item.is-reversed .featured-media {
     order: 0;
   }
@@ -4008,6 +4206,10 @@
 }
 
 @media (max-width: 768px) {
+  .spray-canvas {
+    display: none !important;
+  }
+
   /* Centralização das informações da Hero */
   .hero-section {
     min-height: 100dvh;
@@ -4032,6 +4234,10 @@
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  .interactive-hero-name {
+    justify-content: center;
   }
 
   .hero-title {

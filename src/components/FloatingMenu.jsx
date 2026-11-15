@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import { Menu, X, Sun, Moon, Globe, Code2, Palette, FileText, Sparkles } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe, Code2, Palette, Sparkles } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { profile } from '../data/profile';
 
@@ -114,7 +114,6 @@ export default function FloatingMenu() {
     { num: '05', label: t.nav.sprayLab, action: () => goToRoute('/spray-lab') },
     { num: '06', label: t.nav.faq, action: () => goToSection('faq') },
     { num: '07', label: t.nav.contact, action: () => goToSection('contato') },
-    { num: '08', label: t.nav.cvLab, action: () => goToRoute('/cv-lab') },
   ];
 
   return (
@@ -263,14 +262,6 @@ export default function FloatingMenu() {
                 <button type="button" className="menu-chip-btn" onClick={toggleLang}>
                   <Globe size={16} />
                   {lang === 'pt' ? 'English (EN)' : 'Português (PT-BR)'}
-                </button>
-                <button
-                  type="button"
-                  className="menu-chip-btn"
-                  onClick={() => goToRoute('/cv-lab')}
-                >
-                  <FileText size={16} />
-                  {t.nav.cvLab}
                 </button>
               </div>
             </div>

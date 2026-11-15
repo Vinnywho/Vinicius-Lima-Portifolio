@@ -86,17 +86,6 @@ export default function Footer() {
                   {t.nav.sprayLab}
                 </button>
               </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate('/cv-lab');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  {t.nav.cvLab}
-                </button>
-              </li>
             </ul>
           </div>
 

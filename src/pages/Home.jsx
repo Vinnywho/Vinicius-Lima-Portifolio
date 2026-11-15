@@ -48,6 +48,7 @@ export default function Home() {
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    const cleanups = [];
     const ctx = gsap.context(() => {
       gsap.from('.hero-animate', {
         y: 28,
@@ -56,6 +57,44 @@ export default function Home() {
         stagger: 0.08,
         ease: 'power3.out',
       });
+
+      const isFinePointer =
+        window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+      if (isFinePointer) {
+        gsap.utils.toArray('.hero-actions a').forEach((btn) => {
+          const onMove = (e) => {
+            const rect = btn.getBoundingClientRect();
+            const dx = e.clientX - (rect.left + rect.width / 2);
+            const dy = e.clientY - (rect.top + rect.height / 2);
+            gsap.to(btn, {
+              x: dx * 0.22,
+              y: dy * 0.28 - 2,
+              scale: 1.02,
+              duration: 0.3,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          };
+
+          const onLeave = () => {
+            gsap.to(btn, {
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 0.55,
+              ease: 'elastic.out(1, 0.45)',
+              overwrite: 'auto',
+            });
+          };
+
+          btn.addEventListener('mousemove', onMove);
+          btn.addEventListener('mouseleave', onLeave);
+          cleanups.push(() => {
+            btn.removeEventListener('mousemove', onMove);
+            btn.removeEventListener('mouseleave', onLeave);
+          });
+        });
+      }
 
       gsap.utils.toArray('.gsap-reveal').forEach((el) => {
         gsap.from(el, {
@@ -85,7 +124,10 @@ export default function Home() {
       });
     }, rootRef);
 
-    return () => ctx.revert();
+    return () => {
+      cleanups.forEach((fn) => fn());
+      ctx.revert();
+    };
   }, [mode]);
 
   return (
@@ -109,7 +151,7 @@ export default function Home() {
             </p>
 
             <div className="hero-actions hero-animate">
-              <a href="#projetos" className="btn-primary">
+              <a href="#projetos" className="btn-primary hero-magnetic-btn">
                 <span>{t.hero.ctaProjects}</span>
                 <ArrowDown size={16} />
               </a>
@@ -118,13 +160,13 @@ export default function Home() {
                 href={profile.cvPdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-secondary"
+                className="btn-secondary hero-magnetic-btn"
               >
                 <Download size={16} />
                 <span>{t.hero.ctaDownloadCv}</span>
               </a>
 
-              <a href="#contato" className="btn-secondary">
+              <a href="#contato" className="btn-secondary hero-magnetic-btn">
                 <MessageCircle size={16} />
                 <span>{t.nav.contact}</span>
               </a>

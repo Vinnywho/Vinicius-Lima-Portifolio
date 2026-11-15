@@ -244,7 +244,7 @@ export default function SprayCanvas() {
       if (!target || !target.closest) return false;
       return Boolean(
         target.closest(
-          '.phone-realistic-body, .spraylab-canvas, input, textarea, select, button, a, [data-no-spray="true"]'
+          '.hero-deck-body, .interactive-hero-name, .spraylab-canvas, input, textarea, select, button, a, [data-no-spray="true"]'
         )
       );
     };
@@ -261,7 +261,12 @@ export default function SprayCanvas() {
       }
     };
 
+    const isMobileViewport = () =>
+      window.innerWidth <= 768 ||
+      (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches);
+
     const onPointerDown = (e) => {
+      if (e.pointerType === 'touch' || isMobileViewport()) return;
       if (e.button !== undefined && e.button !== 0) return;
       if (shouldSkipTarget(e.target)) return;
 
@@ -277,6 +282,7 @@ export default function SprayCanvas() {
     };
 
     const onPointerMove = (e) => {
+      if (e.pointerType === 'touch' || isMobileViewport()) return;
       if (!isSpraying) return;
 
       const current = { x: e.clientX, y: e.clientY };
