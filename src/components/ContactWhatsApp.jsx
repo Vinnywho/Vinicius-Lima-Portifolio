@@ -1,5 +1,5 @@
 import { useId, useRef, useState } from 'react';
-import { MessageCircle, Send } from 'lucide-react';
+import { MessageCircle, Send, ExternalLink } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { profile } from '../data/profile';
 
@@ -82,21 +82,56 @@ export default function ContactWhatsApp() {
             {t.contact.subtitle}
           </p>
 
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              padding: '0.65rem 1rem',
-              borderRadius: '12px',
-              background: 'var(--bg-surface-alt)',
-              border: '1.5px solid var(--border-color)',
-              fontSize: '0.88rem',
-              fontWeight: 700,
-            }}
-          >
-            <MessageCircle size={18} style={{ color: '#25D366', flexShrink: 0 }} />
-            <span>WhatsApp: {profile.phoneDisplay}</span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: '0.65rem 1rem',
+                borderRadius: '12px',
+                background: 'var(--bg-surface-alt)',
+                border: '1.5px solid var(--border-color)',
+                fontSize: '0.88rem',
+                fontWeight: 700,
+              }}
+            >
+              <MessageCircle size={18} style={{ color: '#25D366', flexShrink: 0 }} />
+              <span>WhatsApp: {profile.phoneDisplay}</span>
+            </div>
+
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.55rem',
+                padding: '0.65rem 1rem',
+                borderRadius: '12px',
+                background: 'var(--bg-surface-alt)',
+                border: '1.5px solid var(--border-color)',
+                fontSize: '0.88rem',
+                fontWeight: 700,
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s ease, transform 0.2s ease',
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+                style={{ color: '#0A66C2', flexShrink: 0 }}
+              >
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+              <span>LinkedIn</span>
+              <ExternalLink size={14} style={{ opacity: 0.65, flexShrink: 0 }} />
+            </a>
           </div>
 
           <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginTop: '1rem' }}>

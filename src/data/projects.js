@@ -62,6 +62,7 @@ import vercelIcon from '../assets/Icons/Vercel.svg';
 import supabaseIcon from '../assets/Icons/supabase-logo-icon 1.svg';
 import javaIcon from '../assets/Icons/java-4 (1).svg';
 import photoshopIcon from '../assets/Icons/Photoshop.svg';
+import androidStudioIcon from '../assets/Icons/AndroidStudio.svg';
 import { buildSlides, getSinglePost } from './nucleoTechAssets';
 import { aureaCaixa, getAureaLineItems } from './aureaAssets';
 import volcanoFogareiro from '../assets/images/Projetos/Volcano/Fogareiro.jpeg';
@@ -96,7 +97,7 @@ export const projects = [
       en: 'Complete rebranding for Duca, a corporate catering company, including the entire brand visual identity. Development of logo, color palette, typography, mockups, brandbook, and graphic elements to create a cohesive and professional visual presence.',
     },
     techs: [
-      { name: 'figma', icon: figmaIcon },
+      { name: 'Figma', icon: figmaIcon },
       { name: 'Photoshop', icon: photoshopIcon },
     ],
     designShowcase: {
@@ -407,7 +408,7 @@ export const projects = [
     },
     liveUrl: 'https://fecapcases.com.br/',
     techs: [
-      { name: 'figma', icon: figmaIcon },
+      { name: 'Figma', icon: figmaIcon },
     ],
     designShowcase: {
       client: 'FECAP Cases (Núcleo Tech)',
@@ -504,7 +505,7 @@ export const projects = [
     id: 'asa-app',
     slug: 'asa-app',
     category: 'dev',
-    featured: true,
+    featured: false,
     year: '2026',
     accentColor: '#00AB7E',
     coverImage: Asa,
@@ -524,6 +525,8 @@ export const projects = [
     repoUrl: 'https://github.com/2026-2-NCC5/Projeto1',
     techs: [
       { name: 'React', icon: reactIcon },
+      { name: 'Figma', icon: figmaIcon },
+      { name: 'React Native', icon: reactIcon },
       { name: 'JavaScript', icon: jsIcon },
       { name: 'HTML5', icon: htmlIcon },
       { name: 'CSS3', icon: cssIcon },
@@ -1339,6 +1342,7 @@ export const projects = [
     techs: [
       { name: 'React', icon: reactIcon },
       { name: 'Java', icon: javaIcon },
+      { name: 'Android Studio', icon: androidStudioIcon },
       { name: 'Supabase', icon: supabaseIcon },
       { name: 'Vercel', icon: vercelIcon },
       { name: 'Figma', icon: figmaIcon },

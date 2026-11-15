@@ -266,7 +266,7 @@ export const designCapabilities = [
   },
   {
     id: 'brand-identity',
-    name: 'Identidade Visual & Grafite',
+    name: 'Identidade Visual',
     icon: photoshopIcon,
     color: '#AA1719',
     level: 85,

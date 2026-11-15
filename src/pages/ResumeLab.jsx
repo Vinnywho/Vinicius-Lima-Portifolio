@@ -7,17 +7,25 @@ import { experiences } from '../data/experiences';
 import { projects } from '../data/projects';
 import { skills, designCapabilities } from '../data/skills';
 
-const STORAGE_KEY = 'vinicius-cv-lab-draft-v1';
+const STORAGE_KEY = 'vinicius-cv-lab-draft-v3';
+
+const EXTRA_CV_TECH_SKILLS = [
+  { id: 'vite', name: 'Vite' },
+  { id: 'react-native', name: 'React Native' },
+  { id: 'postgresql', name: 'PostgreSQL' },
+  { id: 'firebase', name: 'Firebase' },
+  { id: 'vscode', name: 'VS Code' },
+  { id: 'visual-studio-2022', name: 'Visual Studio 2022' },
+  { id: 'tinkercad', name: 'Tinkercad' },
+];
+
+const ALL_CV_TECH_SKILLS = [...skills, ...EXTRA_CV_TECH_SKILLS];
 
 const ACADEMIC_EXPERIENCE_IDS = new Set([
-  'fecap-pi5-asa-2026',
   'nucleotech-ej-2026',
   'fecap-cases-2026',
   'maratona-sbc-2025',
   'aspire-leaders-2025',
-  'fecap-pi3-comedoria-2025',
-  'fecap-pi2-instituto-criativo-2025',
-  'fecap-pi1-bea-2024',
   'fecap-ingresso-2024',
   'etec-adm-conclusao-2024',
   'informatica-basica-2013',
@@ -50,8 +58,8 @@ function buildPreset(presetType, cvLang) {
         .filter((p) => p.category === 'dev' || p.category === 'both')
         .slice(0, 4)
         .map((p) => p.id),
-      selectedDevSkills: skills.map((s) => s.id),
-      selectedDesignSkills: ['ui-ux-design'],
+      selectedDevSkills: ALL_CV_TECH_SKILLS.map((s) => s.id),
+      selectedDesignSkills: ['figma', 'photoshop', 'ui-ux-design'],
       selectedSoftSkills: allSoft,
     };
   }
@@ -72,7 +80,7 @@ function buildPreset(presetType, cvLang) {
       selectedProjects: projects
         .filter((p) => p.category === 'design' || p.category === 'both')
         .map((p) => p.id),
-      selectedDevSkills: ['figma', 'html', 'css', 'react'],
+      selectedDevSkills: ['html', 'css', 'react', 'vite'],
       selectedDesignSkills: designCapabilities.map((d) => d.id),
       selectedSoftSkills: allSoft,
     };
@@ -91,7 +99,7 @@ function buildPreset(presetType, cvLang) {
     selectedExperiences: professionalExperiences.map((e) => e.id),
     selectedAcademicExperiences: academicExperiences.map((e) => e.id),
     selectedProjects: projects.map((p) => p.id),
-    selectedDevSkills: skills.map((s) => s.id),
+    selectedDevSkills: ALL_CV_TECH_SKILLS.map((s) => s.id),
     selectedDesignSkills: designCapabilities.map((d) => d.id),
     selectedSoftSkills: allSoft,
   };
@@ -201,7 +209,7 @@ export default function ResumeLab() {
   const activeProjects = projects.filter((p) =>
     draft.selectedProjects.includes(p.id)
   );
-  const activeDevSkills = skills.filter((s) =>
+  const activeDevSkills = ALL_CV_TECH_SKILLS.filter((s) =>
     draft.selectedDevSkills.includes(s.id)
   );
   const activeDesignSkills = designCapabilities.filter((d) =>
@@ -210,6 +218,49 @@ export default function ResumeLab() {
   const activeSoftSkills = profile.softSkills.filter((s) =>
     draft.selectedSoftSkills.includes(s.id)
   );
+
+  const skillById = new Map(
+    [...activeDevSkills, ...activeDesignSkills].map((item) => [item.id, item.name])
+  );
+  const pickSkillNames = (ids) => ids.map((id) => skillById.get(id)).filter(Boolean);
+
+  const groupedSkillRows = [
+    {
+      label: cvT === 'pt' ? 'Linguagens de Programação' : 'Programming Languages',
+      items: pickSkillNames(['csharp', 'cpp', 'javascript', 'python', 'c-lang', 'java']),
+    },
+    {
+      label: cvT === 'pt' ? 'Desenvolvimento Web (Frontend)' : 'Web Development (Frontend)',
+      items: pickSkillNames(['react', 'html', 'css', 'vite']),
+    },
+    {
+      label: cvT === 'pt' ? 'Desenvolvimento Mobile' : 'Mobile Development',
+      items: pickSkillNames(['android-studio', 'react-native']),
+    },
+    {
+      label: cvT === 'pt' ? 'Backend & Banco de Dados' : 'Backend & Databases',
+      items: pickSkillNames(['mysql', 'postgresql', 'supabase', 'firebase']),
+    },
+    {
+      label: cvT === 'pt' ? 'Cloud & Infraestrutura' : 'Cloud & Infrastructure',
+      items: pickSkillNames(['azure', 'vercel']),
+    },
+    {
+      label: cvT === 'pt' ? 'Ferramentas & Design' : 'Tools & Design',
+      items: pickSkillNames([
+        'github',
+        'vscode',
+        'visual-studio-2022',
+        'figma',
+        'photoshop',
+        'tinkercad',
+      ]),
+    },
+    {
+      label: cvT === 'pt' ? 'Especialidades de Design & UI/UX' : 'Design & UI/UX Capabilities',
+      items: pickSkillNames(['ui-ux-design', 'brand-identity', 'editorial-print', 'packaging-catalogs']),
+    },
+  ].filter((row) => row.items.length > 0);
 
   return (
     <div className="cvlab-page container">
@@ -369,23 +420,6 @@ export default function ResumeLab() {
             </div>
           </div>
 
-          {/* Projects Selection */}
-          <div className="cvlab-field">
-            <label>{t.cvLab.fields.sections.projects}</label>
-            <div className="cvlab-checklist">
-              {projects.map((proj) => (
-                <label key={proj.id} className="cvlab-check-item">
-                  <input
-                    type="checkbox"
-                    checked={draft.selectedProjects.includes(proj.id)}
-                    onChange={() => toggleItem('selectedProjects', proj.id)}
-                  />
-                  <span>{tr(proj.title)}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
           {/* Academic Experience Selection */}
           <div className="cvlab-field">
             <label>{t.cvLab.fields.sections.academicExperiences}</label>
@@ -403,11 +437,28 @@ export default function ResumeLab() {
             </div>
           </div>
 
+          {/* Projects Selection */}
+          <div className="cvlab-field">
+            <label>{t.cvLab.fields.sections.projects}</label>
+            <div className="cvlab-checklist">
+              {projects.map((proj) => (
+                <label key={proj.id} className="cvlab-check-item">
+                  <input
+                    type="checkbox"
+                    checked={draft.selectedProjects.includes(proj.id)}
+                    onChange={() => toggleItem('selectedProjects', proj.id)}
+                  />
+                  <span>{tr(proj.title)}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
           {/* Dev Skills Selection */}
           <div className="cvlab-field">
             <label>{t.cvLab.fields.sections.devSkills}</label>
             <div className="cvlab-checklist" style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-              {skills.map((s) => (
+              {ALL_CV_TECH_SKILLS.map((s) => (
                 <label key={s.id} className="cvlab-check-item" style={{ width: '47%' }}>
                   <input
                     type="checkbox"
@@ -530,23 +581,6 @@ export default function ResumeLab() {
               </section>
             )}
 
-            {activeProjects.length > 0 && (
-              <section className="cv-paper-section">
-                <h2>{headers.projects}</h2>
-                {activeProjects.map((proj) => (
-                  <div key={proj.id} className="cv-paper-entry">
-                    <div className="cv-paper-entry-head">
-                      <span>{resText(proj.title)}</span>
-                      <span style={{ fontWeight: 500, color: '#555' }}>
-                        {proj.techs.map((tItem) => tItem.name).join(' • ')}
-                      </span>
-                    </div>
-                    <p style={{ color: '#333', fontSize: '0.8rem' }}>{resText(proj.shortDesc)}</p>
-                  </div>
-                ))}
-              </section>
-            )}
-
             {activeAcademicExperiences.length > 0 && (
               <section className="cv-paper-section">
                 <h2>{headers.academicExperiences}</h2>
@@ -566,21 +600,32 @@ export default function ResumeLab() {
               </section>
             )}
 
-            {(activeDevSkills.length > 0 || activeDesignSkills.length > 0) && (
+            {activeProjects.length > 0 && (
+              <section className="cv-paper-section">
+                <h2>{headers.projects}</h2>
+                {activeProjects.map((proj) => (
+                  <div key={proj.id} className="cv-paper-entry">
+                    <div className="cv-paper-entry-head">
+                      <span>{resText(proj.title)}</span>
+                      <span style={{ fontWeight: 500, color: '#555' }}>
+                        {proj.techs.map((tItem) => tItem.name).join(' • ')}
+                      </span>
+                    </div>
+                    <p style={{ color: '#333', fontSize: '0.8rem' }}>{resText(proj.shortDesc)}</p>
+                  </div>
+                ))}
+              </section>
+            )}
+
+            {groupedSkillRows.length > 0 && (
               <section className="cv-paper-section">
                 <h2>{headers.skills}</h2>
-                {activeDevSkills.length > 0 && (
-                  <p style={{ fontSize: '0.82rem', marginBottom: '0.3rem' }}>
-                    <strong>Tech & Stack: </strong>
-                    {activeDevSkills.map((s) => s.name).join(', ')}.
+                {groupedSkillRows.map((row) => (
+                  <p key={row.label} style={{ fontSize: '0.82rem', marginBottom: '0.25rem' }}>
+                    <strong>• {row.label}: </strong>
+                    {row.items.join(', ')}.
                   </p>
-                )}
-                {activeDesignSkills.length > 0 && (
-                  <p style={{ fontSize: '0.82rem' }}>
-                    <strong>Design & UI/UX: </strong>
-                    {activeDesignSkills.map((d) => d.name).join(', ')}.
-                  </p>
-                )}
+                ))}
               </section>
             )}
 

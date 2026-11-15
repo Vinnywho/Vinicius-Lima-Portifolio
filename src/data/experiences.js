@@ -84,33 +84,6 @@ export const experiences = [
     relatedProjectSlug: 'sebrae-blue',
   },
   {
-    id: 'fecap-pi5-asa-2026',
-    year: '2026',
-    period: { pt: '2026 (5º Semestre)', en: '2026 (5th Semester)' },
-    category: 'tech',
-    title: {
-      pt: 'Projeto Integrador V - ASA (App & Plataforma Web)',
-      en: 'Integrative Project V - ASA (App & Web Platform)',
-    },
-    organization: 'FECAP',
-    shortDesc: {
-      pt: 'Ecossistema integrado de atendimento, triagem, mural, visão 360° e assistente inteligente composto por aplicativo mobile e plataforma web.',
-      en: 'Integrated support, triage, notice board, 360° view, and intelligent assistant ecosystem combining a mobile app and a web platform.',
-    },
-    highlights: {
-      pt: [
-        'Desenvolvimento da plataforma web (asa-web-zeta.vercel.app) com módulos de Mural, Visão 360°, Triagem, Senhas, Documentos, 4D e Agente.',
-        'Construção de aplicativo mobile completo com Onboarding, Home Aluno/Funcionário, Ficha do Aluno, Chat, CAA e Perfil.',
-      ],
-      en: [
-        'Built the web platform (asa-web-zeta.vercel.app) featuring Notice Board, 360° View, Triage, Queue Tickets, Documents, 4D, and Agent modules.',
-        'Developed the companion mobile app covering Onboarding, Student/Staff Home, Student Record, Chat, CAA, and Profile.',
-      ],
-    },
-    tags: ['React', 'JavaScript', 'Mobile', 'Vercel', 'Projeto Integrador'],
-    relatedProjectSlug: 'asa-app',
-  },
-  {
     id: 'duca-rebranding-2026',
     year: '2026',
     period: { pt: '2026', en: '2026' },
@@ -319,93 +292,6 @@ export const experiences = [
       ],
     },
     tags: ['Liderança', 'Inglês Avançado', 'Networking Global'],
-  },
-  {
-    id: 'fecap-pi3-comedoria-2025',
-    year: '2025',
-    period: { pt: '2025 (3º Semestre)', en: '2025 (3rd Semester)' },
-    category: 'tech',
-    title: {
-      pt: 'Projeto Integrador III - Comedoria da Tia',
-      en: 'Integrative Project III - Comedoria da Tia',
-    },
-    organization: 'FECAP',
-    shortDesc: {
-      pt: 'Ecossistema completo de gestão e pedidos com App Android nativo em Java, Painel Web em React e backend em tempo real no Supabase.',
-      en: 'Full management and ordering ecosystem with a native Java Android app, React web dashboard, and real-time Supabase backend.',
-    },
-    highlights: {
-      pt: [
-        'Desenvolvimento de aplicativo Android nativo (Java) integrado à plataforma Web React.',
-        'Persistência e sincronização em tempo real com Supabase e deploy contínuo na Vercel.',
-        'Prototipagem de interface e fluxo de pedidos focados na operação diária da cantina.',
-      ],
-      en: [
-        'Built a native Android app (Java) integrated with a React web management dashboard.',
-        'Real-time data persistence and sync with Supabase, deployed continuously on Vercel.',
-        'Prototyped UI/UX and ordering flows tailored to daily cafeteria operations.',
-      ],
-    },
-    tags: ['React', 'Java', 'Android Studio', 'Supabase', 'Vercel'],
-    relatedProjectSlug: 'comedoria-da-tia',
-  },
-  {
-    id: 'fecap-pi2-instituto-criativo-2025',
-    year: '2025',
-    period: { pt: '2025 (2º Semestre)', en: '2025 (2nd Semester)' },
-    category: 'tech',
-    title: {
-      pt: 'Projeto Integrador II - Plataforma Instituto Criativo',
-      en: 'Integrative Project II - Instituto Criativo Platform',
-    },
-    organization: 'FECAP',
-    shortDesc: {
-      pt: 'Plataforma web corporativa e dashboard administrativo desenvolvidos com React, C#, MySQL e infraestrutura em nuvem no Microsoft Azure.',
-      en: 'Enterprise web platform and administrative dashboard built with React, C#, MySQL, and Microsoft Azure cloud infrastructure.',
-    },
-    highlights: {
-      pt: [
-        'Arquitetura full-stack conectando front-end em React a APIs em C# e banco relacional MySQL.',
-        'Hospedagem, integração e gestão de ambiente em nuvem utilizando Microsoft Azure.',
-        'Entrega orientada a métricas e indicadores reais para a organização parceira.',
-      ],
-      en: [
-        'Full-stack architecture connecting a React front-end to C# APIs and a MySQL database.',
-        'Cloud hosting and environment management powered by Microsoft Azure.',
-        'Delivered real-world metrics and operational dashboards for the partner organization.',
-      ],
-    },
-    tags: ['React', 'C#', 'MySQL', 'Microsoft Azure'],
-    relatedProjectSlug: 'instituto-criativo-dashboard',
-  },
-  {
-    id: 'fecap-pi1-bea-2024',
-    year: '2024',
-    period: { pt: '2024 (1º Semestre)', en: '2024 (1st Semester)' },
-    category: 'tech',
-    title: {
-      pt: 'Projeto Integrador I - Barreira Ecológica Autônoma (B.E.A.)',
-      en: 'Integrative Project I - Autonomous Ecological Barrier (B.E.A.)',
-    },
-    organization: 'FECAP',
-    shortDesc: {
-      pt: 'Sistema IoT autônomo em C++ com Arduino, ESP32 e sensores infravermelhos para detecção e remoção de resíduos em superfícies aquáticas.',
-      en: 'Autonomous C++ IoT system with Arduino, ESP32, and infrared sensors to detect and collect floating debris in urban waterways.',
-    },
-    highlights: {
-      pt: [
-        'Programação embarcada em C++ para controle de sensores infravermelhos e motores de passo.',
-        'Integração de hardware e automação com microcontroladores Arduino e ESP32.',
-        'Solução voltada à sustentabilidade e prevenção de entupimentos e enchentes urbanas.',
-      ],
-      en: [
-        'Embedded C++ firmware controlling infrared sensors and stepper motors.',
-        'Hardware integration and automation built on Arduino and ESP32 microcontrollers.',
-        'Sustainability-focused solution designed to prevent urban flooding and drain clogs.',
-      ],
-    },
-    tags: ['C++', 'IoT', 'Arduino', 'ESP32'],
-    relatedProjectSlug: 'barreira-ecologica-bea',
   },
   {
     id: 'fecap-ingresso-2024',
