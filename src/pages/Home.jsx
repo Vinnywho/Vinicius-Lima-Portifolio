@@ -8,6 +8,8 @@ import { profile } from '../data/profile';
 import { projects } from '../data/projects';
 import Phone3D from '../components/Phone3D';
 import MobileSkillsMarquee from '../components/MobileSkillsMarquee';
+import InteractiveHeroName from '../components/InteractiveHeroName';
+import HeroFloatingField from '../components/HeroFloatingField';
 import ModeSwitcher from '../components/ModeSwitcher';
 import FeaturedProject from '../components/FeaturedProject';
 import ProjectCard from '../components/ProjectCard';
@@ -21,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const { mode, lang, t, navigateWithTransition } = useApp();
   const rootRef = useRef(null);
+  const heroSectionRef = useRef(null);
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth <= 768 : false
   );
@@ -88,16 +91,18 @@ export default function Home() {
   return (
     <div ref={rootRef}>
       {/* HERO SECTION */}
-      <section id="home" className="hero-section">
+      <section ref={heroSectionRef} id="home" className="hero-section">
+        <HeroFloatingField sectionRef={heroSectionRef} />
         <div className="container hero-grid">
           <div className="hero-content">
             <div className="hero-badge hero-animate">
               {mode === 'dev' ? t.hero.devBadge : t.hero.designBadge}
             </div>
 
-            <h1 className="hero-title hero-animate">
-              {mode === 'dev' ? profile.devTitle : profile.graffitiName}
-            </h1>
+            <InteractiveHeroName
+              key={mode}
+              text={mode === 'dev' ? profile.devTitle : profile.graffitiName}
+            />
 
             <p className="hero-bio hero-animate">
               {mode === 'dev' ? t.hero.devBio : t.hero.designBio}
