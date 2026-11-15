@@ -1,26 +1,33 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Code2, Cpu, Layers, Palette, Sparkles, Terminal } from 'lucide-react';
-import { useApp } from '../context/AppContext';
+import codeIcon from '../assets/Icons/code-svgrepo-com.svg';
+import rockIcon from '../assets/Icons/rock-and-roll-concert-svgrepo-com.svg';
 
-const DEV_FLOATERS = [
-  { id: 'code', label: '</>', icon: Code2, pos: 'pos-tl', depth: 18, mobileHide: false },
-  { id: 'react', label: '{ React }', icon: Terminal, pos: 'pos-tr', depth: -22, mobileHide: false },
-  { id: 'mobile', label: 'React Native', icon: Cpu, pos: 'pos-bl', depth: 14, mobileHide: true },
-  { id: 'stack', label: 'C# • Python', icon: Layers, pos: 'pos-br', depth: -16, mobileHide: false },
-];
-
-const DESIGN_FLOATERS = [
-  { id: 'ui', label: '✦ UI/UX', icon: Sparkles, pos: 'pos-tl', depth: 18, mobileHide: false },
-  { id: 'figma', label: 'Figma', icon: Layers, pos: 'pos-tr', depth: -22, mobileHide: false },
-  { id: 'brand', label: 'Brand & Art', icon: Palette, pos: 'pos-bl', depth: 14, mobileHide: true },
-  { id: 'sbc', label: 'SBC 2025', icon: Sparkles, pos: 'pos-br', depth: -16, mobileHide: false },
+const PERSONAL_ICONS = [
+  {
+    id: 'code-identity',
+    icon: codeIcon,
+    alt: 'Code',
+    pos: 'pos-code',
+    depth: 26,
+    floatY: -14,
+    floatRot: -6,
+    duration: 3.4,
+  },
+  {
+    id: 'rock-identity',
+    icon: rockIcon,
+    alt: 'Rock and Roll',
+    pos: 'pos-rock',
+    depth: -28,
+    floatY: 14,
+    floatRot: 7,
+    duration: 3.9,
+  },
 ];
 
 export default function HeroFloatingField({ sectionRef }) {
-  const { mode } = useApp();
   const fieldRef = useRef(null);
-  const items = mode === 'dev' ? DEV_FLOATERS : DESIGN_FLOATERS;
 
   useEffect(() => {
     const prefersReducedMotion =
@@ -35,26 +42,28 @@ export default function HeroFloatingField({ sectionRef }) {
     if (!field) return;
 
     const ctx = gsap.context(() => {
-      const floaters = gsap.utils.toArray('.hero-floater');
-      floaters.forEach((el, idx) => {
+      // Smooth independent float on inner icon wrapper
+      gsap.utils.toArray('.hero-icon-bob').forEach((el) => {
+        const fy = Number(el.dataset.fy || -12);
+        const frot = Number(el.dataset.frot || 5);
+        const dur = Number(el.dataset.dur || 3.5);
+
         gsap.to(el, {
-          y: idx % 2 === 0 ? -12 : 12,
-          x: idx % 2 === 0 ? 6 : -6,
-          rotation: idx % 2 === 0 ? 3 : -3,
-          duration: 3 + idx * 0.55,
+          y: fy,
+          rotation: frot,
+          duration: dur,
           repeat: -1,
           yoyo: true,
           ease: 'sine.inOut',
         });
       });
 
-      const orbs = gsap.utils.toArray('.hero-ambient-orb');
-      orbs.forEach((orb, idx) => {
+      gsap.utils.toArray('.hero-ambient-orb').forEach((orb, idx) => {
         gsap.to(orb, {
-          scale: 1.12,
-          x: idx % 2 === 0 ? 18 : -18,
-          y: idx % 2 === 0 ? -14 : 14,
-          duration: 5.5 + idx * 1.2,
+          scale: 1.14,
+          x: idx % 2 === 0 ? 20 : -20,
+          y: idx % 2 === 0 ? -16 : 16,
+          duration: 6 + idx * 1.4,
           repeat: -1,
           yoyo: true,
           ease: 'sine.inOut',
@@ -62,7 +71,7 @@ export default function HeroFloatingField({ sectionRef }) {
       });
     }, fieldRef);
 
-    // Subtle pointer parallax on fine-pointer devices
+    // Smooth parallax on outer wrapper so it never conflicts with inner bob
     const isFinePointer =
       typeof window !== 'undefined' &&
       window.matchMedia &&
@@ -70,11 +79,11 @@ export default function HeroFloatingField({ sectionRef }) {
 
     let cleanupMouse = null;
     if (isFinePointer && section) {
-      const floaters = Array.from(field.querySelectorAll('.hero-floater'));
-      const quickSetters = floaters.map((el) => ({
-        xTo: gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power2.out' }),
-        yTo: gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power2.out' }),
-        depth: Number(el.dataset.depth || 16),
+      const parallaxNodes = Array.from(field.querySelectorAll('.hero-icon-parallax'));
+      const quickSetters = parallaxNodes.map((el) => ({
+        xTo: gsap.quickTo(el, 'x', { duration: 0.75, ease: 'power3.out' }),
+        yTo: gsap.quickTo(el, 'y', { duration: 0.75, ease: 'power3.out' }),
+        depth: Number(el.dataset.depth || 24),
       }));
 
       const onMove = (e) => {
@@ -106,21 +115,41 @@ export default function HeroFloatingField({ sectionRef }) {
       if (cleanupMouse) cleanupMouse();
       ctx.revert();
     };
-  }, [mode, sectionRef]);
+  }, [sectionRef]);
 
-  const handlePop = (e) => {
+  const handleIconBurst = (e, id) => {
     const prefersReducedMotion =
       typeof window !== 'undefined' &&
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const target = e.currentTarget;
-    gsap.fromTo(
-      target,
-      { scale: 1.26, rotation: -10 },
-      { scale: 1, rotation: 0, duration: 0.55, ease: 'elastic.out(1, 0.4)' }
-    );
+    const btn = e.currentTarget;
+    const ring = btn.querySelector('.hero-icon-ring');
+
+    gsap.killTweensOf(btn);
+    if (id === 'code-identity') {
+      gsap.fromTo(
+        btn,
+        { scale: 1.25, rotation: -18 },
+        { scale: 1, rotation: 360, duration: 0.85, ease: 'elastic.out(1, 0.45)' }
+      );
+    } else {
+      // Rock & Roll playful headbang shake + pop
+      gsap.timeline()
+        .to(btn, { scale: 1.28, rotation: -18, duration: 0.12, ease: 'power2.out' })
+        .to(btn, { rotation: 16, duration: 0.12, ease: 'power1.inOut' })
+        .to(btn, { rotation: -12, duration: 0.12, ease: 'power1.inOut' })
+        .to(btn, { scale: 1, rotation: 0, duration: 0.55, ease: 'elastic.out(1, 0.4)' });
+    }
+
+    if (ring) {
+      gsap.fromTo(
+        ring,
+        { scale: 0.7, opacity: 0.85 },
+        { scale: 1.9, opacity: 0, duration: 0.65, ease: 'power2.out' }
+      );
+    }
   };
 
   return (
@@ -128,23 +157,32 @@ export default function HeroFloatingField({ sectionRef }) {
       <span className="hero-ambient-orb orb-1" />
       <span className="hero-ambient-orb orb-2" />
 
-      {items.map((item) => {
-        const Icon = item.icon;
-        return (
-          <button
-            key={item.id}
-            type="button"
-            tabIndex={-1}
-            data-depth={item.depth}
-            className={`hero-floater ${item.pos} ${item.mobileHide ? 'hide-on-mobile' : ''}`}
-            onClick={handlePop}
-            data-no-spray="true"
+      {PERSONAL_ICONS.map((item) => (
+        <div
+          key={item.id}
+          data-depth={item.depth}
+          className={`hero-icon-parallax ${item.pos}`}
+        >
+          <div
+            className="hero-icon-bob"
+            data-fy={item.floatY}
+            data-frot={item.floatRot}
+            data-dur={item.duration}
           >
-            <Icon size={14} />
-            <span>{item.label}</span>
-          </button>
-        );
-      })}
+            <button
+              type="button"
+              tabIndex={-1}
+              className="hero-personal-icon-btn"
+              onClick={(e) => handleIconBurst(e, item.id)}
+              data-no-spray="true"
+              title={item.alt}
+            >
+              <span className="hero-icon-ring" />
+              <img src={item.icon} alt="" className="hero-personal-icon-img" />
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
